@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/picture_frame">
+
+    <TextView
+        android:text="Aicte ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView35"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Institution Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView35"
+        android:id="@+id/textView36"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Institution Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView36"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView37"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="State"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView37"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView38"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="District"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView38"
+        android:id="@+id/textView39"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Course ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView39"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView40"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="University"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView40"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView41"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView41"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView42"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView42"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView44"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView44"
+        android:id="@+id/textView45"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="FullTime/PartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView45"
+        android:id="@+id/textView46"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView46"
+        android:layout_toEndOf="@+id/textView46"
+        android:id="@+id/x_label_closed_courses_aicteid" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView36"
+        android:layout_alignLeft="@+id/x_label_closed_courses_aicteid"
+        android:layout_alignStart="@+id/x_label_closed_courses_aicteid"
+        android:id="@+id/x_label_closed_courses_institution_name" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_closed_courses_institution_name"
+        android:layout_alignLeft="@+id/x_label_closed_courses_institution_name"
+        android:layout_alignStart="@+id/x_label_closed_courses_institution_name"
+        android:id="@+id/x_label_closed_courses_institution_type" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView37"
+        android:layout_alignLeft="@+id/x_label_closed_courses_institution_type"
+        android:layout_alignStart="@+id/x_label_closed_courses_institution_type"
+        android:id="@+id/x_label_closed_courses_state" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView40"
+        android:layout_alignLeft="@+id/x_label_closed_courses_state"
+        android:layout_alignStart="@+id/x_label_closed_courses_state"
+        android:id="@+id/x_label_closed_courses_district" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_closed_courses_district"
+        android:layout_alignLeft="@+id/x_label_closed_courses_district"
+        android:layout_alignStart="@+id/x_label_closed_courses_district"
+        android:id="@+id/x_label_closed_courses_courseid" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView41"
+        android:layout_alignLeft="@+id/x_label_closed_courses_courseid"
+        android:layout_alignStart="@+id/x_label_closed_courses_courseid"
+        android:id="@+id/x_label_closed_courses_level" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_closed_courses_courseid"
+        android:layout_alignRight="@+id/x_label_closed_courses_courseid"
+        android:layout_alignEnd="@+id/x_label_closed_courses_courseid"
+        android:id="@+id/x_label_closed_courses_university" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView44"
+        android:layout_alignLeft="@+id/x_label_closed_courses_level"
+        android:layout_alignStart="@+id/x_label_closed_courses_level"
+        android:id="@+id/x_label_closed_courses_course" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView46"
+        android:layout_toEndOf="@+id/textView46"
+        android:id="@+id/x_label_closed_courses_full_part_time"
+        android:layout_alignTop="@+id/textView46" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/x_label_closed_courses_shift"
+        android:layout_below="@+id/x_label_closed_courses_course"
+        android:layout_alignLeft="@+id/x_label_closed_courses_course"
+        android:layout_alignStart="@+id/x_label_closed_courses_course" />
+
+</RelativeLayout>

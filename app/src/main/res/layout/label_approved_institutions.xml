@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/picture_frame">
+
+
+    <TextView
+        android:text="Aicte ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView2"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView4"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:id="@+id/textView6"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="District"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:id="@+id/textView8"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Institution Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView10"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Women"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView10"
+        android:id="@+id/textView12"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Minority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView13"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Course Details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView13"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView14"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Faculty Details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView14"
+        android:id="@+id/textView15"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10"
+        android:id="@+id/x_label_approved_institutions_aicteid" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView6"
+        android:layout_alignRight="@+id/x_label_approved_institutions_aicteid"
+        android:layout_alignEnd="@+id/x_label_approved_institutions_aicteid"
+        android:id="@+id/x_label_approved_institutions_name" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_approved_institutions_name"
+        android:layout_alignLeft="@+id/x_label_approved_institutions_name"
+        android:layout_alignStart="@+id/x_label_approved_institutions_name"
+        android:id="@+id/x_label_approved_institutions_address" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_approved_institutions_address"
+        android:layout_alignLeft="@+id/x_label_approved_institutions_address"
+        android:layout_alignStart="@+id/x_label_approved_institutions_address"
+        android:id="@+id/x_label_approved_institutions_district" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView10"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10"
+        android:id="@+id/x_label_approved_institutions_women" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView14"
+        android:layout_alignRight="@+id/x_label_approved_institutions_women"
+        android:layout_alignEnd="@+id/x_label_approved_institutions_women"
+        android:id="@+id/x_label_approved_institutions_minority" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_approved_institutions_minority"
+        android:layout_alignLeft="@+id/x_label_approved_institutions_minority"
+        android:layout_alignStart="@+id/x_label_approved_institutions_minority"
+        android:id="@+id/x_label_approved_institutions_course_details" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_alignLeft="@+id/x_label_approved_institutions_course_details"
+        android:layout_alignStart="@+id/x_label_approved_institutions_course_details"
+        android:id="@+id/x_label_approved_institutions_faculty_details" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/x_label_approved_institutions_institution_type"
+        android:layout_above="@+id/x_label_approved_institutions_women"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_toEndOf="@+id/textView10" />
+</RelativeLayout>

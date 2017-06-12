@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/picture_frame">
+
+    <TextView
+        android:text="Aicte ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView18"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Institution Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView18"
+        android:id="@+id/textView19"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="State"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView19"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView20"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="District"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView20"
+        android:id="@+id/textView21"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Institution Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView21"
+        android:id="@+id/textView22"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Program"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView22"
+        android:id="@+id/textView23"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="University/Board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView23"
+        android:id="@+id/textView24"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView24"
+        android:id="@+id/textView25"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Name Of Courses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView25"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView26"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="Approved Intake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView26"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView27"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="NRI Quota Seats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView27"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView28"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView26"
+        android:layout_toEndOf="@+id/textView26"
+        android:id="@+id/x_label_other_courses_aicteid" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_other_courses_aicteid"
+        android:layout_alignLeft="@+id/x_label_other_courses_aicteid"
+        android:layout_alignStart="@+id/x_label_other_courses_aicteid"
+        android:id="@+id/x_label_other_courses_institution_name" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView19"
+        android:layout_alignLeft="@+id/x_label_other_courses_institution_name"
+        android:layout_alignStart="@+id/x_label_other_courses_institution_name"
+        android:id="@+id/x_label_other_courses_state" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView22"
+        android:layout_alignLeft="@+id/x_label_other_courses_state"
+        android:layout_alignStart="@+id/x_label_other_courses_state"
+        android:id="@+id/x_label_other_courses_district" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_other_courses_district"
+        android:layout_alignLeft="@+id/x_label_other_courses_district"
+        android:layout_alignStart="@+id/x_label_other_courses_district"
+        android:id="@+id/x_label_other_courses_institution_type" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView24"
+        android:layout_alignLeft="@+id/x_label_other_courses_institution_type"
+        android:layout_alignStart="@+id/x_label_other_courses_institution_type"
+        android:id="@+id/x_label_other_courses_program" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_other_courses_program"
+        android:layout_alignLeft="@+id/x_label_other_courses_program"
+        android:layout_alignStart="@+id/x_label_other_courses_program"
+        android:id="@+id/x_label_other_courses_universityboard" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView26"
+        android:layout_toRightOf="@+id/textView26"
+        android:layout_toEndOf="@+id/textView26"
+        android:id="@+id/x_label_other_courses_level" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_label_other_courses_level"
+        android:layout_toRightOf="@+id/textView26"
+        android:layout_toEndOf="@+id/textView26"
+        android:id="@+id/x_label_other_courses_course_name" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView26"
+        android:layout_toRightOf="@+id/textView26"
+        android:layout_toEndOf="@+id/textView26"
+        android:id="@+id/x_label_other_courses_approved_intake" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView27"
+        android:layout_alignLeft="@+id/x_label_other_courses_approved_intake"
+        android:layout_alignStart="@+id/x_label_other_courses_approved_intake"
+        android:id="@+id/x_label_other_courses_nri_quota_seats" />
+</RelativeLayout>
