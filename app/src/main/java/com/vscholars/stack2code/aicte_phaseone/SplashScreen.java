@@ -8,9 +8,12 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +61,11 @@ public class SplashScreen extends AppCompatActivity{
     private void initializer() {
 
         setContentView(R.layout.splash_screen);
+
+        Window window = SplashScreen.this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(0);
 
         J_DataLoading=(ProgressBar)findViewById(R.id.x_splash_screen_progress_bar);
         J_DataLoadingText=(TextView)findViewById(R.id.x_splash_screen_loading_text);

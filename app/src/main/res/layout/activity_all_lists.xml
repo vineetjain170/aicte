@@ -17,8 +17,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/x_activity_all_lists_list_main"
-            android:paddingBottom="50dp"
-            android:paddingTop="50dp"/>
+            android:paddingBottom="55dp"
+            android:paddingTop="55dp"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -27,7 +27,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-
+            android:layout_marginBottom="2dp"
             android:id="@+id/x_activity_all_lists_list_controller"
             android:animateLayoutChanges="true">
 
@@ -37,18 +37,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/x_activity_all_lists_prev_button"
-                android:background="#ffffff"/>
+                android:background="@drawable/round_shape"
+                android:layout_marginLeft="4dp" />
 
             <Button
                 android:layout_weight="1"
                 android:text="Next"
-                android:background="#fff"
+                android:background="@drawable/round_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/x_activity_all_lists_next_button"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="4dp"/>
 
         </LinearLayout>
 
@@ -61,13 +63,14 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/x_activity_all_lists_search_tab"
-            android:animateLayoutChanges="true">
+            android:animateLayoutChanges="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
-                android:ems="10"
                 android:id="@+id/x_activity_all_lists_keywords"
                 android:layout_alignBottom="@+id/x_activity_all_lists_action_search"
                 android:layout_alignParentLeft="true"
@@ -84,7 +87,8 @@
                 android:textColor="@color/colorPrimary"
                 android:background="@drawable/round_shape"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="5dp"/>
         </RelativeLayout>
 
 
@@ -95,16 +99,18 @@
         android:layout_gravity="left"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
+        android:dividerHeight="2dp"
         android:background="#ffffff"/>
 
     <ExpandableListView android:id="@+id/x_double_navigation_drawer_layout_filter_drawer"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="#ffffff"/>
+        android:dividerHeight="2dp"
+        android:background="#ffffff"
+        android:childDivider="#ffffff"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -34,6 +34,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     private String[][][]data;
     private int noOfCategory,noOfEntries,noOfParameters;
     private List<String>J_Category;
+    private String[] yearList;
 
     //these variables are used to keep track of user touch events
     private int J_xCoordinateUp,J_xCoordinateDown;
@@ -46,7 +47,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
         //message is passed by DoubleNavigationDrawerWithoutEditText class when user selects an activity from main navigation drawer
         //actions specific to message are taken
         String message=getIntent().getStringExtra("activitySelected");
-        String[] yearList=getIntent().getStringArrayExtra("yearList");
+        yearList=getIntent().getStringArrayExtra("yearList");
 
         super.onCreateDrawer(BaseClassAllLists.this,message,yearList);
 
@@ -169,6 +170,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     public void onBackPressed(){
 
         Intent intent=new Intent(BaseClassAllLists.this,MainActivity.class);
+        intent.putExtra("yearList",yearList);
         startActivity(intent);
 
     }

@@ -18,7 +18,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/x_splash_screen_loading_text"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:fontFamily="casual"
+        android:textColor="#000000"/>
 
     <ProgressBar
         style="?android:attr/progressBarStyleSmall"
@@ -27,5 +29,6 @@
         android:id="@+id/x_splash_screen_progress_bar"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/x_splash_screen_loading_text"
-        android:layout_toStartOf="@+id/x_splash_screen_loading_text" />
+        android:layout_toStartOf="@+id/x_splash_screen_loading_text"
+        android:paddingBottom="4dp"/>
 </RelativeLayout>

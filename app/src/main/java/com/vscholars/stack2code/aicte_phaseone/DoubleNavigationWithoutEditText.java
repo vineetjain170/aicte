@@ -2,9 +2,12 @@ package com.vscholars.stack2code.aicte_phaseone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
@@ -15,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,6 +44,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     private HashMap<String,String> J_SelectedOptions;
     private HashMap<String, List<String>> J_ChildFilterOptions;
     private EditText J_keywords;
+    private TextView J_ActionBarTitle;
 
     protected void onCreateDrawer(Context context, String message,String[] yearList) {
 
@@ -72,15 +77,11 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         };
 
         J_DrawerLayout.setDrawerListener(J_DrawerToggle);
-
-        // This code enables the Home button on ActionBar
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void initializer(final Context context, String message, final String[] yearList) {
 
-        //initialize drawer layout
+        //initialize fontFamily="serif"drawer layout
         //initialize list view of navigation drawer
         J_DrawerLayout = (DrawerLayout) findViewById(R.id.x_double_navigation_drawer_layout_drawer_layout);
         J_DrawerListMainNavigationDrawer=(ListView)findViewById(R.id.x_double_navigation_drawer_layout_main_drawer);
@@ -88,6 +89,10 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         J_keywords=(EditText)findViewById(R.id.x_activity_all_lists_keywords);
 
         //this method changes the title of action bar according to current activity
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         ActionBarTitleChange(message);
 
         //provide list items for main navigation drawer and set its adapter
@@ -334,33 +339,34 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
     private void ActionBarTitleChange(String message) {
 
+        J_ActionBarTitle=(TextView)findViewById(R.id.x_custom_action_bar_layout_title);
         if(message.equals("approved_institutes")){
 
-            getSupportActionBar().setTitle("Approved Institutes");
+            J_ActionBarTitle.setText("Approved Institutes");
             J_keywords.setHint(null);
 
         }else if (message.equals("nri/pio-fn-ciwg/tp")){
 
-            getSupportActionBar().setTitle("NRI/PIO-FN-CIWG/TP");
+            J_ActionBarTitle.setText("NRI/PIO-FN-CIWG/TP");
             J_keywords.setHint("Search College Here");
 
         }else if (message.equals("faculty")){
 
-            getSupportActionBar().setTitle("Faculty");
+            J_ActionBarTitle.setText("Faculty");
             J_keywords.setHint(null);
 
         }else if (message.equals("closed_courses")){
 
-            getSupportActionBar().setTitle("Closed Courses");
+            J_ActionBarTitle.setText("Closed Courses");
             J_keywords.setHint("Search College Here");
 
         }else if (message.equals("closed_institutes")){
 
-            getSupportActionBar().setTitle("Closed Institutes");
+            J_ActionBarTitle.setText("Closed Institutes");
             J_keywords.setHint("Search College Here");
 
         }else if (message=="dashboard"){
-            getSupportActionBar().setTitle("AICTE Dashboard");
+            J_ActionBarTitle.setText("AICTE Dashboard");
         }
 
     }

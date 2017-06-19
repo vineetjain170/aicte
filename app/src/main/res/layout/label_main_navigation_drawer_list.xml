@@ -5,25 +5,29 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginBottom="2dp"
-    android:background="#4c433a">
+    android:background="#000000">
 
     <ImageView
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:srcCompat="@drawable/ic_dashboard_nav"
         android:layout_marginLeft="10dp"
-        android:focusable="false"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:focusable="false"
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/x_label_main_navgation_drawer_list_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_gravity="center"
-        android:textColor="#fff"
-        android:paddingLeft="10dp"/>
+        android:textColor="#ffffff"
+        android:paddingLeft="10dp"
+        android:fontFamily="monospace"/>
 
 
 </LinearLayout>
