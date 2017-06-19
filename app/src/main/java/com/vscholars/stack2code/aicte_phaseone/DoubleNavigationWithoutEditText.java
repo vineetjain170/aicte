@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -38,12 +39,13 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     private List<String> J_ParentFilterOptions;
     private HashMap<String,String> J_SelectedOptions;
     private HashMap<String, List<String>> J_ChildFilterOptions;
+    private EditText J_keywords;
 
-    protected void onCreateDrawer(Context context, String message) {
+    protected void onCreateDrawer(Context context, String message,String[] yearList) {
 
         //This method is main initializer for all the components
 
-        initializer(context,message);
+        initializer(context,message,yearList);
 
         // This code sets the drawer toggle as the DrawerListener
 
@@ -75,20 +77,26 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    public void initializer(final Context context, String message) {
+
+    public void initializer(final Context context, String message, final String[] yearList) {
 
         //initialize drawer layout
         //initialize list view of navigation drawer
         J_DrawerLayout = (DrawerLayout) findViewById(R.id.x_double_navigation_drawer_layout_drawer_layout);
         J_DrawerListMainNavigationDrawer=(ListView)findViewById(R.id.x_double_navigation_drawer_layout_main_drawer);
         J_DrawerListFilterOptions=(ExpandableListView) findViewById(R.id.x_double_navigation_drawer_layout_filter_drawer);
+        J_keywords=(EditText)findViewById(R.id.x_activity_all_lists_keywords);
+
+        //this method changes the title of action bar according to current activity
+        ActionBarTitleChange(message);
 
         //provide list items for main navigation drawer and set its adapter
         J_MainNavigationDrawerOptions= new String[]{"AICTE Home", "Dashboard", "Approved Institutes", "NRI/PIO-FN-CIWG/TP", "Faculties","Graphs and Charts","Closed Courses","Closed Institutes","Unapproved"};
-        J_DrawerListMainNavigationDrawer.setAdapter(new AdapterForMainNavigationList(context,J_MainNavigationDrawerOptions));
+        int[] icons={R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav};
+        J_DrawerListMainNavigationDrawer.setAdapter(new AdapterForMainNavigationList(context,J_MainNavigationDrawerOptions,icons));
 
         //initialize filter options according to message or current activity and assign an adapter to it
-        FilterOptionsInitializer(message);
+        FilterOptionsInitializer(message,yearList);
         J_DrawerListFilterOptions.setAdapter(new AdapterForFilterOptions(context,J_ParentFilterOptions,J_ChildFilterOptions));
 
         //this function is used to add header and footer view to lists of navigation drawer
@@ -123,21 +131,25 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
                 } else if (position==2){
                     i=new Intent(context,MainActivity.class);
+                    i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==3){
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","approved_institutes");
+                    i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==4){
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","nri/pio-fn-ciwg/tp");
+                    i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==5){
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","faculty");
+                    i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==6){
@@ -145,11 +157,13 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                 } else if (position==7){
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_courses");
+                    i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==8){
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_institutes");
+                    i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==9){
@@ -197,23 +211,41 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     }
 
 
-    public void FilterOptionsInitializer(String message){
+    public void FilterOptionsInitializer(String message,String[] yearList){
 
         //this code initializes filter options according to the current activity or received message
         J_ParentFilterOptions=new ArrayList<String>();
         J_ChildFilterOptions=new HashMap<String, List<String>>();
         J_SelectedOptions=new HashMap<String,String>();
+        List<String>temp;
 
         if (message.equals("approved_institutes")||message.equals("dashboard")){
 
             //initialize parent options for filter list according to the message
-            J_ParentFilterOptions.add("Year");
-            J_ParentFilterOptions.add("Select State");
-            J_ParentFilterOptions.add("Select Program");
-            J_ParentFilterOptions.add("Select Level");
-            J_ParentFilterOptions.add("Institution Type");
-            J_ParentFilterOptions.add("Minority");
-            J_ParentFilterOptions.add("Women");
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.filterOptionsParentApprovedInstitutesOrDashboard))J_ParentFilterOptions.add(value);
+
+            temp=new ArrayList<String>();
+            for (String year:yearList)temp.add(year);
+            J_ChildFilterOptions.put("Year",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.stateOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select State",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.programOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select Program",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.levelOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select Level",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.institutionType))temp.add(value);
+            J_ChildFilterOptions.put("Institution Type",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.minorityOptions))temp.add(value);
+            J_ChildFilterOptions.put("Minority",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.womenOptions))temp.add(value);
+            J_ChildFilterOptions.put("Women",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
             J_SelectedOptions.put("Year","2016-2017");
@@ -227,22 +259,48 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         }else if (message.equals("nri/pio-fn-ciwg/tp")){
 
             //initialize parent options for filter list according to the message
-            J_ParentFilterOptions.add("Course Type");
-            J_ParentFilterOptions.add("Year");
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.filterOptionsParentNriPioFnCiwgTp))J_ParentFilterOptions.add(value);
+
+            temp=new ArrayList<String>();
+            for(String value:getResources().getStringArray(R.array.courseType))temp.add(value);
+            J_ChildFilterOptions.put("Course Type",temp);
+            temp=new ArrayList<String>();
+            for (String year:yearList)temp.add(year);
+            J_ChildFilterOptions.put("Year",temp);
+
 
             //This code provide initial default value to selected options in case no option is selected by user
             J_SelectedOptions.put("Course Type","NRI");
             J_SelectedOptions.put("Year","2017-2018");
 
+
+
         }else if (message.equals("faculty")){
 
             //initialize parent options for filter list according to the message
-            J_ParentFilterOptions.add("Select State");
-            J_ParentFilterOptions.add("Select Program");
-            J_ParentFilterOptions.add("Select Level");
-            J_ParentFilterOptions.add("Institution Type");
-            J_ParentFilterOptions.add("Minority");
-            J_ParentFilterOptions.add("Women");
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.filterOptionsFaculty))J_ParentFilterOptions.add(value);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.stateOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select State",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.programOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select Program",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.levelOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select Level",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.institutionType))temp.add(value);
+            J_ChildFilterOptions.put("Institution Type",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.minorityOptions))temp.add(value);
+            J_ChildFilterOptions.put("Minority",temp);
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.womenOptions))temp.add(value);
+            J_ChildFilterOptions.put("Women",temp);
+
 
             //This code provide initial default value to selected options in case no option is selected by user
             J_SelectedOptions.put("Select State","Andaman And Nicobar Island");
@@ -255,16 +313,55 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         }else if (message.equals("closed_courses")||message.equals("closed_institutes")){
 
             //initialize parent options for filter list according to the message
-            J_ParentFilterOptions.add("Year");
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.filterOptionsParentClosedCoursesOrInstitute))J_ParentFilterOptions.add(value);
+
+            temp=new ArrayList<String>();
+            for (String year:yearList)temp.add(year);
+            J_ChildFilterOptions.put("Year",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
             J_SelectedOptions.put("Year","2017-2018");
 
         }
     }
+
     public void filterList(View v){
 
         //on click of filter button the selected option is submitted to server through this module
+
+    }
+
+    private void ActionBarTitleChange(String message) {
+
+        if(message.equals("approved_institutes")){
+
+            getSupportActionBar().setTitle("Approved Institutes");
+            J_keywords.setHint(null);
+
+        }else if (message.equals("nri/pio-fn-ciwg/tp")){
+
+            getSupportActionBar().setTitle("NRI/PIO-FN-CIWG/TP");
+            J_keywords.setHint("Search College Here");
+
+        }else if (message.equals("faculty")){
+
+            getSupportActionBar().setTitle("Faculty");
+            J_keywords.setHint(null);
+
+        }else if (message.equals("closed_courses")){
+
+            getSupportActionBar().setTitle("Closed Courses");
+            J_keywords.setHint("Search College Here");
+
+        }else if (message.equals("closed_institutes")){
+
+            getSupportActionBar().setTitle("Closed Institutes");
+            J_keywords.setHint("Search College Here");
+
+        }else if (message=="dashboard"){
+            getSupportActionBar().setTitle("AICTE Dashboard");
+        }
 
     }
 }

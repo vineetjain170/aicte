@@ -2,12 +2,21 @@ package com.vscholars.stack2code.aicte_phaseone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by vineet_jain on 8/6/17.
@@ -16,11 +25,15 @@ import android.widget.RelativeLayout;
 public class BaseClassAllLists extends DoubleNavigationWithoutEditText implements View.OnTouchListener{
 
     //these as the objects which hold the reference to all the views in the activity
-    private ListView J_ListMain;
+    private ExpandableListView J_ListMain;
     private Button J_ButtonNext,J_ButtonPrev;
-    private RelativeLayout J_SearchTab,J_ListsController;
+    private RelativeLayout J_SearchTab;
+    private LinearLayout J_ListsController;
     private EditText J_keywords;
     private Button J_actionSearch;
+    private String[][][]data;
+    private int noOfCategory,noOfEntries,noOfParameters;
+    private List<String>J_Category;
 
     //these variables are used to keep track of user touch events
     private int J_xCoordinateUp,J_xCoordinateDown;
@@ -33,8 +46,9 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
         //message is passed by DoubleNavigationDrawerWithoutEditText class when user selects an activity from main navigation drawer
         //actions specific to message are taken
         String message=getIntent().getStringExtra("activitySelected");
+        String[] yearList=getIntent().getStringArrayExtra("yearList");
 
-        super.onCreateDrawer(BaseClassAllLists.this,message);
+        super.onCreateDrawer(BaseClassAllLists.this,message,yearList);
 
         //initialize the activity according to the message
         initializer(message);
@@ -42,53 +56,65 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     }
     public void initializer(String message){
 
-        J_ListMain=(ListView)findViewById(R.id.x_activity_all_lists_list_main);
+        J_ListMain=(ExpandableListView) findViewById(R.id.x_activity_all_lists_list_main);
         J_ButtonNext=(Button)findViewById(R.id.x_activity_all_lists_next_button);
         J_ButtonPrev=(Button)findViewById(R.id.x_activity_all_lists_prev_button);
         J_SearchTab=(RelativeLayout)findViewById(R.id.x_activity_all_lists_search_tab);
-        J_ListsController=(RelativeLayout)findViewById(R.id.x_activity_all_lists_list_controller);
+        J_ListsController=(LinearLayout)findViewById(R.id.x_activity_all_lists_list_controller);
         J_keywords=(EditText)findViewById(R.id.x_activity_all_lists_keywords);
         J_actionSearch=(Button)findViewById(R.id.x_activity_all_lists_action_search);
 
         //this code sets a listener to list view which takes action on swipe up and swipe down
-        J_ListMain.setOnTouchListener(this);
+        //J_ListMain.setOnTouchListener(this);
+
+
+        noOfCategory=2;
+        noOfEntries=1;
+        noOfParameters=assignParameters(message);
+        data=new String[noOfCategory][noOfEntries][noOfParameters];
+        dataBuilder();
+        J_Category=new ArrayList<String>();
+        J_Category.add("x");
+        J_Category.add("y");
+        J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,noOfCategory,noOfEntries,noOfParameters,J_Category,data));
 
         //this is the data received from server and is displayed using list view
-        String data[][]=new String[0][0];
-        J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,data));
-
-        //this method changes the title of action bar according to current activity
-        ActionBarTitleChange(message);
     }
 
-    private void ActionBarTitleChange(String message) {
+    private void dataBuilder() {
+
+        for (int i=0;i<noOfCategory;++i){
+            for (int j=0;j<noOfEntries;++j){
+                for (int k=0;k<noOfParameters;++k){
+                    data[i][j][k]=k+"";
+                }
+            }
+        }
+
+    }
+
+    private int assignParameters(String message) {
 
         if(message.equals("approved_institutes")){
 
-            getSupportActionBar().setTitle("Approved Institutes");
-            J_keywords.setHint(null);
+            return 9;
 
-        }else if (message.equals("nri/pio-fn-ciwg/tp")){
+        }else if (message.equals("nri/pio-fn-ciwg/tp")||message.equals("closed_courses")){
 
-            getSupportActionBar().setTitle("NRI/PIO-FN-CIWG/TP");
-            J_keywords.setHint("Search College Here");
+            return 11;
 
         }else if (message.equals("faculty")){
 
-            getSupportActionBar().setTitle("Faculty");
-            J_keywords.setHint(null);
-
-        }else if (message.equals("closed_courses")){
-
-            getSupportActionBar().setTitle("Closed Courses");
-            J_keywords.setHint("Search College Here");
+            return 8;
 
         }else if (message.equals("closed_institutes")){
 
-            getSupportActionBar().setTitle("Closed Institutes");
-            J_keywords.setHint("Search College Here");
+            return 7;
 
+        }else {
+            return 0;
         }
+
 
     }
 

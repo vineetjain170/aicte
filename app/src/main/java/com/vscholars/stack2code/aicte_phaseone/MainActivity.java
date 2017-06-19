@@ -11,11 +11,11 @@ public class MainActivity extends DoubleNavigationWithoutEditText {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] J_yearList=getIntent().getStringArrayExtra("yearList");
 
         //This message is passed between activities to indicate which element of dashboard is under consideration
-        super.onCreateDrawer(MainActivity.this,"dashboard");
+        super.onCreateDrawer(MainActivity.this,"dashboard",J_yearList);
 
-        getSupportActionBar().setTitle("Aicte Dashboard");
     }
     public void onBackPressed(){
         moveTaskToBack(true);
