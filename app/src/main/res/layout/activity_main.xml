@@ -24,31 +24,38 @@
             tools:context="com.vscholars.stack2code.aicte_phaseone.MainActivity">
 
 
+
             <LinearLayout
                 android:id="@+id/tab_1"
+                android:layout_marginLeft="30dp"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_1_bg"
+                android:padding="20dp">
                 <TextView
                     android:text="Total Institutions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="19dp"
+
                     android:id="@+id/textView"
+                    android:textColor="#fff"
                     android:gravity="center"
-                    android:textSize="20dp" />
+                    android:textSize="12dp" />
                 <TextView
                     android:text="TextView"
+                    android:textColor="#fff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/x_activity_main_total_institutions"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:textSize="15dp"/>
+                    android:textSize="20dp"/>
 
             </LinearLayout>
+
 
 
             <LinearLayout
@@ -56,17 +63,20 @@
                 android:layout_toRightOf="@id/tab_1"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_2_bg"
+                android:layout_marginLeft="10dp"
+                android:padding="20dp">
 
                 <TextView
                     android:text="Faculties"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/x_activity_main_total_institutions"
-                    android:layout_marginTop="23dp"
                     android:id="@+id/textView3"
+                    android:textColor="#a94442"
                     android:gravity="center"
-                    android:textSize="20dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:text="TextView"
@@ -77,49 +87,58 @@
                     android:layout_alignStart="@+id/textView3"
                     android:id="@+id/x_activity_main_faculties"
                     android:gravity="center"
-                    android:textSize="15dp"/>
+                    android:textColor="#a94442"
+                    android:textSize="20dp"/>
             </LinearLayout>
-
 
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:id="@+id/tab_3"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/tab_1"
+                android:padding="20dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/tab_3_bg"
                 android:orientation="vertical">
                 <TextView
                     android:text="Total Intake"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:textColor="#fff"
                     android:id="@+id/textView5"
                     android:layout_below="@+id/x_activity_main_faculties"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:textSize="20dp" />
+                    android:textSize="12dp" />
                 <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#fff"
                     android:layout_below="@+id/textView5"
                     android:layout_alignLeft="@+id/textView5"
                     android:layout_alignStart="@+id/textView5"
                     android:id="@+id/x_activity_main_total_intake"
                     android:gravity="center"
-                    android:textSize="15dp"/>
+                    android:textSize="20dp"/>
             </LinearLayout>
 
 
 
             <LinearLayout
+                android:layout_marginLeft="14dp"
                 android:layout_width="wrap_content"
                 android:id="@+id/tab_4"
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/tab_2"
                 android:layout_toRightOf="@id/tab_3"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/tab_4_bg">
                 <TextView
                     android:text="Enrollment"
                     android:layout_width="match_parent"
@@ -127,10 +146,10 @@
                     android:layout_below="@+id/x_activity_main_total_intake"
                     android:layout_alignRight="@+id/x_activity_main_total_intake"
                     android:layout_alignEnd="@+id/x_activity_main_total_intake"
-                    android:layout_marginTop="27dp"
                     android:id="@+id/textView7"
                     android:gravity="center"
-                    android:textSize="20dp" />
+                    android:textColor="#3c763d"
+                    android:textSize="12dp" />
 
 
                 <TextView
@@ -142,27 +161,33 @@
                     android:layout_alignEnd="@+id/textView7"
                     android:id="@+id/x_activity_main_enrollment"
                     android:gravity="center"
-                    android:textSize="15dp"/>
+                    android:textColor="#3c763d"
+                    android:textSize="20dp"/>
             </LinearLayout>
+
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:id="@+id/tab_5"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/tab_3"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/tab_5_bg"
+                android:padding="20dp">
                 <TextView
                     android:text="Students Passed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="27dp"
                     android:id="@+id/textView9"
                     android:layout_below="@+id/x_activity_main_enrollment"
                     android:layout_alignRight="@+id/textView5"
                     android:layout_alignEnd="@+id/textView5"
                     android:gravity="center"
-                    android:textSize="20dp" />
+                    android:textSize="12dp"
+                    android:textColor="#fff"/>
 
                 <TextView
                     android:text="TextView"
@@ -173,28 +198,35 @@
                     android:layout_alignRight="@+id/textView9"
                     android:layout_alignEnd="@+id/textView9"
                     android:gravity="center"
-                    android:textSize="15dp"/>
+                    android:textColor="#fff"
+                    android:textSize="20dp"/>
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:id="@+id/tab_6"
                 android:layout_below="@id/tab_4"
+                android:layout_marginLeft="9dp"
                 android:layout_toRightOf="@id/tab_5"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/tab_6_bg"
+                android:padding="20dp">
                 <TextView
                     android:text="Placement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:id="@+id/textView11"
                     android:layout_below="@+id/x_activity_main_student_passed"
                     android:layout_alignLeft="@+id/x_activity_main_enrollment"
                     android:layout_alignStart="@+id/x_activity_main_enrollment"
                     android:freezesText="true"
                     android:gravity="center"
-                    android:textSize="20dp"/>
+                    android:textColor="#31708f"
+                    android:textSize="12dp"/>
 
                 <TextView
                     android:text="TextView"
@@ -205,7 +237,8 @@
                     android:layout_alignStart="@+id/textView11"
                     android:id="@+id/x_activity_main_placement"
                     android:gravity="center"
-                    android:textSize="15dp"/>
+                    android:textColor="#31708f"
+                    android:textSize="20dp"/>
             </LinearLayout>
 
 

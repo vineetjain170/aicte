@@ -92,7 +92,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
         //provide list items for main navigation drawer and set its adapter
         J_MainNavigationDrawerOptions= new String[]{"AICTE Home", "Dashboard", "Approved Institutes", "NRI/PIO-FN-CIWG/TP", "Faculties","Graphs and Charts","Closed Courses","Closed Institutes","Unapproved"};
-        int[] icons={R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_dashboard_nav};
+        int[] icons={R.drawable.ic_home_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_institute_nav,R.drawable.ic_nri_nav,R.drawable.ic_faulty_details,R.drawable.ic_check_right,R.drawable.ic_closed_courses_nav,R.drawable.ic_closed_institutes_nav,R.drawable.ic_unapproved_nav};
         J_DrawerListMainNavigationDrawer.setAdapter(new AdapterForMainNavigationList(context,J_MainNavigationDrawerOptions,icons));
 
         //initialize filter options according to message or current activity and assign an adapter to it

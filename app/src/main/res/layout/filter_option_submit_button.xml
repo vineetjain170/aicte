@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:background="@android:drawable/editbox_dropdown_dark_frame"
-        android:textColor="@color/colorAccent"
+        android:background="@drawable/tab_5_bg"
+        android:textColor="#fff"
+        android:textSize="17dp"
+        android:layout_margin="10dp"
         android:onClick="filterList"/>
 </LinearLayout>
