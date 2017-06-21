@@ -23,7 +23,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by vineet_jain on 8/6/17.
@@ -41,7 +44,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     private ExpandableListView J_DrawerListFilterOptions;
     private ActionBarDrawerToggle J_DrawerToggle;
     private List<String> J_ParentFilterOptions;
-    private HashMap<String,String> J_SelectedOptions;
+    private LinkedHashMap<String,String> J_SelectedOptions;
     private HashMap<String, List<String>> J_ChildFilterOptions;
     private EditText J_keywords;
     private TextView J_ActionBarTitle;
@@ -111,7 +114,12 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         J_DrawerListFilterOptions.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                return false;
+                Object[] keys=J_SelectedOptions.keySet().toArray();
+                J_ParentFilterOptions.add(groupPosition+1,keys[groupPosition].toString());
+                J_ParentFilterOptions.remove(groupPosition);
+                J_DrawerListFilterOptions.setAdapter(new AdapterForFilterOptions(DoubleNavigationWithoutEditText.this,J_ParentFilterOptions,J_ChildFilterOptions));
+                J_DrawerListFilterOptions.expandGroup(groupPosition);
+                return true;
             }
         });
         J_DrawerListFilterOptions.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -120,6 +128,10 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
                 //on each child click the child is added to selected options hash map
                 J_SelectedOptions.put(J_ParentFilterOptions.get(groupPosition),J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
+                J_ParentFilterOptions.add(groupPosition+1,J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
+                J_ParentFilterOptions.remove(groupPosition);
+                J_DrawerListFilterOptions.setAdapter(new AdapterForFilterOptions(DoubleNavigationWithoutEditText.this,J_ParentFilterOptions,J_ChildFilterOptions));
+                J_DrawerListFilterOptions.collapseGroup(groupPosition);
                 return true;
             }
         });
@@ -221,7 +233,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         //this code initializes filter options according to the current activity or received message
         J_ParentFilterOptions=new ArrayList<String>();
         J_ChildFilterOptions=new HashMap<String, List<String>>();
-        J_SelectedOptions=new HashMap<String,String>();
+        J_SelectedOptions=new LinkedHashMap<String,String>();
         List<String>temp;
 
         if (message.equals("approved_institutes")||message.equals("dashboard")){
@@ -334,6 +346,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     public void filterList(View v){
 
         //on click of filter button the selected option is submitted to server through this module
+        Toast.makeText(DoubleNavigationWithoutEditText.this,J_SelectedOptions.toString(),Toast.LENGTH_LONG).show();
 
     }
 
