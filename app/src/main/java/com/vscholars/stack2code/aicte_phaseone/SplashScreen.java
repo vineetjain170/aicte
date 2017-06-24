@@ -11,12 +11,15 @@ import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.vscholars.stack2code.aicte_phaseone.DataItems.DashboardDataItems;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,9 +35,7 @@ import cz.msebera.android.httpclient.message.BasicNameValuePair;
  */
 
 public class SplashScreen extends AppCompatActivity{
-    private Thread splashTread;
     private String[] j_yearList;
-    private   String str=" ";
     private ProgressBar J_DataLoading;
     private TextView J_DataLoadingText;
 
@@ -104,53 +105,45 @@ public class SplashScreen extends AppCompatActivity{
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
 
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.gear.host/colleges/year_select.php", "POST", params);
+                JSONObject jsonA =JSONParser.makeHttpRequest("http://anurag.gear.host/colleges/year_select.php", "POST", params);
 
-                int success=jsonO.getInt("success");
-
+                int success=jsonA.getInt("success");
                 if (success == 1) {
-                    int count=jsonO.getInt("count");
+                    int count=jsonA.getInt("count");
 
                     j_yearList=new String[count];
-                    JSONArray jsonA= jsonO.getJSONArray("ayear");
-                    //str=jsonA.toString();
+                    JSONArray jsona= jsonA.getJSONArray("ayear");
 
                     for(int i=1;i<=count;i++){
 
-                        JSONObject temp =jsonA.getJSONObject(i-1);
+                        JSONObject temp =jsona.getJSONObject(i-1);
                         j_yearList[i-1]=temp.getString(""+i);
-
 
                     }
 
 
                 } else {
 
-                    //Toast.makeText(SplashScreen.this,"Error Occured Please try after sometime",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SplashScreen.this,"Error Occured Please try after sometime",Toast.LENGTH_LONG).show();
 
                 }
 
 
             } catch (Exception e) {
                 e.printStackTrace();
-
-                  //Toast.makeText(SplashScreen.this,"Please Check Network",Toast.LENGTH_LONG).show();
-
             }
-
-
             return null;
         }
 
         @Override
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
+            SplashScreen.this.finish();
+            String[] defaultValues={"1","1","1","1","1","1","1"};
             Intent intent = new Intent(SplashScreen.this, MainActivity.class);
             intent.putExtra("yearList",j_yearList);
+            intent.putExtra("selectedValues",defaultValues);
             startActivity(intent);
-            //SplashScreen.this.finish();
-
         }
     }
-
 }

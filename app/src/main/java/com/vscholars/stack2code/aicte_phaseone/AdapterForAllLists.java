@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,22 +23,21 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
     Context context;
     int categories;
-    int entries;
     int parameters;
     List<String>categoriesNames;
     String[][][] data;
     String message;
+    HashMap<String,Integer>enteries;
 
-    AdapterForAllLists(Context context,String message,int categories,int entries,int parameters, List<String> categoriesNames,String[][][] data){
+    AdapterForAllLists(Context context,String message,int categories,int parameters, List<String> categoriesNames,HashMap<String,Integer>enteries,String[][][] data){
 
         this.context=context;
         this.message=message;
         this.categories=categories;
-        this.entries=entries;
         this.parameters=parameters;
         this.categoriesNames=categoriesNames;
         this.data=data;
-
+        this.enteries=enteries;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.entries;
+        return enteries.get(categoriesNames.get(groupPosition));
     }
 
     @Override
@@ -103,26 +103,63 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             convertView = infalInflater.inflate(R.layout.label_approved_institutions, null);
 
             TextView aicteId,name,address,district,institutionType,women,minority,courseDetails,facultyDetails;
+            ImageView womenY,womenN,minorityY,minorityN;
 
-            aicteId=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_aicteid);
-            name=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_name);
-            address=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_address);
-            district=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_district);
-            institutionType=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_institution_type);
-            women=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_women);
-            minority=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_minority);
-            courseDetails=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_course_details);
-            facultyDetails=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_faculty_details);
+            View[] layoutViews={convertView.findViewById(R.id.x_label_approved_institutions_aicteid),
+                    convertView.findViewById(R.id.x_label_approved_institutions_name),
+                    convertView.findViewById(R.id.x_label_approved_institutions_address),
+                    convertView.findViewById(R.id.x_label_approved_institutions_district),
+                    convertView.findViewById(R.id.x_label_approved_institutions_institution_type),
+                    convertView.findViewById(R.id.x_approved_institutions_womenY),
+                    convertView.findViewById(R.id.x_approved_institutions_womenN),
+                    convertView.findViewById(R.id.x_approved_institutions_minorityY),
+                    convertView.findViewById(R.id.x_approved_institutions_minorityN)};
+
+            aicteId=(TextView)layoutViews[0];
+            name=(TextView)layoutViews[1];
+            address=(TextView)layoutViews[2];
+            district=(TextView)layoutViews[3];
+            institutionType=(TextView)layoutViews[4];
+            womenY=(ImageView)layoutViews[5];
+            womenN=(ImageView)layoutViews[6];
+            minorityY=(ImageView)layoutViews[7];
+            minorityN=(ImageView)layoutViews[8];
+            //women=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_women);
+            //minority=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_minority);
+            //courseDetails=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_course_details);
+            //facultyDetails=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_faculty_details);
 
             aicteId.setText(values[0]);
             name.setText(values[1]);
             address.setText(values[2]);
             district.setText(values[3]);
             institutionType.setText(values[4]);
-            women.setText(values[5]);
-            minority.setText(values[6]);
-            courseDetails.setText(values[7]);
-            facultyDetails.setText(values[8]);
+            if(values[5].equals("Y")||values.equals("y")){
+
+                womenY.setVisibility(View.VISIBLE);
+                womenN.setVisibility(View.INVISIBLE);
+
+            }else if (values[5].equals("N")||values.equals("n")){
+
+                womenY.setVisibility(View.INVISIBLE);
+                womenN.setVisibility(View.VISIBLE);
+
+            }
+            if (values[6].equals("Y")||values[6].equals("y")){
+
+                minorityY.setVisibility(View.VISIBLE);
+                minorityN.setVisibility(View.INVISIBLE);
+
+            }else if (values[6].equals("N")||values[6].equals("n")){
+
+                minorityN.setVisibility(View.VISIBLE);
+                minorityY.setVisibility(View.INVISIBLE);
+
+            }
+            //women.setText(values[5]);
+            //minority.setText(values[6]);
+            //courseDetails.setText(values[7]);
+            //facultyDetails.setText(values[8]);
 
             return convertView;
 
@@ -131,17 +168,29 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
             TextView aicteId,institutionName,state,district,institutionType,program,university,level,nameOfCourses,approvedIntake,quotaSeats;
 
-            aicteId=(TextView)convertView.findViewById(R.id.x_label_other_courses_aicteid);
-            institutionName=(TextView)convertView.findViewById(R.id.x_label_other_courses_institution_name);
-            state=(TextView)convertView.findViewById(R.id.x_label_other_courses_state);
-            district=(TextView)convertView.findViewById(R.id.x_label_other_courses_district);
-            institutionType=(TextView)convertView.findViewById(R.id.x_label_other_courses_institution_type);
-            program=(TextView)convertView.findViewById(R.id.x_label_other_courses_program);
-            university=(TextView)convertView.findViewById(R.id.x_label_other_courses_universityboard);
-            level=(TextView)convertView.findViewById(R.id.x_label_other_courses_level);
-            nameOfCourses=(TextView)convertView.findViewById(R.id.x_label_other_courses_course_name);
-            approvedIntake=(TextView)convertView.findViewById(R.id.x_label_other_courses_approved_intake);
-            quotaSeats=(TextView)convertView.findViewById(R.id.x_label_other_courses_nri_quota_seats);
+            View[] layoutViews= new View[]{convertView.findViewById(R.id.x_label_other_courses_aicteid),
+                    convertView.findViewById(R.id.x_label_other_courses_institution_name),
+                    convertView.findViewById(R.id.x_label_other_courses_state),
+                    convertView.findViewById(R.id.x_label_other_courses_district),
+                    convertView.findViewById(R.id.x_label_other_courses_institution_type),
+                    convertView.findViewById(R.id.x_label_other_courses_program),
+                    convertView.findViewById(R.id.x_label_other_courses_universityboard),
+                    convertView.findViewById(R.id.x_label_other_courses_level),
+                    convertView.findViewById(R.id.x_label_other_courses_course_name),
+                    convertView.findViewById(R.id.x_label_other_courses_approved_intake),
+                    convertView.findViewById(R.id.x_label_other_courses_nri_quota_seats)};
+
+            aicteId=(TextView)layoutViews[0];
+            institutionName=(TextView)layoutViews[1];
+            state=(TextView)layoutViews[2];
+            district=(TextView)layoutViews[3];
+            institutionType=(TextView)layoutViews[4];
+            program=(TextView)layoutViews[5];
+            university=(TextView)layoutViews[6];
+            level=(TextView)layoutViews[7];
+            nameOfCourses=(TextView)layoutViews[8];
+            approvedIntake=(TextView)layoutViews[9];
+            quotaSeats=(TextView)layoutViews[10];
 
             aicteId.setText(values[0]);
             institutionName.setText(values[1]);
@@ -162,23 +211,32 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
             TextView facultyId,name,gender,designation,joiningDate,specialisationArea,appointmentType,institutionName;
 
-            facultyId=(TextView)convertView.findViewById(R.id.x_label_faculties_facultyid);
-            name=(TextView)convertView.findViewById(R.id.x_label_faculties_name);
-            gender=(TextView)convertView.findViewById(R.id.x_label_faculties_gender);
-            designation=(TextView)convertView.findViewById(R.id.x_label_faculties_designation);
-            joiningDate=(TextView)convertView.findViewById(R.id.x_label_faculties_joining_date);
-            specialisationArea=(TextView)convertView.findViewById(R.id.x_label_faculties_specialisation_area);
-            appointmentType=(TextView)convertView.findViewById(R.id.x_label_faculties_appointment_type);
-            institutionName=(TextView)convertView.findViewById(R.id.x_label_faculties_institution_name);
+            View[] layoutViews= new View[]{convertView.findViewById(R.id.x_label_faculties_facultyid),
+                    convertView.findViewById(R.id.x_label_faculties_name),
+                    convertView.findViewById(R.id.x_label_faculties_gender),
+                    convertView.findViewById(R.id.x_label_faculties_designation),
+                    convertView.findViewById(R.id.x_label_faculties_joining_date),
+                    convertView.findViewById(R.id.x_label_faculties_specialisation_area),
+                    convertView.findViewById(R.id.x_label_faculties_appointment_type),
+                    convertView.findViewById(R.id.x_label_faculties_institution_name)};
+
+            facultyId=(TextView)layoutViews[0];
+            name=(TextView)layoutViews[1];
+            gender=(TextView)layoutViews[2];
+            designation=(TextView)layoutViews[3];
+            joiningDate=(TextView)layoutViews[4];
+            specialisationArea=(TextView)layoutViews[5];
+            appointmentType=(TextView)layoutViews[6];
+            institutionName=(TextView)layoutViews[7];
 
             facultyId.setText(values[0]);
             name.setText(values[1]);
-            gender.setText(values[2]);
+            gender.setText(values[4]);
             designation.setText(values[3]);
-            joiningDate.setText(values[4]);
-            specialisationArea.setText(values[5]);
-            appointmentType.setText(values[6]);
-            institutionName.setText(values[7]);
+            joiningDate.setText(values[6]);
+            specialisationArea.setText(values[7]);
+            appointmentType.setText(values[2]);
+            institutionName.setText(values[5]);
 
             return convertView;
 
@@ -187,17 +245,29 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
             TextView aicteId,institutionName,institutionType,state,district,courseId,university,level,course,shift,fullPartTime;
 
-            aicteId=(TextView)convertView.findViewById(R.id.x_label_closed_courses_aicteid);
-            institutionName=(TextView)convertView.findViewById(R.id.x_label_closed_courses_institution_name);
-            institutionType=(TextView)convertView.findViewById(R.id.x_label_closed_courses_institution_type);
-            state=(TextView)convertView.findViewById(R.id.x_label_closed_courses_state);
-            district=(TextView)convertView.findViewById(R.id.x_label_closed_courses_district);
-            courseId=(TextView)convertView.findViewById(R.id.x_label_closed_courses_courseid);
-            university=(TextView)convertView.findViewById(R.id.x_label_closed_courses_university);
-            level=(TextView)convertView.findViewById(R.id.x_label_closed_courses_level);
-            course=(TextView)convertView.findViewById(R.id.x_label_closed_courses_course);
-            shift=(TextView)convertView.findViewById(R.id.x_label_closed_courses_shift);
-            fullPartTime=(TextView)convertView.findViewById(R.id.x_label_closed_courses_full_part_time);
+            View[] layoutViews= new View[]{convertView.findViewById(R.id.x_label_closed_courses_aicteid),
+                    convertView.findViewById(R.id.x_label_closed_courses_institution_name),
+                    convertView.findViewById(R.id.x_label_closed_courses_institution_type),
+                    convertView.findViewById(R.id.x_label_closed_courses_state),
+                    convertView.findViewById(R.id.x_label_closed_courses_district),
+                    convertView.findViewById(R.id.x_label_closed_courses_courseid),
+                    convertView.findViewById(R.id.x_label_closed_courses_university),
+                    convertView.findViewById(R.id.x_label_closed_courses_level),
+                    convertView.findViewById(R.id.x_label_closed_courses_course),
+                    convertView.findViewById(R.id.x_label_closed_courses_shift),
+                    convertView.findViewById(R.id.x_label_closed_courses_full_part_time)};
+
+            aicteId=(TextView)layoutViews[0];
+            institutionName=(TextView)layoutViews[1];
+            institutionType=(TextView)layoutViews[2];
+            state=(TextView)layoutViews[3];
+            district=(TextView)layoutViews[4];
+            courseId=(TextView)layoutViews[5];
+            university=(TextView)layoutViews[6];
+            level=(TextView)layoutViews[7];
+            course=(TextView)layoutViews[8];
+            shift=(TextView)layoutViews[9];
+            fullPartTime=(TextView)layoutViews[10];
 
             aicteId.setText(values[0]);
             institutionName.setText(values[1]);
@@ -218,20 +288,29 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
             TextView aicteId,institutionName,institutionType,address,state,district,city;
 
-            aicteId=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_aicteid);
-            institutionName=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_institution_name);
-            institutionType=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_institution_type);
-            address=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_address);
-            state=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_state);
-            district=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_district);
-            city=(TextView)convertView.findViewById(R.id.x_label_closed_institutes_city);
+            View[] layoutViews= new View[]{convertView.findViewById(R.id.x_label_closed_institutes_aicteid),
+                    convertView.findViewById(R.id.x_label_closed_institutes_institution_name),
+                    convertView.findViewById(R.id.x_label_closed_institutes_institution_type),
+                    convertView.findViewById(R.id.x_label_closed_institutes_address),
+                    convertView.findViewById(R.id.x_label_closed_institutes_state),
+                    convertView.findViewById(R.id.x_label_closed_institutes_district),
+                    convertView.findViewById(R.id.x_label_closed_institutes_city)};
+
+
+            aicteId=(TextView)layoutViews[0];
+            institutionName=(TextView)layoutViews[1];
+            institutionType=(TextView)layoutViews[2];
+            address=(TextView)layoutViews[3];
+            state=(TextView)layoutViews[4];
+            district=(TextView)layoutViews[5];
+            city=(TextView)layoutViews[6];
 
             aicteId.setText(values[0]);
             institutionName.setText(values[1]);
-            institutionType.setText(values[2]);
-            address.setText(values[3]);
-            state.setText(values[4]);
-            district.setText(values[5]);
+            institutionType.setText(values[4]);
+            address.setText(values[5]);
+            state.setText(values[2]);
+            district.setText(values[3]);
             city.setText(values[6]);
 
             return convertView;

@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import com.vscholars.stack2code.aicte_phaseone.SplashScreen;
 
 /**
  * Created by vineet_jain on 8/6/17.
@@ -37,17 +40,18 @@ import java.util.Set;
 public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
     //All Variables required for construction of Navigation Drawer
-
-    private String[] J_MainNavigationDrawerOptions;
     private DrawerLayout J_DrawerLayout;
     private ListView J_DrawerListMainNavigationDrawer;
     private ExpandableListView J_DrawerListFilterOptions;
     private ActionBarDrawerToggle J_DrawerToggle;
-    private List<String> J_ParentFilterOptions;
-    private LinkedHashMap<String,String> J_SelectedOptions;
-    private HashMap<String, List<String>> J_ChildFilterOptions;
     private EditText J_keywords;
     private TextView J_ActionBarTitle;
+
+    private String[] J_MainNavigationDrawerOptions,J_yearList;
+    private List<String> J_ParentFilterOptions;
+    public LinkedHashMap<String,String> J_SelectedOptions;
+    private HashMap<String, List<String>> J_ChildFilterOptions;
+    private String J_message;
 
     protected void onCreateDrawer(Context context, String message,String[] yearList) {
 
@@ -84,12 +88,13 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
     public void initializer(final Context context, String message, final String[] yearList) {
 
-        //initialize fontFamily="serif"drawer layout
         //initialize list view of navigation drawer
         J_DrawerLayout = (DrawerLayout) findViewById(R.id.x_double_navigation_drawer_layout_drawer_layout);
         J_DrawerListMainNavigationDrawer=(ListView)findViewById(R.id.x_double_navigation_drawer_layout_main_drawer);
         J_DrawerListFilterOptions=(ExpandableListView) findViewById(R.id.x_double_navigation_drawer_layout_filter_drawer);
         J_keywords=(EditText)findViewById(R.id.x_activity_all_lists_keywords);
+        J_message=message;
+        J_yearList=yearList;
 
         //this method changes the title of action bar according to current activity
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -127,7 +132,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 //on each child click the child is added to selected options hash map
-                J_SelectedOptions.put(J_ParentFilterOptions.get(groupPosition),J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
+                J_SelectedOptions.put(J_ParentFilterOptions.get(groupPosition),(childPosition+1)+"");//J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
                 J_ParentFilterOptions.add(groupPosition+1,J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
                 J_ParentFilterOptions.remove(groupPosition);
                 J_DrawerListFilterOptions.setAdapter(new AdapterForFilterOptions(DoubleNavigationWithoutEditText.this,J_ParentFilterOptions,J_ChildFilterOptions));
@@ -147,13 +152,17 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 } else if (position==2){
+                    String[] values={"1","1","1","1","1","1","1"};
                     i=new Intent(context,MainActivity.class);
                     i.putExtra("yearList",yearList);
+                    i.putExtra("selectedValues",values);
                     startActivity(i);
 
                 } else if (position==3){
+                    String[] selectedValues={"1","1","1","1","1","1","1"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","approved_institutes");
+                    i.putExtra("selectedValues",selectedValues);
                     i.putExtra("yearList",yearList);
                     startActivity(i);
 
@@ -164,22 +173,28 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 } else if (position==5){
+                    String[] values={"1","1","1","1","1","1"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","faculty");
                     i.putExtra("yearList",yearList);
+                    i.putExtra("selectedValues",values);
                     startActivity(i);
 
                 } else if (position==6){
 
                 } else if (position==7){
+                    String[] values={"2012-2013"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_courses");
+                    i.putExtra("selectedValues",values);
                     i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==8){
+                    String[] values={"2017-2018"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_institutes");
+                    i.putExtra("selectedValues",values);
                     i.putExtra("yearList",yearList);
                     startActivity(i);
 
@@ -210,7 +225,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
     // This method is invoked when home button us clicked and is meant to close drawer if it is open and vice versa
 
-    public boolean onOptionsItemSelected(MenuItem item)
+    /*public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())
         {
@@ -225,7 +240,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
 
     public void FilterOptionsInitializer(String message,String[] yearList){
@@ -236,42 +251,48 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         J_SelectedOptions=new LinkedHashMap<String,String>();
         List<String>temp;
 
-        if (message.equals("approved_institutes")||message.equals("dashboard")){
+        if (message.equals("approved_institutes")){
 
             //initialize parent options for filter list according to the message
             temp=new ArrayList<String>();
-            for (String value:getResources().getStringArray(R.array.filterOptionsParentApprovedInstitutesOrDashboard))J_ParentFilterOptions.add(value);
+            for (String value:getResources().getStringArray(R.array.filterOptionsParentApprovedInstitutes))J_ParentFilterOptions.add(value);
 
             temp=new ArrayList<String>();
             for (String year:yearList)temp.add(year);
             J_ChildFilterOptions.put("Year",temp);
-            temp=new ArrayList<String>();
-            for (String value:getResources().getStringArray(R.array.stateOptions))temp.add(value);
-            J_ChildFilterOptions.put("Select State",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.programOptions))temp.add(value);
             J_ChildFilterOptions.put("Select Program",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.levelOptions))temp.add(value);
             J_ChildFilterOptions.put("Select Level",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.institutionType))temp.add(value);
             J_ChildFilterOptions.put("Institution Type",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.stateOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select State",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.minorityOptions))temp.add(value);
             J_ChildFilterOptions.put("Minority",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.womenOptions))temp.add(value);
             J_ChildFilterOptions.put("Women",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Year","2016-2017");
-            J_SelectedOptions.put("Select State","--All--");
-            J_SelectedOptions.put("Select Program","--All--");
-            J_SelectedOptions.put("Select Level","--All--");
-            J_SelectedOptions.put("Institution Type","--All--");
-            J_SelectedOptions.put("Minority",null);
-            J_SelectedOptions.put("Women",null);
+            J_SelectedOptions.put("Year","1");
+            J_SelectedOptions.put("Select Program","1");
+            J_SelectedOptions.put("Select Level","1");
+            J_SelectedOptions.put("Institution Type","1");
+            J_SelectedOptions.put("Select State","1");
+            J_SelectedOptions.put("Minority","1");
+            J_SelectedOptions.put("Women","1");
 
         }else if (message.equals("nri/pio-fn-ciwg/tp")){
 
@@ -288,8 +309,8 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Course Type","NRI");
-            J_SelectedOptions.put("Year","2017-2018");
+            J_SelectedOptions.put("Course Type","1");
+            J_SelectedOptions.put("Year","1");
 
 
 
@@ -300,32 +321,37 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             for (String value:getResources().getStringArray(R.array.filterOptionsFaculty))J_ParentFilterOptions.add(value);
 
             temp=new ArrayList<String>();
-            for (String value:getResources().getStringArray(R.array.stateOptions))temp.add(value);
-            J_ChildFilterOptions.put("Select State",temp);
-            temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.programOptions))temp.add(value);
             J_ChildFilterOptions.put("Select Program",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.levelOptions))temp.add(value);
             J_ChildFilterOptions.put("Select Level",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.institutionType))temp.add(value);
             J_ChildFilterOptions.put("Institution Type",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.stateOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select State",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.minorityOptions))temp.add(value);
             J_ChildFilterOptions.put("Minority",temp);
+
             temp=new ArrayList<String>();
             for (String value:getResources().getStringArray(R.array.womenOptions))temp.add(value);
             J_ChildFilterOptions.put("Women",temp);
 
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Select State","Andaman And Nicobar Island");
-            J_SelectedOptions.put("Select Program","Engineering And Technology");
-            J_SelectedOptions.put("Select Level","--All--");
-            J_SelectedOptions.put("Institution Type","--All--");
-            J_SelectedOptions.put("Minority",null);
-            J_SelectedOptions.put("Women",null);
+            J_SelectedOptions.put("Select Program","1");
+            J_SelectedOptions.put("Select Level","1");
+            J_SelectedOptions.put("Institution Type","1");
+            J_SelectedOptions.put("Select State","1");
+            J_SelectedOptions.put("Minority","1");
+            J_SelectedOptions.put("Women","1");
 
         }else if (message.equals("closed_courses")||message.equals("closed_institutes")){
 
@@ -338,7 +364,49 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             J_ChildFilterOptions.put("Year",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Year","2017-2018");
+            J_SelectedOptions.put("Year","1");
+
+        }else if (message.equals("dashboard")){
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.parentOptionsDashboard))J_ParentFilterOptions.add(value);
+
+            temp=new ArrayList<String>();
+            for (String year:yearList)temp.add(year);
+            J_ChildFilterOptions.put("Year",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.programOptionDashboard))temp.add(value);
+            J_ChildFilterOptions.put("Select Program",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.levelOptions))temp.add(value);
+            J_ChildFilterOptions.put("Select Level",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.institutionTypeDashboard))temp.add(value);
+            J_ChildFilterOptions.put("Institution Type",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.stateOptionDashboard))temp.add(value);
+            J_ChildFilterOptions.put("Select State",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.minorityOptions))temp.add(value);
+            J_ChildFilterOptions.put("Minority",temp);
+
+            temp=new ArrayList<String>();
+            for (String value:getResources().getStringArray(R.array.womenOptions))temp.add(value);
+            J_ChildFilterOptions.put("Women",temp);
+
+            //This code provide initial default value to selected options in case no option is selected by user
+            J_SelectedOptions.put("Year","1");
+            J_SelectedOptions.put("Select Program","1");
+            J_SelectedOptions.put("Select Level","1");
+            J_SelectedOptions.put("Institution Type","1");
+            J_SelectedOptions.put("Select State","1");
+            J_SelectedOptions.put("Minority","1");
+            J_SelectedOptions.put("Women","1");
 
         }
     }
@@ -346,8 +414,61 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     public void filterList(View v){
 
         //on click of filter button the selected option is submitted to server through this module
-        Toast.makeText(DoubleNavigationWithoutEditText.this,J_SelectedOptions.toString(),Toast.LENGTH_LONG).show();
+        String[] values=new String[J_SelectedOptions.size()];
 
+        if(J_message.equals("dashboard")){
+
+            values[0]=J_SelectedOptions.get("Year");
+            values[1]=J_SelectedOptions.get("Select Program");
+            values[2]=J_SelectedOptions.get("Select Level");
+            values[3]=J_SelectedOptions.get("Institution Type");
+            values[4]=J_SelectedOptions.get("Select State");
+            values[5]=J_SelectedOptions.get("Minority");
+            values[6]=J_SelectedOptions.get("Women");
+            Intent intent=new Intent(DoubleNavigationWithoutEditText.this,MainActivity.class);
+            intent.putExtra("selectedValues",values);
+            intent.putExtra("yearList",J_yearList);
+            startActivity(intent);
+
+        }else if (J_message.equals("faculty")){
+
+            values[0]=J_SelectedOptions.get("Select Program");
+            values[1]=J_SelectedOptions.get("Select Level");
+            values[2]=J_SelectedOptions.get("Institution Type");
+            values[3]=J_SelectedOptions.get("Select State");
+            values[4]=J_SelectedOptions.get("Minority");
+            values[5]=J_SelectedOptions.get("Women");
+            Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
+            intent.putExtra("selectedValues",values);
+            intent.putExtra("activitySelected",J_message);
+            intent.putExtra("yearList",J_yearList);
+            startActivity(intent);
+
+        }else if (J_message.equals("approved_institutes")){
+
+            values[0]=J_SelectedOptions.get("Year");
+            values[1]=J_SelectedOptions.get("Select Program");
+            values[2]=J_SelectedOptions.get("Select Level");
+            values[3]=J_SelectedOptions.get("Institution Type");
+            values[4]=J_SelectedOptions.get("Select State");
+            values[5]=J_SelectedOptions.get("Minority");
+            values[6]=J_SelectedOptions.get("Women");
+            Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
+            intent.putExtra("selectedValues",values);
+            intent.putExtra("activitySelected",J_message);
+            intent.putExtra("yearList",J_yearList);
+            startActivity(intent);
+
+        }else if (J_message.equals("closed_courses")||J_message.equals("closed_institutes")){
+
+            values[0]=J_SelectedOptions.get("Year");
+            Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
+            intent.putExtra("selectedValues",values);
+            intent.putExtra("activitySelected",J_message);
+            intent.putExtra("yearList",J_yearList);
+            startActivity(intent);
+
+        }
     }
 
     private void ActionBarTitleChange(String message) {

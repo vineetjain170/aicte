@@ -1,5 +1,6 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,15 +27,16 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
 
     //these as the objects which hold the reference to all the views in the activity
     private ExpandableListView J_ListMain;
-    private Button J_ButtonNext,J_ButtonPrev;
+    private Button J_ButtonNext,J_ButtonPrev,J_actionSearch;
     private RelativeLayout J_SearchTab;
     private LinearLayout J_ListsController;
     private EditText J_keywords;
-    private Button J_actionSearch;
-    private String[][][]data;
-    private int noOfCategory,noOfEntries,noOfParameters;
-    private List<String>J_Category;
-    private String[] yearList;
+
+    private String[] yearList,selectedValues;
+    private String message;
+    private HashMap<Integer,String>categoryNames;
+    private ArrayList<String>categoriesList;
+    private jsonClasses executer;
 
     //these variables are used to keep track of user touch events
     private int J_xCoordinateUp,J_xCoordinateDown;
@@ -42,20 +44,68 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_lists);
+        //initialize the activity according to the message
+        this.message=getIntent().getStringExtra("activitySelected");
+        initializer(message);
+        getData(message);
+
+    }
+
+    private void getData(String message) {
+
+        executer=new jsonClasses(message);
+
+        if (message.equals("faculty")){
+
+            executer.J_json_facultyServer.execute(selectedValues);
+            keepACheck();
+
+        }else if (message.equals("approved_institutes")){
+
+            executer.J_json_approvedInstitutions.execute(selectedValues);
+            keepACheck();
+
+        }else if (message.equals("closed_courses")){
+
+            executer.J_json_closedCourses.execute(selectedValues);
+            keepACheck();
+
+        }else if (message.equals("closed_institutes")){
+
+            executer.J_json_closedInstitutes.execute(selectedValues);
+            keepACheck();
+
+        }
+
+    }
+
+    void keepACheck(){
+
+        try {
+            while (executer.data==null) {
+                Thread.sleep(500);
+                if (executer.data!=null){
+                    categoryNames=executer.categoriesNames;
+                    categoriesList=new ArrayList<String>();
+                    for (int i=0;i<categoryNames.size();++i){
+                        categoriesList.add(categoryNames.get(i));
+                    }
+                    //setContentView(R.layout.activity_all_lists);
+                    J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,categoryNames.size(),assignParameters(message),categoriesList,executer.categories,executer.data));
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public void initializer(String message){
 
         //message is passed by DoubleNavigationDrawerWithoutEditText class when user selects an activity from main navigation drawer
         //actions specific to message are taken
-        String message=getIntent().getStringExtra("activitySelected");
-        yearList=getIntent().getStringArrayExtra("yearList");
-
-        super.onCreateDrawer(BaseClassAllLists.this,message,yearList);
-
-        //initialize the activity according to the message
-        initializer(message);
-
-    }
-    public void initializer(String message){
+        setContentView(R.layout.activity_all_lists);
 
         J_ListMain=(ExpandableListView) findViewById(R.id.x_activity_all_lists_list_main);
         J_ButtonNext=(Button)findViewById(R.id.x_activity_all_lists_next_button);
@@ -65,32 +115,10 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
         J_keywords=(EditText)findViewById(R.id.x_activity_all_lists_keywords);
         J_actionSearch=(Button)findViewById(R.id.x_activity_all_lists_action_search);
 
-        //this code sets a listener to list view which takes action on swipe up and swipe down
-        //J_ListMain.setOnTouchListener(this);
+        yearList=getIntent().getStringArrayExtra("yearList");
+        selectedValues=getIntent().getStringArrayExtra("selectedValues");
 
-
-        noOfCategory=2;
-        noOfEntries=1;
-        noOfParameters=assignParameters(message);
-        data=new String[noOfCategory][noOfEntries][noOfParameters];
-        dataBuilder();
-        J_Category=new ArrayList<String>();
-        J_Category.add("x");
-        J_Category.add("y");
-        J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,noOfCategory,noOfEntries,noOfParameters,J_Category,data));
-
-        //this is the data received from server and is displayed using list view
-    }
-
-    private void dataBuilder() {
-
-        for (int i=0;i<noOfCategory;++i){
-            for (int j=0;j<noOfEntries;++j){
-                for (int k=0;k<noOfParameters;++k){
-                    data[i][j][k]=k+"";
-                }
-            }
-        }
+        super.onCreateDrawer(BaseClassAllLists.this,message,yearList);
 
     }
 
@@ -98,7 +126,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
 
         if(message.equals("approved_institutes")){
 
-            return 9;
+            return 7;
 
         }else if (message.equals("nri/pio-fn-ciwg/tp")||message.equals("closed_courses")){
 
@@ -168,11 +196,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     }
 
     public void onBackPressed(){
-
-        Intent intent=new Intent(BaseClassAllLists.this,MainActivity.class);
-        intent.putExtra("yearList",yearList);
-        startActivity(intent);
-
+        moveTaskToBack(true);
     }
 
 }

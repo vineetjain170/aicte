@@ -1,152 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:drawable/picture_frame">
 
-    <TextView
-        android:text="Faculty ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView16"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+    <!--
+        Label_faculties
+    -->
 
     <TextView
-        android:text="Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView16"
-        android:id="@+id/textView17"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:text="Faculty Name"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000"
+        android:id="@+id/x_label_faculties_name"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#dedede"
+        android:layout_margin="10dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Faculty ID"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="17dp"
+            android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:text="Gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView17"
-        android:id="@+id/textView29"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set id"
+            android:layout_marginLeft="74dp"
+            android:id="@+id/x_label_faculties_facultyid" />
+    </LinearLayout>
 
-    <TextView
-        android:text="Designation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView29"
-        android:id="@+id/textView30"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:text="Joining Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView30"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView31"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:text="Specialisation Area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView31"
-        android:id="@+id/textView32"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:text="Appointment Type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView32"
-        android:id="@+id/textView33"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set gender"
+            android:layout_marginLeft="95dp"
+            android:id="@+id/x_label_faculties_gender" />
+    </LinearLayout>
 
-    <TextView
-        android:text="Institution Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView33"
-        android:id="@+id/textView34"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView32"
-        android:layout_toEndOf="@+id/textView32"
-        android:id="@+id/x_label_faculties_facultyid" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView16"
-        android:layout_alignLeft="@+id/x_label_faculties_facultyid"
-        android:layout_alignStart="@+id/x_label_faculties_facultyid"
-        android:id="@+id/x_label_faculties_name" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Designation"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView30"
-        android:layout_alignLeft="@+id/x_label_faculties_name"
-        android:layout_alignStart="@+id/x_label_faculties_name"
-        android:id="@+id/x_label_faculties_gender" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set designation"
+            android:layout_marginLeft="59dp"
+            android:id="@+id/x_label_faculties_designation" />
+    </LinearLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/x_label_faculties_gender"
-        android:layout_alignLeft="@+id/x_label_faculties_gender"
-        android:layout_alignStart="@+id/x_label_faculties_gender"
-        android:id="@+id/x_label_faculties_designation" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView32"
-        android:layout_toRightOf="@+id/textView32"
-        android:layout_toEndOf="@+id/textView32"
-        android:id="@+id/x_label_faculties_joining_date" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/x_label_faculties_joining_date"
-        android:layout_toRightOf="@+id/textView32"
-        android:layout_toEndOf="@+id/textView32"
-        android:id="@+id/x_label_faculties_specialisation_area" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Joining Date"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView32"
-        android:layout_alignRight="@+id/x_label_faculties_specialisation_area"
-        android:layout_alignEnd="@+id/x_label_faculties_specialisation_area"
-        android:id="@+id/x_label_faculties_appointment_type" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set gender"
+            android:layout_marginLeft="54dp"
+            android:id="@+id/x_label_faculties_joining_date"/>
+    </LinearLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView33"
-        android:layout_alignLeft="@+id/x_label_faculties_appointment_type"
-        android:layout_alignStart="@+id/x_label_faculties_appointment_type"
-        android:id="@+id/x_label_faculties_institution_name" />
-</RelativeLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Specialisation Area"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set gender"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/x_label_faculties_specialisation_area"  />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment Type"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set gender"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/x_label_faculties_appointment_type" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Institution Name"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set gender"
+            android:layout_marginLeft="23dp"
+            android:id="@+id/x_label_faculties_institution_name" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

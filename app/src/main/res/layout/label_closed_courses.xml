@@ -1,220 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:drawable/picture_frame">
 
-    <TextView
-        android:text="Aicte ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView35"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+    <!--
+        Label_closed courses
+    -->
 
     <TextView
-        android:text="Institution Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView35"
-        android:id="@+id/textView36"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:text="Institute Name"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000"
+        android:id="@+id/x_label_closed_courses_institution_name"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#dedede"
+        android:layout_margin="10dp"/>
 
-    <TextView
-        android:text="Institution Type"
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AICTE ID"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="17dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/x_label_closed_courses_aicteid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="set id" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Institute"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set institute"
+            android:layout_marginLeft="54dp"
+            android:id="@+id/x_label_closed_courses_institution_type" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView36"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView37"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal">
 
-    <TextView
-        android:text="State"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="State"
+            android:textColor="#000"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/x_label_closed_courses_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="78dp"
+            android:text="set state" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="District"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set district"
+            android:layout_marginLeft="62dp"
+            android:id="@+id/x_label_closed_courses_district" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course ID"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set id"
+            android:layout_marginLeft="43dp"
+            android:id="@+id/x_label_closed_courses_courseid" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView37"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView38"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal">
 
-    <TextView
-        android:text="District"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView38"
-        android:id="@+id/textView39"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="University"
+            android:textColor="#000"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:text="Course ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView39"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView40"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/x_label_closed_courses_university"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="41dp"
+            android:text="set university" />
+    </LinearLayout>
 
-    <TextView
-        android:text="University"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView40"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView41"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:text="Level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView41"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView42"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:text="Course"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView42"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView44"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set level"
+            android:layout_marginLeft="77dp"
+            android:id="@+id/x_label_closed_courses_level" />
+    </LinearLayout>
 
-    <TextView
-        android:text="Shift"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView44"
-        android:id="@+id/textView45"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:text="FullTime/PartTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView45"
-        android:id="@+id/textView46"
-        android:textSize="15dp"
-        android:textStyle="bold"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView46"
-        android:layout_toEndOf="@+id/textView46"
-        android:id="@+id/x_label_closed_courses_aicteid" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView36"
-        android:layout_alignLeft="@+id/x_label_closed_courses_aicteid"
-        android:layout_alignStart="@+id/x_label_closed_courses_aicteid"
-        android:id="@+id/x_label_closed_courses_institution_name" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set course"
+            android:layout_marginLeft="63dp"
+            android:id="@+id/x_label_closed_courses_course"/>
+    </LinearLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/x_label_closed_courses_institution_name"
-        android:layout_alignLeft="@+id/x_label_closed_courses_institution_name"
-        android:layout_alignStart="@+id/x_label_closed_courses_institution_name"
-        android:id="@+id/x_label_closed_courses_institution_type" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView37"
-        android:layout_alignLeft="@+id/x_label_closed_courses_institution_type"
-        android:layout_alignStart="@+id/x_label_closed_courses_institution_type"
-        android:id="@+id/x_label_closed_courses_state" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView40"
-        android:layout_alignLeft="@+id/x_label_closed_courses_state"
-        android:layout_alignStart="@+id/x_label_closed_courses_state"
-        android:id="@+id/x_label_closed_courses_district" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shift"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/x_label_closed_courses_district"
-        android:layout_alignLeft="@+id/x_label_closed_courses_district"
-        android:layout_alignStart="@+id/x_label_closed_courses_district"
-        android:id="@+id/x_label_closed_courses_courseid" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="set shift"
+            android:layout_marginLeft="81dp"
+            android:id="@+id/x_label_closed_courses_shift"/>
+    </LinearLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView41"
-        android:layout_alignLeft="@+id/x_label_closed_courses_courseid"
-        android:layout_alignStart="@+id/x_label_closed_courses_courseid"
-        android:id="@+id/x_label_closed_courses_level" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/x_label_closed_courses_courseid"
-        android:layout_alignRight="@+id/x_label_closed_courses_courseid"
-        android:layout_alignEnd="@+id/x_label_closed_courses_courseid"
-        android:id="@+id/x_label_closed_courses_university" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView44"
-        android:layout_alignLeft="@+id/x_label_closed_courses_level"
-        android:layout_alignStart="@+id/x_label_closed_courses_level"
-        android:id="@+id/x_label_closed_courses_course" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full/Part Time"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textView46"
-        android:layout_toEndOf="@+id/textView46"
-        android:id="@+id/x_label_closed_courses_full_part_time"
-        android:layout_alignTop="@+id/textView46" />
+        <TextView
+            android:id="@+id/x_label_closed_courses_full_part_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:text="set id" />
+    </LinearLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/x_label_closed_courses_shift"
-        android:layout_below="@+id/x_label_closed_courses_course"
-        android:layout_alignLeft="@+id/x_label_closed_courses_course"
-        android:layout_alignStart="@+id/x_label_closed_courses_course" />
 
-</RelativeLayout>
+
+
+</LinearLayout>
+

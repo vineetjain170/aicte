@@ -74,22 +74,24 @@
     <string-array name="minorityOptions">
         <item></item>
         <item>Y</item>
+        <item>N</item>
     </string-array>
     <string-array name="womenOptions">
         <item></item>
         <item>Y</item>
+        <item>N</item>
     </string-array>
     <string-array name="courseType">
         <item>Non Resident Indian(NRI)</item>
         <item>PIO/FN/CIWG</item>
         <item>Twining Program</item>
     </string-array>
-    <string-array name="filterOptionsParentApprovedInstitutesOrDashboard">
+    <string-array name="filterOptionsParentApprovedInstitutes">
         <item>Year</item>
-        <item>Select State</item>
         <item>Select Program</item>
         <item>Select Level</item>
         <item>Institution Type</item>
+        <item>Select State</item>
         <item>Minority</item>
         <item>Women</item>
     </string-array>
@@ -98,14 +100,86 @@
         <item>Year</item>
     </string-array>
     <string-array name="filterOptionsFaculty">
-        <item>Select State</item>
         <item>Select Program</item>
         <item>Select Level</item>
         <item>Institution Type</item>
+        <item>Select State</item>
         <item>Minority</item>
         <item>Women</item>
     </string-array>
     <string-array name="filterOptionsParentClosedCoursesOrInstitute">
         <item>Year</item>
+    </string-array>
+    <string-array name="stateOptionDashboard">
+        <item>--All--</item>
+        <item>Andaman And Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra And Nagar Haveli</item>
+        <item>Daman And Diu</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujrat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu And Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Odisha</item>
+        <item>Orissa</item>
+        <item>Puducherry</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+    </string-array>
+    <string-array name="programOptionDashboard">
+        <item>--All--</item>
+        <item>Applied Arts</item>
+        <item>Architecture</item>
+        <item>Engineering And Tech.</item>
+        <item>Hotel Management</item>
+        <item>Management</item>
+        <item>MCA</item>
+        <item>Pharmacy</item>
+        <item>Town Planning</item>
+    </string-array>
+    <string-array name="institutionTypeDashboard">
+        <item>--All--</item>
+        <item>Unaided-Private</item>
+        <item>Government</item>
+        <item>Govt Aided</item>
+        <item>University Managed-Govt</item>
+        <item>University Managed-Private</item>
+        <item>Central University</item>
+        <item>Private Aided</item>
+        <item>Deemed University(Private)</item>
+        <item>Deemed University(Government)</item>
+    </string-array>
+    <string-array name="parentOptionsDashboard">
+        <item>Year</item>
+        <item>Select Program</item>
+        <item>Select Level</item>
+        <item>Institution Type</item>
+        <item>Select State</item>
+        <item>Minority</item>
+        <item>Women</item>
+
     </string-array>
 </resources>
