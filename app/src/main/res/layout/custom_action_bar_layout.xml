@@ -5,15 +5,15 @@
     android:background="#ffffff">
 
     <TextView
-        android:text="TextView"
+        android:text="Dashboard"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:id="@+id/x_custom_action_bar_layout_title"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:gravity="center"
-        android:fontFamily="cursive"
+        android:gravity="center_vertical"
+        android:fontFamily="serif-monospace"
         android:textSize="30dp"
         android:textStyle="bold"
         android:textColor="#000000"/>

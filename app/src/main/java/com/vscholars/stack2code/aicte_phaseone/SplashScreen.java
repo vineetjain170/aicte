@@ -139,7 +139,7 @@ public class SplashScreen extends AppCompatActivity{
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
             SplashScreen.this.finish();
-            String[] defaultValues={"1","1","1","1","1","1","1"};
+            String[] defaultValues={"2016-2017","1","1","1","1","1","1","0"};
             Intent intent = new Intent(SplashScreen.this, MainActivity.class);
             intent.putExtra("yearList",j_yearList);
             intent.putExtra("selectedValues",defaultValues);

@@ -1,6 +1,7 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,35 +46,55 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //initialize the activity according to the message
-        this.message=getIntent().getStringExtra("activitySelected");
-        initializer(message);
-        getData(message);
-
+        message=getIntent().getStringExtra("activitySelected");
+        getSupportActionBar().hide();
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.setMessage("Loading data entries...");
+        pd.setIndeterminate(true);
+        pd.setCancelable(false);
+        pd.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getData(message);
+                keepACheck();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initializer(message);
+                    }
+                });
+                pd.dismiss();
+            }
+        }).start();
     }
 
     private void getData(String message) {
 
         executer=new jsonClasses(message);
+        selectedValues=getIntent().getStringArrayExtra("selectedValues");
 
         if (message.equals("faculty")){
 
             executer.J_json_facultyServer.execute(selectedValues);
-            keepACheck();
 
         }else if (message.equals("approved_institutes")){
 
             executer.J_json_approvedInstitutions.execute(selectedValues);
-            keepACheck();
 
         }else if (message.equals("closed_courses")){
 
             executer.J_json_closedCourses.execute(selectedValues);
-            keepACheck();
+
 
         }else if (message.equals("closed_institutes")){
 
             executer.J_json_closedInstitutes.execute(selectedValues);
-            keepACheck();
+
+        }else if (message.equals("nri/pio-fn-ciwg/tp")){
+
+            executer.J_json_NriPioFci.execute(selectedValues);
 
         }
 
@@ -90,8 +111,8 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
                     for (int i=0;i<categoryNames.size();++i){
                         categoriesList.add(categoryNames.get(i));
                     }
-                    //setContentView(R.layout.activity_all_lists);
-                    J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,categoryNames.size(),assignParameters(message),categoriesList,executer.categories,executer.data));
+
+                    //J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,categoryNames.size(),assignParameters(message),categoriesList,executer.categories,executer.data));
                 }
             }
         } catch (InterruptedException e) {
@@ -101,10 +122,11 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
 
     }
 
-    public void initializer(String message){
+    public void initializer(final String message){
 
         //message is passed by DoubleNavigationDrawerWithoutEditText class when user selects an activity from main navigation drawer
         //actions specific to message are taken
+        getSupportActionBar().show();
         setContentView(R.layout.activity_all_lists);
 
         J_ListMain=(ExpandableListView) findViewById(R.id.x_activity_all_lists_list_main);
@@ -116,9 +138,39 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
         J_actionSearch=(Button)findViewById(R.id.x_activity_all_lists_action_search);
 
         yearList=getIntent().getStringArrayExtra("yearList");
-        selectedValues=getIntent().getStringArrayExtra("selectedValues");
 
         super.onCreateDrawer(BaseClassAllLists.this,message,yearList);
+        J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,categoryNames.size(),assignParameters(message),categoriesList,executer.categories,executer.data));
+        J_ButtonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count=Integer.parseInt(selectedValues[selectedValues.length-1]);
+                count+=10;
+                selectedValues[selectedValues.length-1]=count+"";
+                Intent i=new Intent(BaseClassAllLists.this,BaseClassAllLists.class);
+                i.putExtra("activitySelected",message);
+                i.putExtra("selectedValues",selectedValues);
+                i.putExtra("yearList",yearList);
+                startActivity(i);
+            }
+        });
+        J_ButtonPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int count=Integer.parseInt(selectedValues[selectedValues.length-1]);
+                if (count!=0) {
+                    count -= 10;
+                    selectedValues[selectedValues.length - 1] = count + "";
+                    Intent i = new Intent(BaseClassAllLists.this, BaseClassAllLists.class);
+                    i.putExtra("activitySelected", message);
+                    i.putExtra("selectedValues", selectedValues);
+                    i.putExtra("yearList", yearList);
+                    startActivity(i);
+                }
+
+            }
+        });
 
     }
 

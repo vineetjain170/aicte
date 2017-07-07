@@ -10,8 +10,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +37,27 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getData();
-        initializer();
-        setValue();
-
+        getSupportActionBar().hide();
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.setMessage("Loading Dashboard data...");
+        pd.setIndeterminate(true);
+        pd.setCancelable(false);
+        pd.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getData();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initializer();
+                        setValue();
+                    }
+                });
+                pd.dismiss();
+            }
+        }).start();
     }
 
     private void getData() {
@@ -59,6 +78,7 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
     }
 
     private void setValue() {
+        getSupportActionBar().show();
         J_totalInstitutions.setText(parameterValues[5]);
         J_faculties.setText(parameterValues[0]);
         J_enrollment.setText(parameterValues[3]);

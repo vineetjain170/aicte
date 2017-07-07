@@ -2,6 +2,8 @@ package com.vscholars.stack2code.aicte_phaseone;
 
 
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.vscholars.stack2code.aicte_phaseone.DataItems.ApprovedInstituteDataItem;
@@ -9,6 +11,7 @@ import com.vscholars.stack2code.aicte_phaseone.DataItems.ClosedCoursesDataItems;
 import com.vscholars.stack2code.aicte_phaseone.DataItems.ClosedInstitutesDataItems;
 import com.vscholars.stack2code.aicte_phaseone.DataItems.DashboardDataItems;
 import com.vscholars.stack2code.aicte_phaseone.DataItems.FacultyDataItems;
+import com.vscholars.stack2code.aicte_phaseone.DataItems.NriPioFciDataItems;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,12 +34,14 @@ public class jsonClasses{
     private ApprovedInstituteDataItem J_approvedInstitutions;
     private ClosedCoursesDataItems J_closedCoursesDataItems;
     private ClosedInstitutesDataItems J_closedInstitutesDataItems;
+    private NriPioFciDataItems J_NriPioFciDataItems;
 
     public json_dashboardData J_json_dashboardData;
     public json_facultyServer J_json_facultyServer;
     public json_approvedInstitute J_json_approvedInstitutions;
     public json_closedcourses J_json_closedCourses;
     public json_closedinstitutes J_json_closedInstitutes;
+    public json_nriPio J_json_NriPioFci;
 
     public String[] defaultValuesDashboard;
     public String[][][] data;
@@ -59,6 +64,9 @@ public class jsonClasses{
             J_approvedInstitutions=new ApprovedInstituteDataItem();
 
         }else if (message.equals("nri/pio-fn-ciwg/tp")){
+
+            J_json_NriPioFci=new json_nriPio();
+            J_NriPioFciDataItems=new NriPioFciDataItems();
 
         }else if (message.equals("faculty")){
 
@@ -109,6 +117,7 @@ public class jsonClasses{
 //                 Note that create product url accepts POST method
 
                 JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/dashboardserver.php", "POST", params);
+                Log.d("paramsSent",params.toString());
 
                 int success=jsonO.getInt("success");
 
@@ -142,7 +151,6 @@ public class jsonClasses{
         @Override
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
-
             return;
         }
 
@@ -171,11 +179,13 @@ public class jsonClasses{
                 params.add(new BasicNameValuePair("state", s[3]));
                 params.add(new BasicNameValuePair("Minority", s[4]));
                 params.add(new BasicNameValuePair("Women", s[5]));
+                params.add(new BasicNameValuePair("offset",s[6]));
                 //getting JS
                 // this is the data received from server and is displayed using list viewON Object
                 //Note that create product url accepts POST method
 
                 JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/facultyserver.php", "POST", params);
+                Log.d("paramsSent",params.toString());
 
                 int success=jsonO.getInt("success");
                 int count=jsonO.getInt("count");
@@ -278,11 +288,13 @@ public class jsonClasses{
                 params.add(new BasicNameValuePair("state", s[4]));
                 params.add(new BasicNameValuePair("Minority", s[5]));
                 params.add(new BasicNameValuePair("Women", s[6]));
+                params.add(new BasicNameValuePair("offset",s[7]));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
 
                 JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/approvedinstitute.php", "POST", params);
+                Log.d("paramsSent",params.toString());
 
                 int success=jsonO.getInt("success");
                 if (success == 1) {
@@ -366,10 +378,12 @@ public class jsonClasses{
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("year", s[0]));
+                params.add(new BasicNameValuePair("offset",s[1]));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
                 JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/closedcourses.php", "POST", params);
+                Log.d("paramsSent",params.toString());
 
                 int success=jsonO.getInt("success");
                 int count=jsonO.getInt("count");
@@ -464,10 +478,12 @@ public class jsonClasses{
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("year", s[0]));
+                params.add(new BasicNameValuePair("offset",s[1]));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
                 JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/closedinstitutes.php", "POST", params);
+                Log.d("paramsSent",params.toString());
 
                 int success=jsonO.getInt("success");
                 int count=jsonO.getInt("objects");
@@ -543,6 +559,108 @@ public class jsonClasses{
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
         }
+    }
+
+    protected class json_nriPio extends AsyncTask<String, Void, Void>{
+
+        @Override
+        protected Void doInBackground(String... s) {
+            try {
+                 /*
+                   s[0] year
+                 */
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("year", s[0]));
+                params.add(new BasicNameValuePair("q1",s[1]));
+                params.add(new BasicNameValuePair("offset",s[2]));
+
+//                 getting JSON Object
+//                 Note that create product url accepts POST method
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/nripiofcinstitute.php", "POST", params);
+                Log.d("paramsSent",params.toString());
+
+                int success=jsonO.getInt("success");
+                //int count=jsonO.getInt("count");
+
+                if (success == 1) {
+
+                    int categorySize=0;
+                    int nameCount=-1;
+                    categories=new LinkedHashMap<String,Integer>();
+                    categoriesNames=new LinkedHashMap<>();
+                    JSONArray Ja=jsonO.getJSONArray("records");
+
+                    for(int i=0;i<Ja.length();i++){
+                        JSONObject Jo=Ja.getJSONObject(i);
+                        J_NriPioFciDataItems.J_state=Jo.getString("state");
+                        if (categories.containsKey(J_NriPioFciDataItems.J_state)) {
+                            categorySize=categories.get(J_NriPioFciDataItems.J_state);
+                            ++categorySize;
+                            categories.put(J_NriPioFciDataItems.J_state,categorySize);
+                        }else {
+                            categories.put(J_NriPioFciDataItems.J_state,1);
+                            ++nameCount;
+                            categoriesNames.put(nameCount,J_NriPioFciDataItems.J_state);
+                        }
+                    }
+                    for (int i=0;i<categories.size();++i){
+                        if (i==0){
+                            data=new String[categories.size()][][];
+                        }
+                        for (int j=0;j<categories.get(categoriesNames.get(i));++j){
+                            if (j==0){
+                                data[i]=new String[categories.get(categoriesNames.get(i))][];
+                            }
+                            for (int k=0;k<11;++k) {
+                                data[i][j]=new String[11];
+                            }
+                        }
+                    }
+                    for (int i=0;i<categories.size();++i) {
+                        ArrayList<Integer>used=new ArrayList<Integer>();
+                        for (int k=0;k<categories.get(categoriesNames.get(i));++k) {
+                            for (int j = 0; j < Ja.length(); j++) {
+                                JSONObject Jo = Ja.getJSONObject(j);
+                                if (categoriesNames.get(i).equals(Jo.getString("state"))&&used.contains(j)==false) {
+
+                                    data[i][k][0]=J_NriPioFciDataItems.J_aicteId=Jo.getString("colid");
+                                    data[i][k][1]=J_NriPioFciDataItems.J_instituteName=Jo.getString("collegename");
+                                    data[i][k][2]=J_NriPioFciDataItems.J_state=Jo.getString("state");
+                                    data[i][k][3]=J_NriPioFciDataItems.J_district=Jo.getString("district");
+                                    data[i][k][4]=J_NriPioFciDataItems.J_institute=Jo.getString("type");
+                                    data[i][k][5]=J_NriPioFciDataItems.J_program=Jo.getString("program");
+                                    data[i][k][6]=J_NriPioFciDataItems.J_university=Jo.getString("university");
+                                    data[i][k][7]=J_NriPioFciDataItems.J_level=Jo.getString("corlevel");
+                                    data[i][k][8]=J_NriPioFciDataItems.J_nameOfCourses=Jo.getString("corname");
+                                    data[i][k][9]=J_NriPioFciDataItems.J_approvedIntake=Jo.getString("intake");
+                                    data[i][k][10]=J_NriPioFciDataItems.J_nriQuotaSeats=Jo.getString("foruniversity");
+
+                                    used.add(j);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    str= "error in data fetch please try latter";
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                str= e.toString();
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+        }
+
     }
 
 }

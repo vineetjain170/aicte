@@ -60,7 +60,7 @@
     </string-array>
     <string-array name="institutionType">
         <item>--All--</item>
-        <item>Unaided-Private</item>
+        <item>Unaided - Private</item>
         <item>Govt Aided</item>
         <item>University Managed</item>
         <item>Government</item>
@@ -74,12 +74,10 @@
     <string-array name="minorityOptions">
         <item></item>
         <item>Y</item>
-        <item>N</item>
     </string-array>
     <string-array name="womenOptions">
         <item></item>
         <item>Y</item>
-        <item>N</item>
     </string-array>
     <string-array name="courseType">
         <item>Non Resident Indian(NRI)</item>

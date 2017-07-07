@@ -132,7 +132,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 //on each child click the child is added to selected options hash map
-                J_SelectedOptions.put(J_ParentFilterOptions.get(groupPosition),(childPosition+1)+"");//J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
+                J_SelectedOptions.put(J_ParentFilterOptions.get(groupPosition),J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));//J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
                 J_ParentFilterOptions.add(groupPosition+1,J_ChildFilterOptions.get(J_ParentFilterOptions.get(groupPosition)).get(childPosition));
                 J_ParentFilterOptions.remove(groupPosition);
                 J_DrawerListFilterOptions.setAdapter(new AdapterForFilterOptions(DoubleNavigationWithoutEditText.this,J_ParentFilterOptions,J_ChildFilterOptions));
@@ -152,14 +152,14 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     i.setData(Uri.parse(url));
                     startActivity(i);
                 } else if (position==2){
-                    String[] values={"1","1","1","1","1","1","1"};
+                    String[] values={"2016-2017","1","1","1","1","1","1"};
                     i=new Intent(context,MainActivity.class);
                     i.putExtra("yearList",yearList);
                     i.putExtra("selectedValues",values);
                     startActivity(i);
 
                 } else if (position==3){
-                    String[] selectedValues={"1","1","1","1","1","1","1"};
+                    String[] selectedValues={"2016-2017","1","1","1","1","1","1","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","approved_institutes");
                     i.putExtra("selectedValues",selectedValues);
@@ -167,13 +167,15 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 } else if (position==4){
+                    String[] selectedValues={"2016-2017","FC","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","nri/pio-fn-ciwg/tp");
+                    i.putExtra("selectedValues",selectedValues);
                     i.putExtra("yearList",yearList);
                     startActivity(i);
 
                 } else if (position==5){
-                    String[] values={"1","1","1","1","1","1"};
+                    String[] values={"1","1","1","1","1","1","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","faculty");
                     i.putExtra("yearList",yearList);
@@ -183,7 +185,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                 } else if (position==6){
 
                 } else if (position==7){
-                    String[] values={"2012-2013"};
+                    String[] values={"2016-2017","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_courses");
                     i.putExtra("selectedValues",values);
@@ -191,7 +193,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 } else if (position==8){
-                    String[] values={"2017-2018"};
+                    String[] values={"2016-2017","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_institutes");
                     i.putExtra("selectedValues",values);
@@ -286,7 +288,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             J_ChildFilterOptions.put("Women",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Year","1");
+            J_SelectedOptions.put("Year","2016-2017");
             J_SelectedOptions.put("Select Program","1");
             J_SelectedOptions.put("Select Level","1");
             J_SelectedOptions.put("Institution Type","1");
@@ -310,7 +312,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
 
             //This code provide initial default value to selected options in case no option is selected by user
             J_SelectedOptions.put("Course Type","1");
-            J_SelectedOptions.put("Year","1");
+            J_SelectedOptions.put("Year","2016-2017");
 
 
 
@@ -364,7 +366,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             J_ChildFilterOptions.put("Year",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Year","1");
+            J_SelectedOptions.put("Year","2016-2017");
 
         }else if (message.equals("dashboard")){
 
@@ -400,7 +402,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             J_ChildFilterOptions.put("Women",temp);
 
             //This code provide initial default value to selected options in case no option is selected by user
-            J_SelectedOptions.put("Year","1");
+            J_SelectedOptions.put("Year","2016-2017");
             J_SelectedOptions.put("Select Program","1");
             J_SelectedOptions.put("Select Level","1");
             J_SelectedOptions.put("Institution Type","1");
@@ -414,7 +416,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
     public void filterList(View v){
 
         //on click of filter button the selected option is submitted to server through this module
-        String[] values=new String[J_SelectedOptions.size()];
+        String[] values=new String[J_SelectedOptions.size()+1];
 
         if(J_message.equals("dashboard")){
 
@@ -438,6 +440,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             values[3]=J_SelectedOptions.get("Select State");
             values[4]=J_SelectedOptions.get("Minority");
             values[5]=J_SelectedOptions.get("Women");
+            values[6]=0+"";
             Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
             intent.putExtra("selectedValues",values);
             intent.putExtra("activitySelected",J_message);
@@ -453,6 +456,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             values[4]=J_SelectedOptions.get("Select State");
             values[5]=J_SelectedOptions.get("Minority");
             values[6]=J_SelectedOptions.get("Women");
+            values[7]=0+"";
             Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
             intent.putExtra("selectedValues",values);
             intent.putExtra("activitySelected",J_message);
@@ -462,6 +466,17 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         }else if (J_message.equals("closed_courses")||J_message.equals("closed_institutes")){
 
             values[0]=J_SelectedOptions.get("Year");
+            values[1]=0+"";
+            Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
+            intent.putExtra("selectedValues",values);
+            intent.putExtra("activitySelected",J_message);
+            intent.putExtra("yearList",J_yearList);
+            startActivity(intent);
+
+        }else if (J_message.equals("nri/pio-fn-ciwg/tp")){
+            values[0]=J_SelectedOptions.get("Year");
+            values[1]=J_SelectedOptions.get("Course Type");
+            values[2]=0+"";
             Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
             intent.putExtra("selectedValues",values);
             intent.putExtra("activitySelected",J_message);
