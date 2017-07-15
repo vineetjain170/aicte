@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:background="@android:drawable/picture_frame">
 
     <!--
@@ -12,13 +13,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:text="Institute Name"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000"
+        android:layout_margin="10dp"
         android:id="@+id/x_label_other_courses_institution_name"
-        />
+        android:textAppearance="@android:style/TextAppearance.Material" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -27,22 +25,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AICTE ID"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:textSize="17dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/x_label_other_courses_aicteid"  />
+            android:layout_marginLeft="70dp"
+            android:id="@+id/x_label_other_courses_aicteid"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -50,22 +48,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="State"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set state"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_state" />
+            android:layout_marginLeft="93dp"
+            android:id="@+id/x_label_other_courses_state"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -73,22 +71,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="District"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="41dp"
-            android:id="@+id/x_label_other_courses_district" />
+            android:layout_marginLeft="81dp"
+            android:id="@+id/x_label_other_courses_district"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -96,22 +94,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Institute"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_institution_type" />
+            android:layout_marginLeft="73dp"
+            android:id="@+id/x_label_other_courses_institution_type"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -119,22 +117,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Program"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_program" />
+            android:layout_marginLeft="72dp"
+            android:id="@+id/x_label_other_courses_program"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -142,22 +140,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="University/Board"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_universityboard" />
+            android:layout_marginLeft="11dp"
+            android:id="@+id/x_label_other_courses_universityboard"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -165,22 +163,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Level"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_level" />
+            android:layout_marginLeft="100dp"
+            android:id="@+id/x_label_other_courses_level"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -188,22 +186,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name Of Courses"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_course_name" />
+            android:layout_marginLeft="13dp"
+            android:id="@+id/x_label_other_courses_course_name"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -211,22 +209,24 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="Approved Intake"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_approved_intake" />
+            android:layout_marginLeft="23dp"
+            android:id="@+id/x_label_other_courses_approved_intake"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -234,22 +234,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NRI Quota Seats"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="33dp"
-            android:id="@+id/x_label_other_courses_nri_quota_seats" />
+            android:layout_marginLeft="23dp"
+            android:id="@+id/x_label_other_courses_nri_quota_seats"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 </LinearLayout>

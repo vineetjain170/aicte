@@ -3,6 +3,7 @@ package com.vscholars.stack2code.aicte_phaseone;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -66,7 +67,7 @@ public class SplashScreen extends AppCompatActivity{
         Window window = SplashScreen.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(0);
+        window.setStatusBarColor(Color.BLACK);
 
         J_DataLoading=(ProgressBar)findViewById(R.id.x_splash_screen_progress_bar);
         J_DataLoadingText=(TextView)findViewById(R.id.x_splash_screen_loading_text);
@@ -139,7 +140,7 @@ public class SplashScreen extends AppCompatActivity{
         protected void onPostExecute(Void v) {
             super.onPostExecute(v);
             SplashScreen.this.finish();
-            String[] defaultValues={"2016-2017","1","1","1","1","1","1","0"};
+            String[] defaultValues={"[\"2016-2017\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]"};
             Intent intent = new Intent(SplashScreen.this, MainActivity.class);
             intent.putExtra("yearList",j_yearList);
             intent.putExtra("selectedValues",defaultValues);

@@ -134,12 +134,12 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             address.setText(values[2]);
             district.setText(values[3]);
             institutionType.setText(values[4]);
-            if(values[5].equals("Y")||values.equals("y")){
+            if(values[5].equals("Y")||values[5].equals("y")){
 
                 womenY.setVisibility(View.VISIBLE);
                 womenN.setVisibility(View.INVISIBLE);
 
-            }else if (values[5].equals("N")||values.equals("n")){
+            }else if (values[5].equals("N")||values[5].equals("n")){
 
                 womenY.setVisibility(View.INVISIBLE);
                 womenN.setVisibility(View.VISIBLE);
@@ -190,7 +190,7 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             level=(TextView)layoutViews[7];
             nameOfCourses=(TextView)layoutViews[8];
             approvedIntake=(TextView)layoutViews[9];
-            quotaSeats=(TextView)layoutViews[10];
+            //quotaSeats=(TextView)layoutViews[10];
 
             aicteId.setText(values[0]);
             institutionName.setText(values[1]);
@@ -202,7 +202,7 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             level.setText(values[7]);
             nameOfCourses.setText(values[8]);
             approvedIntake.setText(values[9]);
-            quotaSeats.setText(values[10]);
+            //quotaSeats.setText(values[10]);
 
             return convertView;
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import java.util.List;
  * Created by vineet_jain on 8/6/17.
  */
 
-public class BaseClassAllLists extends DoubleNavigationWithoutEditText implements View.OnTouchListener{
+public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
 
     //these as the objects which hold the reference to all the views in the activity
     private ExpandableListView J_ListMain;
@@ -40,7 +41,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
     private jsonClasses executer;
 
     //these variables are used to keep track of user touch events
-    private int J_xCoordinateUp,J_xCoordinateDown;
+    private int mLastFirstVisibleItem=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -113,6 +114,9 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
                     }
 
                     //J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,categoryNames.size(),assignParameters(message),categoriesList,executer.categories,executer.data));
+                }else if (executer.categoriesNames!=null){
+                    if(executer.categoriesNames.get(-1)!=null)
+                        break;
                 }
             }
         } catch (InterruptedException e) {
@@ -140,12 +144,53 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
         yearList=getIntent().getStringArrayExtra("yearList");
 
         super.onCreateDrawer(BaseClassAllLists.this,message,yearList);
-        J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this,message,categoryNames.size(),assignParameters(message),categoriesList,executer.categories,executer.data));
+        if (executer.categoriesNames.get(-1)!=null){
+            if (executer.categoriesNames.get(-1).equals("-1")) {
+                RelativeLayout noMoreData = (RelativeLayout) findViewById(R.id.x_noMoreData);
+                noMoreData.setVisibility(View.VISIBLE);
+                J_SearchTab.setVisibility(View.INVISIBLE);
+                J_ListsController.setVisibility(View.INVISIBLE);
+            }
+        }else {
+            RelativeLayout noMoreData=(RelativeLayout)findViewById(R.id.x_noMoreData);
+            noMoreData.setVisibility(View.INVISIBLE);
+            J_SearchTab.setVisibility(View.VISIBLE);
+            J_ListsController.setVisibility(View.VISIBLE);
+            J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this, message, categoryNames.size(), assignParameters(message), categoriesList, executer.categories, executer.data));
+        }
+
+        J_ListMain.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                ExpandableListView mainListView = (ExpandableListView)findViewById(R.id.x_activity_all_lists_list_main);
+                if (view.getId() == mainListView.getId()) {
+                    int currentFirstVisibleItem = mainListView.getFirstVisiblePosition();
+                    if (currentFirstVisibleItem > mLastFirstVisibleItem) {
+                        J_SearchTab.setVisibility(View.VISIBLE);
+                        J_ListsController.setVisibility(View.INVISIBLE);
+                        getSupportActionBar().show();
+                        J_ListMain.setPadding(0,105,0,0);
+                    } else if (currentFirstVisibleItem < mLastFirstVisibleItem) {
+                        J_SearchTab.setVisibility(View.INVISIBLE);
+                        J_ListsController.setVisibility(View.VISIBLE);
+                        getSupportActionBar().hide();
+                        J_ListMain.setPadding(0,0,0,75);
+                    }
+                    mLastFirstVisibleItem = currentFirstVisibleItem;
+                }
+            }
+
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
         J_ButtonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int count=Integer.parseInt(selectedValues[selectedValues.length-1]);
-                count+=10;
+                count+=20;
                 selectedValues[selectedValues.length-1]=count+"";
                 Intent i=new Intent(BaseClassAllLists.this,BaseClassAllLists.class);
                 i.putExtra("activitySelected",message);
@@ -160,7 +205,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
 
                 int count=Integer.parseInt(selectedValues[selectedValues.length-1]);
                 if (count!=0) {
-                    count -= 10;
+                    count -= 20;
                     selectedValues[selectedValues.length - 1] = count + "";
                     Intent i = new Intent(BaseClassAllLists.this, BaseClassAllLists.class);
                     i.putExtra("activitySelected", message);
@@ -195,56 +240,6 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText implement
         }else {
             return 0;
         }
-
-
-    }
-
-    //this listener handles the user touch on list view
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-
-        if (event.getAction()==MotionEvent.ACTION_UP){
-
-            //this event is generated when finger is removed from screen and stores the coordinate of the destination
-            J_xCoordinateUp=(int)event.getX();
-            UIHandler(J_xCoordinateUp,J_xCoordinateDown);
-
-        }
-        if (event.getAction()==MotionEvent.ACTION_DOWN){
-
-            //this event is generated when user begins motion event and stores the source coordinate
-            J_xCoordinateDown=(int)event.getX();
-
-        }
-
-        return true;
-    }
-
-    //this methods make changes to UI depending on the swipe actions to make it responsive
-    void UIHandler(int upCoordinate,int downCoordinate){
-
-        //this block depicts the swipe up motion on list view
-        if(upCoordinate-downCoordinate<-1){
-
-            J_SearchTab.setVisibility(View.INVISIBLE);
-            J_ListsController.setVisibility(View.VISIBLE);
-            getSupportActionBar().hide();
-            J_xCoordinateUp=0;
-            J_xCoordinateDown=0;
-
-        //this block depicts the swpe down motion on list view
-        }else if (upCoordinate-downCoordinate>1){
-
-            J_SearchTab.setVisibility(View.VISIBLE);
-            J_ListsController.setVisibility(View.INVISIBLE);
-            getSupportActionBar().show();
-            J_xCoordinateUp=0;
-            J_xCoordinateDown=0;
-
-        }else if (upCoordinate-downCoordinate==0){
-
-        }
-
     }
 
     public void onBackPressed(){

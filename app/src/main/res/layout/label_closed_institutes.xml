@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:background="@android:drawable/picture_frame">
 
     <!--
@@ -12,13 +13,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:text="Institute Name"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000"
+        android:layout_margin="10dp"
         android:id="@+id/x_label_closed_institutes_institution_name"
-        />
+        android:textAppearance="@android:style/TextAppearance.Material" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -29,23 +27,23 @@
 
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AICTE ID"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:textSize="17dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:id="@+id/x_label_closed_institutes_aicteid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:text="set id" />
+            android:text="set id"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -53,22 +51,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Institute"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set institute"
             android:layout_marginLeft="44dp"
-            android:id="@+id/x_label_closed_institutes_institution_type" />
+            android:id="@+id/x_label_closed_institutes_institution_type"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -76,22 +74,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Address"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:id="@+id/x_label_closed_institutes_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="44dp"
-            android:text="set address" />
+            android:text="set address"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -99,6 +97,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -106,16 +105,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="State"
-            android:textColor="#000"
-            android:textSize="17dp"
-            android:textStyle="bold" />
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:id="@+id/x_label_closed_institutes_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="68dp"
-            android:text="set state" />
+            android:text="set state"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -123,22 +121,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="District"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set district"
             android:layout_marginLeft="52dp"
-            android:id="@+id/x_label_closed_institutes_district" />
+            android:id="@+id/x_label_closed_institutes_district"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -146,22 +144,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="City"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set district"
             android:layout_marginLeft="78dp"
-            android:id="@+id/x_label_closed_institutes_city" />
+            android:id="@+id/x_label_closed_institutes_city"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 

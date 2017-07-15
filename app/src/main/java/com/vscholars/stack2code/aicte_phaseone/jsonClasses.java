@@ -105,21 +105,27 @@ public class jsonClasses{
                  */
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("year", s[0]));
-                params.add(new BasicNameValuePair("program", s[1]));
-                params.add(new BasicNameValuePair("level", s[2]));
-                params.add(new BasicNameValuePair("institutiontype", s[3]));
-                params.add(new BasicNameValuePair("state", s[4]));
-                params.add(new BasicNameValuePair("Minority", s[5]));
-                params.add(new BasicNameValuePair("Women", s[6]));
+                params.add(new BasicNameValuePair("\"year\"", s[0]));
+                params.add(new BasicNameValuePair("\"program\"", s[1]));
+                params.add(new BasicNameValuePair("\"level\"", s[2]));
+                params.add(new BasicNameValuePair("\"institutiontype\"", s[3]));
+                params.add(new BasicNameValuePair("\"state\"", s[4]));
+                params.add(new BasicNameValuePair("\"Minority\"", s[5]));
+                params.add(new BasicNameValuePair("\"Women\"", s[6]));
+                List<NameValuePair> actual=new ArrayList<>();
+                String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                paramsnew=paramsnew.replaceAll("=",":");
+                actual.add(new BasicNameValuePair("paramsSent",paramsnew));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
 
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/dashboardserver.php", "POST", params);
-                Log.d("paramsSent",params.toString());
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/dashboardserver.php", "POST", actual);
+                Log.d("key",actual.toString());
+                Log.d("response",jsonO.toString());
 
                 int success=jsonO.getInt("success");
+                Log.d("success",success+"");
 
                 if (success == 1) {
 
@@ -173,19 +179,24 @@ public class jsonClasses{
 
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("program", s[0]));
-                params.add(new BasicNameValuePair("level", s[1]));
-                params.add(new BasicNameValuePair("institutiontype", s[2]));
-                params.add(new BasicNameValuePair("state", s[3]));
-                params.add(new BasicNameValuePair("Minority", s[4]));
-                params.add(new BasicNameValuePair("Women", s[5]));
-                params.add(new BasicNameValuePair("offset",s[6]));
+                params.add(new BasicNameValuePair("\"program\"", s[0]));
+                params.add(new BasicNameValuePair("\"level\"", s[1]));
+                params.add(new BasicNameValuePair("\"institutiontype\"", s[2]));
+                params.add(new BasicNameValuePair("\"state\"", s[3]));
+                params.add(new BasicNameValuePair("\"Minority\"", s[4]));
+                params.add(new BasicNameValuePair("\"Women\"", s[5]));
+                params.add(new BasicNameValuePair("\"offset\"",s[6]));
+                List<NameValuePair> actual=new ArrayList<>();
+                String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                paramsnew=paramsnew.replaceAll("=",":");
+                actual.add(new BasicNameValuePair("paramsSent",paramsnew));
                 //getting JS
                 // this is the data received from server and is displayed using list viewON Object
                 //Note that create product url accepts POST method
 
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/facultyserver.php", "POST", params);
-                Log.d("paramsSent",params.toString());
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/facultyserver.php", "POST", actual);
+                Log.d("paramsSent",actual.toString());
+                Log.d("JSONobj",jsonO.toString());
 
                 int success=jsonO.getInt("success");
                 int count=jsonO.getInt("count");
@@ -198,9 +209,11 @@ public class jsonClasses{
                     categories=new LinkedHashMap<String,Integer>();
                     categoriesNames=new LinkedHashMap<>();
 
+                    if (count!=0){
+
                     for(int i=0;i<count;i++){
                         JSONObject Jo=Ja.getJSONObject(i);
-                        J_facultyDataItems.J_ins_name=Jo.getString("ins_name");
+                        J_facultyDataItems.J_ins_name=Jo.getString("name");
                         if (categories.containsKey(J_facultyDataItems.J_ins_name)) {
                             categorySize=categories.get(J_facultyDataItems.J_ins_name);
                             ++categorySize;
@@ -227,24 +240,27 @@ public class jsonClasses{
                         }
                     }
                     for (int i=0;i<categories.size();++i) {
-                        ArrayList<Integer>used=new ArrayList<Integer>();
-                        for (int k=0;k<categories.get(categoriesNames.get(i));++k) {
+                        ArrayList<Integer> used = new ArrayList<Integer>();
+                        for (int k = 0; k < categories.get(categoriesNames.get(i)); ++k) {
                             for (int j = 0; j < count; j++) {
                                 JSONObject Jo = Ja.getJSONObject(j);
-                                if (categoriesNames.get(i).equals(Jo.getString("ins_name"))&&used.contains(j)==false) {
-                                    data[i][k][0]=J_facultyDataItems.J_facid = Jo.getString("facid");
-                                    data[i][k][1]=J_facultyDataItems.J_name = Jo.getString("name");
-                                    data[i][k][2]=J_facultyDataItems.J_appointment = Jo.getString("appointment");
-                                    data[i][k][3]=J_facultyDataItems.J_designation = Jo.getString("designation");
-                                    data[i][k][4]=J_facultyDataItems.J_gender = Jo.getString("gender");
-                                    data[i][k][5]=J_facultyDataItems.J_ins_name = Jo.getString("ins_name");
-                                    data[i][k][6]=J_facultyDataItems.J_joindate = Jo.getString("joindate");
-                                    data[i][k][7]=J_facultyDataItems.J_specialisation = Jo.getString("specialisation");
+                                if (categoriesNames.get(i).equals(Jo.getString("name")) && used.contains(j) == false) {
+                                    data[i][k][0] = J_facultyDataItems.J_facid = Jo.getString("facid");
+                                    data[i][k][1] = J_facultyDataItems.J_name = Jo.getString("name");
+                                    data[i][k][2] = J_facultyDataItems.J_appointment = Jo.getString("appointment");
+                                    data[i][k][3] = J_facultyDataItems.J_designation = Jo.getString("designation");
+                                    data[i][k][4] = J_facultyDataItems.J_gender = Jo.getString("gender");
+                                    data[i][k][5] = J_facultyDataItems.J_ins_name = Jo.getString("ins_name");
+                                    data[i][k][6] = J_facultyDataItems.J_joindate = Jo.getString("joindate");
+                                    data[i][k][7] = J_facultyDataItems.J_specialisation = Jo.getString("specialisation");
                                     used.add(j);
                                     break;
                                 }
                             }
                         }
+                    }
+                    }else {
+                        categoriesNames.put(-1,"-1");
                     }
                 } else {
                     str= "error in data fetch please try latter";
@@ -281,20 +297,24 @@ public class jsonClasses{
 
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("year", s[0]));
-                params.add(new BasicNameValuePair("program", s[1]));
-                params.add(new BasicNameValuePair("level", s[2]));
-                params.add(new BasicNameValuePair("institutiontype", s[3]));
-                params.add(new BasicNameValuePair("state", s[4]));
-                params.add(new BasicNameValuePair("Minority", s[5]));
-                params.add(new BasicNameValuePair("Women", s[6]));
-                params.add(new BasicNameValuePair("offset",s[7]));
-
+                params.add(new BasicNameValuePair("\"year\"", s[0]));
+                params.add(new BasicNameValuePair("\"program\"", s[1]));
+                params.add(new BasicNameValuePair("\"level\"", s[2]));
+                params.add(new BasicNameValuePair("\"institutiontype\"", s[3]));
+                params.add(new BasicNameValuePair("\"state\"", s[4]));
+                params.add(new BasicNameValuePair("\"Minority\"", s[5]));
+                params.add(new BasicNameValuePair("\"Women\"", s[6]));
+                params.add(new BasicNameValuePair("\"offset\"",s[7]));
+                List<NameValuePair> actual=new ArrayList<>();
+                String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                paramsnew=paramsnew.replaceAll("=",":");
+                actual.add(new BasicNameValuePair("paramsSent",paramsnew));
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
 
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/approvedinstitute.php", "POST", params);
-                Log.d("paramsSent",params.toString());
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/approvedinstitute.php", "POST", actual);
+                Log.d("paramsSent",actual.toString());
+                Log.d("JSONobj",jsonO.toString());
 
                 int success=jsonO.getInt("success");
                 if (success == 1) {
@@ -303,9 +323,12 @@ public class jsonClasses{
                     categories=new LinkedHashMap<String,Integer>();
                     categoriesNames=new LinkedHashMap<>();
                     JSONArray Ja=jsonO.getJSONArray("list");
+
+                    if (Ja.length()!=0){
+
                     for(int i=0;i<Ja.length();i++){
                         JSONObject Jo=Ja.getJSONObject(i);
-                        J_approvedInstitutions.J_district=Jo.getString("c_dist");
+                        J_approvedInstitutions.J_district=Jo.getString("c_name");
                         if (categories.containsKey(J_approvedInstitutions.J_district)) {
                             categorySize=categories.get(J_approvedInstitutions.J_district);
                             ++categorySize;
@@ -331,18 +354,18 @@ public class jsonClasses{
                         }
                     }
                     for (int i=0;i<categories.size();++i) {
-                        ArrayList<Integer>used=new ArrayList<Integer>();
-                        for (int k=0;k<categories.get(categoriesNames.get(i));++k) {
+                        ArrayList<Integer> used = new ArrayList<Integer>();
+                        for (int k = 0; k < categories.get(categoriesNames.get(i)); ++k) {
                             for (int j = 0; j < Ja.length(); j++) {
                                 JSONObject Jo = Ja.getJSONObject(j);
-                                if (categoriesNames.get(i).equals(Jo.getString("c_dist"))&&used.contains(j)==false) {
-                                    data[i][k][0]=J_approvedInstitutions.J_aicteid=Jo.getString("c_id");
-                                    data[i][k][1]=J_approvedInstitutions.J_name=Jo.getString("c_name");
-                                    data[i][k][2]=J_approvedInstitutions.J_address=Jo.getString("c_adds");
-                                    data[i][k][3]=J_approvedInstitutions.J_district=Jo.getString("c_dist");
-                                    data[i][k][4]=J_approvedInstitutions.J_institutionType=Jo.getString("c_type");
-                                    data[i][k][5]=J_approvedInstitutions.J_women=Jo.getString("c_women");
-                                    data[i][k][6]=J_approvedInstitutions.J_minority=Jo.getString("c_minior");
+                                if (categoriesNames.get(i).equals(Jo.getString("c_name")) && used.contains(j) == false) {
+                                    data[i][k][0] = J_approvedInstitutions.J_aicteid = Jo.getString("c_id");
+                                    data[i][k][1] = J_approvedInstitutions.J_name = Jo.getString("c_name");
+                                    data[i][k][2] = J_approvedInstitutions.J_address = Jo.getString("c_adds");
+                                    data[i][k][3] = J_approvedInstitutions.J_district = Jo.getString("c_dist");
+                                    data[i][k][4] = J_approvedInstitutions.J_institutionType = Jo.getString("c_type");
+                                    data[i][k][5] = J_approvedInstitutions.J_women = Jo.getString("c_women");
+                                    data[i][k][6] = J_approvedInstitutions.J_minority = Jo.getString("c_minior");
                                     //data[i][k][7]=J_approvedInstitutions.J_courseDetails=Jo.getString("");
                                     //data[i][k]][8]=J_approvedInstitutions.J_facultyDetails=Jo.getString("");
                                     used.add(j);
@@ -350,6 +373,9 @@ public class jsonClasses{
                                 }
                             }
                         }
+                    }
+                    }else {
+                        categoriesNames.put(-1,"-1");
                     }
                 } else {
                     str= "error in data fetch please try latter";
@@ -377,13 +403,18 @@ public class jsonClasses{
                  */
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("year", s[0]));
-                params.add(new BasicNameValuePair("offset",s[1]));
+                params.add(new BasicNameValuePair("\"year\"", s[0]));
+                params.add(new BasicNameValuePair("\"offset\"",s[1]));
+                List<NameValuePair> actual=new ArrayList<>();
+                String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                paramsnew=paramsnew.replaceAll("=",":");
+                actual.add(new BasicNameValuePair("paramsSent",paramsnew));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/closedcourses.php", "POST", params);
-                Log.d("paramsSent",params.toString());
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/closedcourses.php", "POST", actual);
+                Log.d("paramsSent",actual.toString());
+                Log.d("JSONobj",jsonO.toString());
 
                 int success=jsonO.getInt("success");
                 int count=jsonO.getInt("count");
@@ -396,56 +427,61 @@ public class jsonClasses{
                     categoriesNames=new LinkedHashMap<>();
                     JSONArray Ja=jsonO.getJSONArray("list");
 
-                    for(int i=0;i<count;i++){
-                        JSONObject Jo=Ja.getJSONObject(i);
-                        J_closedCoursesDataItems.J_state=Jo.getString("state");
-                        if (categories.containsKey(J_closedCoursesDataItems.J_state)) {
-                            categorySize=categories.get(J_closedCoursesDataItems.J_state);
-                            ++categorySize;
-                            categories.put(J_closedCoursesDataItems.J_state,categorySize);
-                        }else {
-                            categories.put(J_closedCoursesDataItems.J_state,1);
-                            ++nameCount;
-                            categoriesNames.put(nameCount,J_closedCoursesDataItems.J_state);
-                        }
-                    }
+                    if (Ja.length()!=0) {
 
-                    for (int i=0;i<categories.size();++i){
-                        if (i==0){
-                            data=new String[categories.size()][][];
-                        }
-                        for (int j=0;j<categories.get(categoriesNames.get(i));++j){
-                            if (j==0){
-                                data[i]=new String[categories.get(categoriesNames.get(i))][];
-                            }
-                            for (int k=0;k<11;++k) {
-                                data[i][j]=new String[11];
+                        for (int i = 0; i < count; i++) {
+                            JSONObject Jo = Ja.getJSONObject(i);
+                            J_closedCoursesDataItems.J_state = Jo.getString("collegename");
+                            if (categories.containsKey(J_closedCoursesDataItems.J_state)) {
+                                categorySize = categories.get(J_closedCoursesDataItems.J_state);
+                                ++categorySize;
+                                categories.put(J_closedCoursesDataItems.J_state, categorySize);
+                            } else {
+                                categories.put(J_closedCoursesDataItems.J_state, 1);
+                                ++nameCount;
+                                categoriesNames.put(nameCount, J_closedCoursesDataItems.J_state);
                             }
                         }
-                    }
 
-                    for (int i=0;i<categories.size();++i) {
-                        ArrayList<Integer>used=new ArrayList<Integer>();
-                        for (int k=0;k<categories.get(categoriesNames.get(i));++k) {
-                            for (int j = 0; j < Ja.length(); j++) {
-                                JSONObject Jo = Ja.getJSONObject(j);
-                                if (categoriesNames.get(i).equals(Jo.getString("state"))&&used.contains(j)==false) {
-                                    data[i][k][0]=J_closedCoursesDataItems.J_aicteid=Jo.getString("colid");
-                                    data[i][k][1]=J_closedCoursesDataItems.J_insName=Jo.getString("collegename");
-                                    data[i][k][2]=J_closedCoursesDataItems.J_insType=Jo.getString("type");
-                                    data[i][k][3]=J_closedCoursesDataItems.J_state=Jo.getString("state");
-                                    data[i][k][4]=J_closedCoursesDataItems.J_district=Jo.getString("district");
-                                    data[i][k][5]=J_closedCoursesDataItems.J_courseId=Jo.getString("corid");
-                                    data[i][k][6]=J_closedCoursesDataItems.J_university=Jo.getString("university");
-                                    data[i][k][7]=J_closedCoursesDataItems.J_level=Jo.getString("corlevel");
-                                    data[i][k][8]=J_closedCoursesDataItems.J_course=Jo.getString("corname");
-                                    data[i][k][9]=J_closedCoursesDataItems.J_shift=Jo.getString("corshift");
-                                    data[i][k][10]=J_closedCoursesDataItems.J_fullOrPartTime=Jo.getString("corfullpart");
-                                    used.add(j);
-                                    break;
+                        for (int i = 0; i < categories.size(); ++i) {
+                            if (i == 0) {
+                                data = new String[categories.size()][][];
+                            }
+                            for (int j = 0; j < categories.get(categoriesNames.get(i)); ++j) {
+                                if (j == 0) {
+                                    data[i] = new String[categories.get(categoriesNames.get(i))][];
+                                }
+                                for (int k = 0; k < 11; ++k) {
+                                    data[i][j] = new String[11];
                                 }
                             }
                         }
+
+                        for (int i = 0; i < categories.size(); ++i) {
+                            ArrayList<Integer> used = new ArrayList<Integer>();
+                            for (int k = 0; k < categories.get(categoriesNames.get(i)); ++k) {
+                                for (int j = 0; j < Ja.length(); j++) {
+                                    JSONObject Jo = Ja.getJSONObject(j);
+                                    if (categoriesNames.get(i).equals(Jo.getString("collegename")) && used.contains(j) == false) {
+                                        data[i][k][0] = J_closedCoursesDataItems.J_aicteid = Jo.getString("colid");
+                                        data[i][k][1] = J_closedCoursesDataItems.J_insName = Jo.getString("collegename");
+                                        data[i][k][2] = J_closedCoursesDataItems.J_insType = Jo.getString("type");
+                                        data[i][k][3] = J_closedCoursesDataItems.J_state = Jo.getString("state");
+                                        data[i][k][4] = J_closedCoursesDataItems.J_district = Jo.getString("district");
+                                        data[i][k][5] = J_closedCoursesDataItems.J_courseId = Jo.getString("corid");
+                                        data[i][k][6] = J_closedCoursesDataItems.J_university = Jo.getString("university");
+                                        data[i][k][7] = J_closedCoursesDataItems.J_level = Jo.getString("corlevel");
+                                        data[i][k][8] = J_closedCoursesDataItems.J_course = Jo.getString("corname");
+                                        data[i][k][9] = J_closedCoursesDataItems.J_shift = Jo.getString("corshift");
+                                        data[i][k][10] = J_closedCoursesDataItems.J_fullOrPartTime = Jo.getString("corfullpart");
+                                        used.add(j);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }else {
+                        categoriesNames.put(-1,"-1");
                     }
                 } else {
                     str= "error in data fetch please try latter";
@@ -477,13 +513,18 @@ public class jsonClasses{
                  */
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("year", s[0]));
-                params.add(new BasicNameValuePair("offset",s[1]));
+                params.add(new BasicNameValuePair("\"year\"", s[0]));
+                params.add(new BasicNameValuePair("\"offset\"",s[1]));
+                List<NameValuePair> actual=new ArrayList<>();
+                String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                paramsnew=paramsnew.replaceAll("=",":");
+                actual.add(new BasicNameValuePair("paramsSent",paramsnew));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/closedinstitutes.php", "POST", params);
-                Log.d("paramsSent",params.toString());
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/closedinstitutes.php", "POST", actual);
+                Log.d("paramsSent",actual.toString());
+                Log.d("JSONobj",jsonO.toString());
 
                 int success=jsonO.getInt("success");
                 int count=jsonO.getInt("objects");
@@ -496,50 +537,55 @@ public class jsonClasses{
                     categoriesNames=new LinkedHashMap<>();
                     JSONArray Ja=jsonO.getJSONArray("list");
 
-                    for(int i=0;i<count;i++){
-                        JSONObject Jo=Ja.getJSONObject(i);
-                        J_closedInstitutesDataItems.J_state=Jo.getString("state");
-                        if (categories.containsKey(J_closedInstitutesDataItems.J_state)) {
-                            categorySize=categories.get(J_closedInstitutesDataItems.J_state);
-                            ++categorySize;
-                            categories.put(J_closedInstitutesDataItems.J_state,categorySize);
-                        }else {
-                            categories.put(J_closedInstitutesDataItems.J_state,1);
-                            ++nameCount;
-                            categoriesNames.put(nameCount,J_closedInstitutesDataItems.J_state);
-                        }
-                    }
-                    for (int i=0;i<categories.size();++i){
-                        if (i==0){
-                            data=new String[categories.size()][][];
-                        }
-                        for (int j=0;j<categories.get(categoriesNames.get(i));++j){
-                            if (j==0){
-                                data[i]=new String[categories.get(categoriesNames.get(i))][];
-                            }
-                            for (int k=0;k<11;++k) {
-                                data[i][j]=new String[11];
+                    if (Ja.length()!=0) {
+
+                        for (int i = 0; i < count; i++) {
+                            JSONObject Jo = Ja.getJSONObject(i);
+                            J_closedInstitutesDataItems.J_state = Jo.getString("collegename");
+                            if (categories.containsKey(J_closedInstitutesDataItems.J_state)) {
+                                categorySize = categories.get(J_closedInstitutesDataItems.J_state);
+                                ++categorySize;
+                                categories.put(J_closedInstitutesDataItems.J_state, categorySize);
+                            } else {
+                                categories.put(J_closedInstitutesDataItems.J_state, 1);
+                                ++nameCount;
+                                categoriesNames.put(nameCount, J_closedInstitutesDataItems.J_state);
                             }
                         }
-                    }
-                    for (int i=0;i<categories.size();++i) {
-                        ArrayList<Integer>used=new ArrayList<Integer>();
-                        for (int k=0;k<categories.get(categoriesNames.get(i));++k) {
-                            for (int j = 0; j < Ja.length(); j++) {
-                                JSONObject Jo = Ja.getJSONObject(j);
-                                if (categoriesNames.get(i).equals(Jo.getString("state"))&&used.contains(j)==false) {
-                                    data[i][k][0]=J_closedInstitutesDataItems.J_aicteId=Jo.getString("colid");
-                                    data[i][k][1]=J_closedInstitutesDataItems.J_instituteName=Jo.getString("collegename");
-                                    data[i][k][2]=J_closedInstitutesDataItems.J_state=Jo.getString("state");
-                                    data[i][k][3]=J_closedInstitutesDataItems.J_district=Jo.getString("district");
-                                    data[i][k][4]=J_closedInstitutesDataItems.J_institute=Jo.getString("type");
-                                    data[i][k][5]=J_closedInstitutesDataItems.J_address=Jo.getString("address");
-                                    data[i][k][6]=J_closedInstitutesDataItems.J_city=Jo.getString("City");
-                                    used.add(j);
-                                    break;
+                        for (int i = 0; i < categories.size(); ++i) {
+                            if (i == 0) {
+                                data = new String[categories.size()][][];
+                            }
+                            for (int j = 0; j < categories.get(categoriesNames.get(i)); ++j) {
+                                if (j == 0) {
+                                    data[i] = new String[categories.get(categoriesNames.get(i))][];
+                                }
+                                for (int k = 0; k < 7; ++k) {
+                                    data[i][j] = new String[7];
                                 }
                             }
                         }
+                        for (int i = 0; i < categories.size(); ++i) {
+                            ArrayList<Integer> used = new ArrayList<Integer>();
+                            for (int k = 0; k < categories.get(categoriesNames.get(i)); ++k) {
+                                for (int j = 0; j < Ja.length(); j++) {
+                                    JSONObject Jo = Ja.getJSONObject(j);
+                                    if (categoriesNames.get(i).equals(Jo.getString("collegename")) && used.contains(j) == false) {
+                                        data[i][k][0] = J_closedInstitutesDataItems.J_aicteId = Jo.getString("colid");
+                                        data[i][k][1] = J_closedInstitutesDataItems.J_instituteName = Jo.getString("collegename");
+                                        data[i][k][2] = J_closedInstitutesDataItems.J_state = Jo.getString("state");
+                                        data[i][k][3] = J_closedInstitutesDataItems.J_district = Jo.getString("district");
+                                        data[i][k][4] = J_closedInstitutesDataItems.J_institute = Jo.getString("type");
+                                        data[i][k][5] = J_closedInstitutesDataItems.J_address = Jo.getString("address");
+                                        data[i][k][6] = J_closedInstitutesDataItems.J_city = Jo.getString("City");
+                                        used.add(j);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }else {
+                        categoriesNames.put(-1,"-1");
                     }
                 } else {
                     str= "error in data fetch please try latter";
@@ -571,14 +617,19 @@ public class jsonClasses{
                  */
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("year", s[0]));
-                params.add(new BasicNameValuePair("q1",s[1]));
-                params.add(new BasicNameValuePair("offset",s[2]));
+                params.add(new BasicNameValuePair("\"year\"", s[0]));
+                params.add(new BasicNameValuePair("\"q1\"",s[1]));
+                params.add(new BasicNameValuePair("\"offset\"",s[2]));
+                List<NameValuePair> actual=new ArrayList<>();
+                String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                paramsnew=paramsnew.replaceAll("=",":");
+                actual.add(new BasicNameValuePair("paramsSent",paramsnew));
 
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/nripiofcinstitute.php", "POST", params);
-                Log.d("paramsSent",params.toString());
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/nripiofcinstitute.php", "POST", actual);
+                Log.d("paramsSent",actual.toString());
+                Log.d("jsonObj",jsonO.toString());
 
                 int success=jsonO.getInt("success");
                 //int count=jsonO.getInt("count");
@@ -591,56 +642,61 @@ public class jsonClasses{
                     categoriesNames=new LinkedHashMap<>();
                     JSONArray Ja=jsonO.getJSONArray("records");
 
-                    for(int i=0;i<Ja.length();i++){
-                        JSONObject Jo=Ja.getJSONObject(i);
-                        J_NriPioFciDataItems.J_state=Jo.getString("state");
-                        if (categories.containsKey(J_NriPioFciDataItems.J_state)) {
-                            categorySize=categories.get(J_NriPioFciDataItems.J_state);
-                            ++categorySize;
-                            categories.put(J_NriPioFciDataItems.J_state,categorySize);
-                        }else {
-                            categories.put(J_NriPioFciDataItems.J_state,1);
-                            ++nameCount;
-                            categoriesNames.put(nameCount,J_NriPioFciDataItems.J_state);
-                        }
-                    }
-                    for (int i=0;i<categories.size();++i){
-                        if (i==0){
-                            data=new String[categories.size()][][];
-                        }
-                        for (int j=0;j<categories.get(categoriesNames.get(i));++j){
-                            if (j==0){
-                                data[i]=new String[categories.get(categoriesNames.get(i))][];
-                            }
-                            for (int k=0;k<11;++k) {
-                                data[i][j]=new String[11];
+                    if (Ja.length()!=0) {
+
+                        for (int i = 0; i < Ja.length(); i++) {
+                            JSONObject Jo = Ja.getJSONObject(i);
+                            J_NriPioFciDataItems.J_state = Jo.getString("collegename");
+                            if (categories.containsKey(J_NriPioFciDataItems.J_state)) {
+                                categorySize = categories.get(J_NriPioFciDataItems.J_state);
+                                ++categorySize;
+                                categories.put(J_NriPioFciDataItems.J_state, categorySize);
+                            } else {
+                                categories.put(J_NriPioFciDataItems.J_state, 1);
+                                ++nameCount;
+                                categoriesNames.put(nameCount, J_NriPioFciDataItems.J_state);
                             }
                         }
-                    }
-                    for (int i=0;i<categories.size();++i) {
-                        ArrayList<Integer>used=new ArrayList<Integer>();
-                        for (int k=0;k<categories.get(categoriesNames.get(i));++k) {
-                            for (int j = 0; j < Ja.length(); j++) {
-                                JSONObject Jo = Ja.getJSONObject(j);
-                                if (categoriesNames.get(i).equals(Jo.getString("state"))&&used.contains(j)==false) {
-
-                                    data[i][k][0]=J_NriPioFciDataItems.J_aicteId=Jo.getString("colid");
-                                    data[i][k][1]=J_NriPioFciDataItems.J_instituteName=Jo.getString("collegename");
-                                    data[i][k][2]=J_NriPioFciDataItems.J_state=Jo.getString("state");
-                                    data[i][k][3]=J_NriPioFciDataItems.J_district=Jo.getString("district");
-                                    data[i][k][4]=J_NriPioFciDataItems.J_institute=Jo.getString("type");
-                                    data[i][k][5]=J_NriPioFciDataItems.J_program=Jo.getString("program");
-                                    data[i][k][6]=J_NriPioFciDataItems.J_university=Jo.getString("university");
-                                    data[i][k][7]=J_NriPioFciDataItems.J_level=Jo.getString("corlevel");
-                                    data[i][k][8]=J_NriPioFciDataItems.J_nameOfCourses=Jo.getString("corname");
-                                    data[i][k][9]=J_NriPioFciDataItems.J_approvedIntake=Jo.getString("intake");
-                                    data[i][k][10]=J_NriPioFciDataItems.J_nriQuotaSeats=Jo.getString("foruniversity");
-
-                                    used.add(j);
-                                    break;
+                        for (int i = 0; i < categories.size(); ++i) {
+                            if (i == 0) {
+                                data = new String[categories.size()][][];
+                            }
+                            for (int j = 0; j < categories.get(categoriesNames.get(i)); ++j) {
+                                if (j == 0) {
+                                    data[i] = new String[categories.get(categoriesNames.get(i))][];
+                                }
+                                for (int k = 0; k < 11; ++k) {
+                                    data[i][j] = new String[11];
                                 }
                             }
                         }
+                        for (int i = 0; i < categories.size(); ++i) {
+                            ArrayList<Integer> used = new ArrayList<Integer>();
+                            for (int k = 0; k < categories.get(categoriesNames.get(i)); ++k) {
+                                for (int j = 0; j < Ja.length(); j++) {
+                                    JSONObject Jo = Ja.getJSONObject(j);
+                                    if (categoriesNames.get(i).equals(Jo.getString("collegename")) && used.contains(j) == false) {
+
+                                        data[i][k][0] = J_NriPioFciDataItems.J_aicteId = Jo.getString("colid");
+                                        data[i][k][1] = J_NriPioFciDataItems.J_instituteName = Jo.getString("collegename");
+                                        data[i][k][2] = J_NriPioFciDataItems.J_state = Jo.getString("state");
+                                        data[i][k][3] = J_NriPioFciDataItems.J_district = Jo.getString("district");
+                                        data[i][k][4] = J_NriPioFciDataItems.J_institute = Jo.getString("type");
+                                        data[i][k][5] = J_NriPioFciDataItems.J_program = Jo.getString("program");
+                                        data[i][k][6] = J_NriPioFciDataItems.J_university = Jo.getString("university");
+                                        data[i][k][7] = J_NriPioFciDataItems.J_level = Jo.getString("corlevel");
+                                        data[i][k][8] = J_NriPioFciDataItems.J_nameOfCourses = Jo.getString("corname");
+                                        data[i][k][9] = J_NriPioFciDataItems.J_approvedIntake = Jo.getString("intake");
+                                        //data[i][k][10]=J_NriPioFciDataItems.J_nriQuotaSeats=Jo.getString("foruniversity");
+
+                                        used.add(j);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }else {
+                        categoriesNames.put(-1,"-1");
                     }
                 } else {
                     str= "error in data fetch please try latter";

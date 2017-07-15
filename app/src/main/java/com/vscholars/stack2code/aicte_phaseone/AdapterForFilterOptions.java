@@ -2,10 +2,13 @@ package com.vscholars.stack2code.aicte_phaseone;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -20,11 +23,13 @@ public class AdapterForFilterOptions extends BaseExpandableListAdapter {
     private List<String> J_filterOptionsParent;
     private HashMap<String,List<String>> J_filterOptionsChild;
     private Context context;
+    private HashMap<String,Boolean>checkBoxStates;
 
-    AdapterForFilterOptions(Context context,List<String> J_filterOptionsParent,HashMap<String,List<String>> J_filterOptionsChild){
+    AdapterForFilterOptions(Context context,List<String> J_filterOptionsParent,HashMap<String,List<String>> J_filterOptionsChild,HashMap<String,Boolean>checkBoxStates){
         this.context=context;
         this.J_filterOptionsChild=J_filterOptionsChild;
         this.J_filterOptionsParent=J_filterOptionsParent;
+        this.checkBoxStates=checkBoxStates;
     }
     @Override
     public int getGroupCount() {
@@ -77,14 +82,19 @@ public class AdapterForFilterOptions extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childText = (String) getChild(groupPosition, childPosition);
-        if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.child_filter_options, null);
-        }
-        TextView txtListChild = (TextView) convertView.findViewById(R.id.x_child_filter_options_text_view);
-        txtListChild.setText(childText);
-        return convertView;
+        RelativeLayout childOptions=new RelativeLayout(context);
+        CheckBox checkBox=new CheckBox(context);
+        checkBox.setText((String)getChild(groupPosition, childPosition));
+        String grpId=groupPosition+"";
+        String childId=childPosition+"";
+        String id=(grpId+"")+(childId+"");
+        checkBox.setId(Integer.parseInt(id));
+        checkBox.setFocusable(false);
+        checkBox.setClickable(false);
+        checkBox.setChecked(checkBoxStates.get((groupPosition+"")+(childPosition+"")));
+        childOptions.addView(checkBox);
+        return childOptions;
+
     }
 
     @Override

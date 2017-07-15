@@ -78,7 +78,7 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
     }
 
     private void setValue() {
-        getSupportActionBar().show();
+
         J_totalInstitutions.setText(parameterValues[5]);
         J_faculties.setText(parameterValues[0]);
         J_enrollment.setText(parameterValues[3]);
@@ -89,8 +89,8 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
 
     private void initializer() {
 
+        getSupportActionBar().show();
         setContentView(R.layout.activity_main);
-
         J_totalInstitutions=(TextView)findViewById(R.id.x_activity_main_total_institutions);
         J_faculties=(TextView)findViewById(R.id.x_activity_main_faculties);
         J_enrollment=(TextView)findViewById(R.id.x_activity_main_enrollment);

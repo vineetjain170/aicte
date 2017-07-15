@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:drawable/picture_frame">
@@ -12,13 +13,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:text="Faculty Name"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000"
+        android:layout_margin="10dp"
         android:id="@+id/x_label_faculties_name"
-        />
+        android:textAppearance="@android:style/TextAppearance.Material" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -26,23 +24,23 @@
         android:layout_margin="10dp"/>
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Faculty ID"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:textSize="17dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
             android:layout_marginLeft="74dp"
-            android:id="@+id/x_label_faculties_facultyid" />
+            android:id="@+id/x_label_faculties_facultyid"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -50,22 +48,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gender"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set gender"
             android:layout_marginLeft="95dp"
-            android:id="@+id/x_label_faculties_gender" />
+            android:id="@+id/x_label_faculties_gender"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -73,22 +71,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Designation"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set designation"
             android:layout_marginLeft="59dp"
-            android:id="@+id/x_label_faculties_designation" />
+            android:id="@+id/x_label_faculties_designation"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -96,22 +94,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Joining Date"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set gender"
             android:layout_marginLeft="54dp"
-            android:id="@+id/x_label_faculties_joining_date"/>
+            android:id="@+id/x_label_faculties_joining_date"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -119,22 +117,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialisation Area"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set gender"
             android:layout_marginLeft="2dp"
-            android:id="@+id/x_label_faculties_specialisation_area"  />
+            android:id="@+id/x_label_faculties_specialisation_area"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -142,22 +140,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Appointment Type"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set gender"
             android:layout_marginLeft="10dp"
-            android:id="@+id/x_label_faculties_appointment_type" />
+            android:id="@+id/x_label_faculties_appointment_type"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
@@ -165,22 +163,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Institution Name"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="#000"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set gender"
             android:layout_marginLeft="23dp"
-            android:id="@+id/x_label_faculties_institution_name" />
+            android:id="@+id/x_label_faculties_institution_name"
+            android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
 
 
