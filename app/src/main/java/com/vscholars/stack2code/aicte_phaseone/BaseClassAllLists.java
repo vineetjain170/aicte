@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.TextKeyListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -15,6 +18,7 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,14 +35,16 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
     private ExpandableListView J_ListMain;
     private Button J_ButtonNext,J_ButtonPrev,J_actionSearch;
     private RelativeLayout J_SearchTab;
-    private LinearLayout J_ListsController;
-    private EditText J_keywords;
+    private RelativeLayout J_ListsController;
+    private EditText J_keywords,J_pageNo;
+    private TextView J_totalPages;
 
     private String[] yearList,selectedValues;
     private String message;
     private HashMap<Integer,String>categoryNames;
     private ArrayList<String>categoriesList;
     private jsonClasses executer;
+    private String totalPages;
 
     //these variables are used to keep track of user touch events
     private int mLastFirstVisibleItem=0;
@@ -48,6 +54,11 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
         super.onCreate(savedInstanceState);
         //initialize the activity according to the message
         message=getIntent().getStringExtra("activitySelected");
+        if(getIntent().getStringExtra("totalEntries")!=null){
+
+            totalPages=getIntent().getStringExtra("totalEntries");
+
+        }
         getSupportActionBar().hide();
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -137,9 +148,26 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
         J_ButtonNext=(Button)findViewById(R.id.x_activity_all_lists_next_button);
         J_ButtonPrev=(Button)findViewById(R.id.x_activity_all_lists_prev_button);
         J_SearchTab=(RelativeLayout)findViewById(R.id.x_activity_all_lists_search_tab);
-        J_ListsController=(LinearLayout)findViewById(R.id.x_activity_all_lists_list_controller);
+        J_ListsController=(RelativeLayout)findViewById(R.id.x_activity_all_lists_list_controller);
         J_keywords=(EditText)findViewById(R.id.x_activity_all_lists_keywords);
         J_actionSearch=(Button)findViewById(R.id.x_activity_all_lists_action_search);
+        J_totalPages=(TextView)findViewById(R.id.x_activity_all_lists_total_pages);
+        J_pageNo=(EditText)findViewById(R.id.x_activity_all_lists_page_no);
+
+        int count=Integer.parseInt(selectedValues[selectedValues.length-1]);
+        if (count==0){
+            J_ButtonPrev.setVisibility(View.INVISIBLE);
+        }else {
+            J_ButtonPrev.setVisibility(View.VISIBLE);
+        }
+        if(totalPages!=null) {
+            if (count + 20 > Integer.parseInt(totalPages)) {
+                J_ButtonNext.setVisibility(View.INVISIBLE);
+            } else {
+                J_ButtonNext.setVisibility(View.VISIBLE);
+            }
+        }
+        J_pageNo.setText((count/20)+"");
 
         yearList=getIntent().getStringArrayExtra("yearList");
 
@@ -156,7 +184,13 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
             noMoreData.setVisibility(View.INVISIBLE);
             J_SearchTab.setVisibility(View.VISIBLE);
             J_ListsController.setVisibility(View.VISIBLE);
-            J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this, message, categoryNames.size(), assignParameters(message), categoriesList, executer.categories, executer.data));
+            J_ListMain.setAdapter(new AdapterForAllLists(BaseClassAllLists.this, message, categoryNames.size(), assignParameters(message), categoriesList, executer.categories, executer.data,selectedValues[0],J_keywords.getText().toString()));
+            if(!executer.totalEntries.equals("previousOne")) {
+                J_totalPages.setText("/" + (Integer.parseInt(executer.totalEntries) / 20));
+            }else {
+
+                J_totalPages.setText("/"+(Integer.parseInt(totalPages)/20));
+            }
         }
 
         J_ListMain.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -166,15 +200,18 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
                 if (view.getId() == mainListView.getId()) {
                     int currentFirstVisibleItem = mainListView.getFirstVisiblePosition();
                     if (currentFirstVisibleItem > mLastFirstVisibleItem) {
-                        J_SearchTab.setVisibility(View.VISIBLE);
-                        J_ListsController.setVisibility(View.INVISIBLE);
-                        getSupportActionBar().show();
-                        J_ListMain.setPadding(0,105,0,0);
-                    } else if (currentFirstVisibleItem < mLastFirstVisibleItem) {
+
                         J_SearchTab.setVisibility(View.INVISIBLE);
                         J_ListsController.setVisibility(View.VISIBLE);
                         getSupportActionBar().hide();
                         J_ListMain.setPadding(0,0,0,75);
+
+                    } else if (currentFirstVisibleItem < mLastFirstVisibleItem) {
+
+                        J_SearchTab.setVisibility(View.VISIBLE);
+                        J_ListsController.setVisibility(View.INVISIBLE);
+                        getSupportActionBar().show();
+                        J_ListMain.setPadding(0,105,0,0);
                     }
                     mLastFirstVisibleItem = currentFirstVisibleItem;
                 }
@@ -196,6 +233,15 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
                 i.putExtra("activitySelected",message);
                 i.putExtra("selectedValues",selectedValues);
                 i.putExtra("yearList",yearList);
+                if(!executer.totalEntries.equals("previousOne")){
+
+                    i.putExtra("totalEntries",executer.totalEntries);
+
+                }else {
+
+                    i.putExtra("totalEntries",totalPages);
+
+                }
                 startActivity(i);
             }
         });
@@ -211,9 +257,49 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
                     i.putExtra("activitySelected", message);
                     i.putExtra("selectedValues", selectedValues);
                     i.putExtra("yearList", yearList);
+                    if(!executer.totalEntries.equals("previousOne")){
+
+                        i.putExtra("totalEntries",executer.totalEntries);
+
+                    }else {
+
+                        i.putExtra("totalEntries",totalPages);
+
+                    }
                     startActivity(i);
                 }
 
+            }
+        });
+        J_pageNo.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                switch (actionId) {
+
+                    case EditorInfo.IME_ACTION_DONE:
+
+                        int offset=Integer.parseInt(v.getText().toString());
+                        selectedValues[selectedValues.length-1]=offset*20+"";
+                        Log.d("offset",selectedValues[selectedValues.length-1]);
+                        Intent i=new Intent(BaseClassAllLists.this,BaseClassAllLists.class);
+                        i.putExtra("activitySelected",message);
+                        i.putExtra("selectedValues",selectedValues);
+                        i.putExtra("yearList",yearList);
+                        if(!executer.totalEntries.equals("previousOne")){
+
+                            i.putExtra("totalEntries",executer.totalEntries);
+
+                        }else {
+
+                            i.putExtra("totalEntries",totalPages);
+
+                        }
+                        startActivity(i);
+                        return true;
+
+                    default:
+                        return false;
+                }
             }
         });
 

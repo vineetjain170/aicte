@@ -1,8 +1,12 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by vineet_jain on 8/6/17.
@@ -28,8 +35,9 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
     String[][][] data;
     String message;
     HashMap<String,Integer>enteries;
+    String selectedYear,courseEntered;
 
-    AdapterForAllLists(Context context,String message,int categories,int parameters, List<String> categoriesNames,HashMap<String,Integer>enteries,String[][][] data){
+    AdapterForAllLists(Context context,String message,int categories,int parameters, List<String> categoriesNames,HashMap<String,Integer>enteries,String[][][] data, String selectedYear,String courseEntered){
 
         this.context=context;
         this.message=message;
@@ -38,6 +46,8 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
         this.categoriesNames=categoriesNames;
         this.data=data;
         this.enteries=enteries;
+        this.selectedYear=selectedYear;
+        this.courseEntered=courseEntered;
     }
 
     @Override
@@ -95,14 +105,14 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        String[] values=(String[]) getChild(groupPosition,childPosition);
+        final LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final String[] values=(String[]) getChild(groupPosition,childPosition);
 
         if (message.equals("approved_institutes")) {
 
             convertView = infalInflater.inflate(R.layout.label_approved_institutions, null);
 
-            TextView aicteId,name,address,district,institutionType,women,minority,courseDetails,facultyDetails;
+            final TextView aicteId,name,address,district,institutionType,courseDetails,facultyDetails;
             ImageView womenY,womenN,minorityY,minorityN;
 
             View[] layoutViews={convertView.findViewById(R.id.x_label_approved_institutions_aicteid),
@@ -113,7 +123,9 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
                     convertView.findViewById(R.id.x_approved_institutions_womenY),
                     convertView.findViewById(R.id.x_approved_institutions_womenN),
                     convertView.findViewById(R.id.x_approved_institutions_minorityY),
-                    convertView.findViewById(R.id.x_approved_institutions_minorityN)};
+                    convertView.findViewById(R.id.x_approved_institutions_minorityN),
+                    convertView.findViewById(R.id.x_approved_institutes_faculty_details),
+                    convertView.findViewById(R.id.x_label_approved_institutes_course_details)};
 
             aicteId=(TextView)layoutViews[0];
             name=(TextView)layoutViews[1];
@@ -124,10 +136,8 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             womenN=(ImageView)layoutViews[6];
             minorityY=(ImageView)layoutViews[7];
             minorityN=(ImageView)layoutViews[8];
-            //women=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_women);
-            //minority=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_minority);
-            //courseDetails=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_course_details);
-            //facultyDetails=(TextView)convertView.findViewById(R.id.x_label_approved_institutions_faculty_details);
+            facultyDetails=(TextView)layoutViews[9];
+            courseDetails=(TextView)layoutViews[10];
 
             aicteId.setText(values[0]);
             name.setText(values[1]);
@@ -156,11 +166,67 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
                 minorityY.setVisibility(View.INVISIBLE);
 
             }
-            //women.setText(values[5]);
-            //minority.setText(values[6]);
-            //courseDetails.setText(values[7]);
-            //facultyDetails.setText(values[8]);
+            facultyDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    /*
+                    jsonClasses execute=new jsonClasses("faculty_details");
+                    String[] params={"\""+values[0]+"\""};
+                    execute.J_json_facultyDetails.execute(params);
+                    */
 
+                }
+            });
+            courseDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View vaicteId) {
+
+                    final ProgressDialog pd = new ProgressDialog(context);
+                    pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    pd.setMessage("Loading data entries...");
+                    pd.setIndeterminate(true);
+                    pd.setCancelable(false);
+                    pd.show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            jsonClasses executer=new jsonClasses("course_details");
+                            String[] params={"\""+values[0]+"\"",selectedYear.substring(1,selectedYear.length()-1)};
+                            executer.J_json_courseDetails.execute(params);
+                            HashMap<Integer,String>categoryNames=new HashMap<Integer, String>();
+                            ArrayList<String>categoriesList=new ArrayList<String>();
+                            try {
+                                while (executer.data==null) {
+                                    Thread.sleep(500);
+                                    if (executer.data!=null){
+                                        categoryNames=executer.categoriesNames;
+                                        categoriesList=new ArrayList<String>();
+                                        for (int i=0;i<categoryNames.size();++i){
+                                            categoriesList.add(categoryNames.get(i));
+                                        }
+                                        Intent intent=new Intent(context,CourseAndFacultyDetails.class);
+                                        intent.putExtra("dataEntries","nonzero");
+                                        intent.putExtra("message","course_details");
+                                        intent.putExtra("parameters",8);
+                                        intent.putExtra("size",categoryNames.size());
+                                        intent.putExtra("categoriesList",categoriesList);
+                                        intent.putExtra("data",executer.data);
+                                        intent.putExtra("categories",executer.categories);
+                                        context.startActivity(intent);
+                                    }else if (executer.categoriesNames!=null){
+                                        if(executer.categoriesNames.get(-1)!=null)
+                                            break;
+                                    }
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            pd.dismiss();
+                        }
+                    }).start();
+                }
+            });
             return convertView;
 
         }else if (message.equals("nri/pio-fn-ciwg/tp")){

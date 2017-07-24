@@ -24,37 +24,61 @@
             android:paddingTop="45dp"/>
         <include layout="@layout/no_data_entries"></include>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="10dp"
             android:id="@+id/x_activity_all_lists_list_controller"
-            android:animateLayoutChanges="true">
+            android:animateLayoutChanges="true"
+            android:background="#ffffff">
 
             <Button
                 android:id="@+id/x_activity_all_lists_prev_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
                 android:background="@drawable/nav_button_shape"
-                android:text="Prev"
+                android:text="Back"
+                android:layout_marginLeft="10dp"
                 android:textAppearance="@android:style/TextAppearance.Material" />
 
             <Button
-                android:layout_weight="1"
                 android:text="Next"
                 android:background="@drawable/nav_button_shape"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
                 android:id="@+id/x_activity_all_lists_next_button"
-                android:textAppearance="@android:style/TextAppearance.Material" />
+                android:textAppearance="@android:style/TextAppearance.Material"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"/>
 
-        </LinearLayout>
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:inputType="textPersonName"
+                android:hint="page"
+                android:ems="10"
+                android:id="@+id/x_activity_all_lists_page_no"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="10dp"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:text="/"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:id="@+id/x_activity_all_lists_total_pages"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/x_activity_all_lists_page_no"
+                android:layout_toEndOf="@+id/x_activity_all_lists_page_no"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
 
 
 
@@ -66,8 +90,7 @@
             android:layout_alignParentStart="true"
             android:id="@+id/x_activity_all_lists_search_tab"
             android:animateLayoutChanges="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:background="#ffffff">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -79,7 +102,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@+id/x_activity_all_lists_action_search"
                 android:layout_toStartOf="@+id/x_activity_all_lists_action_search"
-                android:textAppearance="@android:style/TextAppearance.Material" />
+                android:textAppearance="@android:style/TextAppearance.Material"
+                android:background="#ffffff" />
 
             <Button
                 android:text="Search"
