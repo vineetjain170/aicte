@@ -13,6 +13,7 @@ public class ApprovedInstituteDataItem {
     public String J_institutionType;
     public String J_women;
     public String J_minority;
+    public String J_permanentId;
     //public String J_courseDetails;
     //public String J_facultyDetails;
 }

@@ -3,9 +3,14 @@ package com.vscholars.stack2code.aicte_phaseone;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -169,11 +174,74 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             facultyDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    jsonClasses execute=new jsonClasses("faculty_details");
-                    String[] params={"\""+values[0]+"\""};
-                    execute.J_json_facultyDetails.execute(params);
-                    */
+
+                    final ProgressDialog pd = new ProgressDialog(context);
+                    pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    pd.setMessage("Loading data entries...");
+                    pd.setIndeterminate(true);
+                    pd.setCancelable(false);
+                    pd.show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            jsonClasses executer=new jsonClasses("faculty_details");
+                            String[] params={"\""+values[0]+"\"","\""+values[7]+"\""};
+                            executer.J_json_facultyDetails.execute(params);
+                            HashMap<Integer,String>categoryNames=new HashMap<Integer, String>();
+                            ArrayList<String>categoriesList=new ArrayList<String>();
+                            try {
+                                while (executer.data==null) {
+                                    Thread.sleep(500);
+                                    if (executer.data!=null){
+                                        categoryNames=executer.categoriesNames;
+                                        categoriesList=new ArrayList<String>();
+                                        for (int i=0;i<categoryNames.size();++i){
+                                            categoriesList.add(categoryNames.get(i));
+                                        }
+                                        Intent intent=new Intent(context,CourseAndFacultyDetails.class);
+                                        intent.putExtra("dataEntries","nonzero");
+                                        intent.putExtra("message","faculty_details");
+                                        intent.putExtra("parameters",7);
+                                        intent.putExtra("size",categoryNames.size());
+                                        intent.putExtra("categoriesList",categoriesList);
+                                        intent.putExtra("data",executer.data);
+                                        intent.putExtra("categories",executer.categories);
+                                        context.startActivity(intent);
+                                    }else if(executer.response.equals("nothingReceived")){
+
+                                        break;
+
+                                    }
+                                }
+                                Handler mHandler=new Handler(Looper.getMainLooper()) {
+                                    @Override
+                                    public void handleMessage(Message message) {
+                                        pd.dismiss();
+                                        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                        builder.setMessage("No active internet connection...")
+                                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+
+                                                        facultyDetails.callOnClick();
+
+                                                    }
+                                                });
+                                        AlertDialog alertDialog=builder.create();
+                                        alertDialog.setCancelable(true);
+                                        alertDialog.show();
+                                    }
+                                };
+                                if(executer.response.equals("nothingReceived")) {
+                                    Message message = mHandler.obtainMessage();
+                                    message.sendToTarget();
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            pd.dismiss();
+                        }
+                    }).start();
 
                 }
             });
@@ -214,10 +282,34 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
                                         intent.putExtra("data",executer.data);
                                         intent.putExtra("categories",executer.categories);
                                         context.startActivity(intent);
-                                    }else if (executer.categoriesNames!=null){
-                                        if(executer.categoriesNames.get(-1)!=null)
-                                            break;
+                                    }else if(executer.response.equals("nothingReceived")){
+
+                                        break;
+
                                     }
+                                }
+                                Handler mHandler=new Handler(Looper.getMainLooper()) {
+                                    @Override
+                                    public void handleMessage(Message message) {
+                                        pd.dismiss();
+                                        AlertDialog alertDialog;
+                                        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                        builder.setMessage("No active internet connection...")
+                                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+
+                                                        courseDetails.callOnClick();
+
+                                                    }
+                                                });
+                                        alertDialog=builder.create();
+                                        alertDialog.setCancelable(true);
+                                        alertDialog.show();
+                                    }
+                                };
+                                if(executer.response.equals("nothingReceived")) {
+                                    Message message = mHandler.obtainMessage();
+                                    message.sendToTarget();
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -269,40 +361,6 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
             nameOfCourses.setText(values[8]);
             approvedIntake.setText(values[9]);
             //quotaSeats.setText(values[10]);
-
-            return convertView;
-
-        }else if (message.equals("faculty")){
-            convertView=infalInflater.inflate(R.layout.label_faculties,null);
-
-            TextView facultyId,name,gender,designation,joiningDate,specialisationArea,appointmentType,institutionName;
-
-            View[] layoutViews= new View[]{convertView.findViewById(R.id.x_label_faculties_facultyid),
-                    convertView.findViewById(R.id.x_label_faculties_name),
-                    convertView.findViewById(R.id.x_label_faculties_gender),
-                    convertView.findViewById(R.id.x_label_faculties_designation),
-                    convertView.findViewById(R.id.x_label_faculties_joining_date),
-                    convertView.findViewById(R.id.x_label_faculties_specialisation_area),
-                    convertView.findViewById(R.id.x_label_faculties_appointment_type),
-                    convertView.findViewById(R.id.x_label_faculties_institution_name)};
-
-            facultyId=(TextView)layoutViews[0];
-            name=(TextView)layoutViews[1];
-            gender=(TextView)layoutViews[2];
-            designation=(TextView)layoutViews[3];
-            joiningDate=(TextView)layoutViews[4];
-            specialisationArea=(TextView)layoutViews[5];
-            appointmentType=(TextView)layoutViews[6];
-            institutionName=(TextView)layoutViews[7];
-
-            facultyId.setText(values[0]);
-            name.setText(values[1]);
-            gender.setText(values[4]);
-            designation.setText(values[3]);
-            joiningDate.setText(values[6]);
-            specialisationArea.setText(values[7]);
-            appointmentType.setText(values[2]);
-            institutionName.setText(values[5]);
 
             return convertView;
 

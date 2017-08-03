@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "711195453150",
+    "project_id": "aictephaseone"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711195453150:android:0ad97e9446d4e5f3",
+        "android_client_info": {
+          "package_name": "com.vscholars.stack2code.aicte_phaseone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711195453150-3bh4mieljlakeabp37l4pqrj9eng8hai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vscholars.stack2code.aicte_phaseone",
+            "certificate_hash": "590a04161f41e9b0471b2d4144c2f02038ddf00f"
+          }
+        },
+        {
+          "client_id": "711195453150-vpto34j9ie69a7r9tt33qd4f03j5vuqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGmiq_MRhTR2N569W8CGJ_oPUCz-cxNW8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

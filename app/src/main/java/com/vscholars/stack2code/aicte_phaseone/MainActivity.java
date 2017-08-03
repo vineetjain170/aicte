@@ -1,12 +1,14 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +32,8 @@ import cz.msebera.android.httpclient.message.BasicNameValuePair;
 public class MainActivity extends DoubleNavigationWithoutEditText{
 
     String[] parameterValues,selectedValues;
-    TextView J_totalInstitutions,J_faculties,J_enrollment,J_studentPassed,J_totalIntake,J_placements;
+    TextView J_totalInstitutions,J_faculties,J_enrollment,J_studentPassed,J_totalIntake,J_placements,J_newInstitutes,J_closedInstitutes;
+    int slept=0;
 
     //This is the main activity of AICTE Dashboard to display statistics
 
@@ -66,9 +69,19 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
         executer.J_json_dashboardData.execute(selectedValues);
         try {
             while (executer.defaultValuesDashboard[5]==null) {
-                Thread.sleep(500);
-                if (executer.defaultValuesDashboard[5] != null) {
-                    parameterValues = executer.defaultValuesDashboard;
+                if(slept<10000) {
+                    Thread.sleep(500);
+                    if (executer.defaultValuesDashboard[5] != null) {
+                        parameterValues = executer.defaultValuesDashboard;
+                    }else {
+
+                        slept=slept+500;
+
+                    }
+                }else{
+
+                    break;
+
                 }
             }
         } catch (InterruptedException e) {
@@ -79,12 +92,43 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
 
     private void setValue() {
 
-        J_totalInstitutions.setText(parameterValues[5]);
-        J_faculties.setText(parameterValues[0]);
-        J_enrollment.setText(parameterValues[3]);
-        J_studentPassed.setText(parameterValues[2]);
-        J_totalIntake.setText(parameterValues[4]);
-        J_placements.setText(parameterValues[1]);
+        if(parameterValues!=null) {
+
+            J_totalInstitutions.setText(parameterValues[5]);
+            J_faculties.setText(parameterValues[0]);
+            J_enrollment.setText(parameterValues[3]);
+            J_studentPassed.setText(parameterValues[2]);
+            J_totalIntake.setText(parameterValues[4]);
+            J_placements.setText(parameterValues[1]);
+            J_newInstitutes.setText(parameterValues[6]);
+            J_closedInstitutes.setText(parameterValues[7]);
+
+        }else {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Looks like server isn't responding...please check your mobile data")
+                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            intent.putExtra("yearList",getIntent().getStringArrayExtra("yearList"));
+                            intent.putExtra("selectedValues",selectedValues);
+                            startActivity(intent);
+
+                        }
+                    })
+                    .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            System.exit(0);
+
+                        }
+                    });
+            builder.create();
+            builder.setCancelable(false);
+            builder.show();
+
+        }
     }
 
     private void initializer() {
@@ -97,6 +141,8 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
         J_studentPassed=(TextView)findViewById(R.id.x_activity_main_student_passed);
         J_totalIntake=(TextView)findViewById(R.id.x_activity_main_total_intake);
         J_placements=(TextView)findViewById(R.id.x_activity_main_placement);
+        J_newInstitutes=(TextView)findViewById(R.id.x_activity_main_new_institutes);
+        J_closedInstitutes=(TextView)findViewById(R.id.x_activity_main_closed_institutes);
 
         Window window = MainActivity.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -108,8 +154,5 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
         //This message is passed between activities to indicate which element of dashboard is under consideration
         super.onCreateDrawer(MainActivity.this,"dashboard",J_yearList);
 
-    }
-    public void onBackPressed(){
-        moveTaskToBack(true);
     }
 }

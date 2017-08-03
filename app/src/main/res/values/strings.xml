@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">Aicte_phaseOne</string>
+    <string name="app_name">AictephaseOne</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <string-array name="stateOptions">
-        <item>--All--</item>
         <item>Andaman And Nicobar Islands</item>
         <item>Andhra Pradesh</item>
         <item>Arunachal Pradesh</item>
@@ -42,7 +41,6 @@
         <item>West Bengal</item>
     </string-array>
     <string-array name="programOptions">
-        <item>--All--</item>
         <item>Applied Arts And Crafts</item>
         <item>Architecture And Town Planning</item>
         <item>Architecture</item>
@@ -95,22 +93,13 @@
         <item>Women</item>
     </string-array>
     <string-array name="filterOptionsParentNriPioFnCiwgTp">
-        <item>Course Type</item>
         <item>Year</item>
-    </string-array>
-    <string-array name="filterOptionsFaculty">
-        <item>Select Program</item>
-        <item>Select Level</item>
-        <item>Institution Type</item>
-        <item>Select State</item>
-        <item>Minority</item>
-        <item>Women</item>
+        <item>Course Type</item>
     </string-array>
     <string-array name="filterOptionsParentClosedCoursesOrInstitute">
         <item>Year</item>
     </string-array>
     <string-array name="stateOptionDashboard">
-        <item>--All--</item>
         <item>Andaman And Nicobar Islands</item>
         <item>Andhra Pradesh</item>
         <item>Arunachal Pradesh</item>
@@ -149,7 +138,6 @@
         <item>West Bengal</item>
     </string-array>
     <string-array name="programOptionDashboard">
-        <item>--All--</item>
         <item>Applied Arts</item>
         <item>Architecture</item>
         <item>Engineering And Tech.</item>

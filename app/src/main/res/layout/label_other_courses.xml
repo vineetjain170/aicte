@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set state"
-            android:layout_marginLeft="93dp"
+            android:layout_marginLeft="92dp"
             android:id="@+id/x_label_other_courses_state"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
@@ -153,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="23dp"
             android:id="@+id/x_label_other_courses_universityboard"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
@@ -176,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="92dp"
             android:id="@+id/x_label_other_courses_level"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
@@ -199,7 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="17dp"
             android:id="@+id/x_label_other_courses_course_name"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
@@ -224,7 +224,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set id"
-            android:layout_marginLeft="23dp"
+            android:layout_marginLeft="25dp"
             android:id="@+id/x_label_other_courses_approved_intake"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>

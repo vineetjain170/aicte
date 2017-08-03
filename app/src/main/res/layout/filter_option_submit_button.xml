@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/button"
-        android:background="@drawable/tab_5_bg"
+        android:background="?android:attr/colorActivatedHighlight"
         android:layout_margin="10dp"
         android:onClick="filterList"
         android:layout_gravity="center"
         android:textStyle="bold"
-        android:textAppearance="@android:style/TextAppearance.Material" />
+        android:textAppearance="@android:style/TextAppearance.Material"
+        android:textColor="#ffffff" />
 </LinearLayout>

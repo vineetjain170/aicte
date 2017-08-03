@@ -111,7 +111,7 @@
             android:id="@+id/x_label_closed_institutes_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="68dp"
+            android:layout_marginLeft="61dp"
             android:text="set state"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set district"
-            android:layout_marginLeft="52dp"
+            android:layout_marginLeft="51dp"
             android:id="@+id/x_label_closed_institutes_district"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>
@@ -157,7 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="set district"
-            android:layout_marginLeft="78dp"
+            android:layout_marginLeft="72dp"
             android:id="@+id/x_label_closed_institutes_city"
             android:textAppearance="@android:style/TextAppearance.Material" />
     </LinearLayout>

@@ -27,6 +27,11 @@ public class CourseAndFacultyDetails extends AppCompatActivity{
             HashMap<String,Integer>categories=(HashMap<String, Integer>) getIntent().getSerializableExtra("categories");
             ExpandableListView J_ListMain=(ExpandableListView)findViewById(R.id.x_course_faculty_details_main_list);
             J_ListMain.setAdapter(new AdapterForCourseFacultyDetails(CourseAndFacultyDetails.this,message,size,parameters,categoriesList,categories,data));
+            if(message.equals("course_details")) {
+                getSupportActionBar().setTitle("Course Details");
+            }else if (message.equals("faculty_details")){
+                getSupportActionBar().setTitle("Faculty Details");
+            }
         }
     }
 }

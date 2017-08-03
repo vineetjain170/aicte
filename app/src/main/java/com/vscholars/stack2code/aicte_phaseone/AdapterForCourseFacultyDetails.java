@@ -127,6 +127,38 @@ public class AdapterForCourseFacultyDetails extends BaseExpandableListAdapter {
 
             return convertView;
 
+        }else if(message.equals("faculty_details")){
+
+            convertView=infalInflater.inflate(R.layout.label_approved_institutes_faculty_details,null);
+
+            TextView fid,gender,designation,joiningDate,specialisationArea,appointmentType,name;
+
+            View[] layoutViews= new View[]{convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_fid),
+                    convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_gender),
+                    convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_designation),
+                    convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_joining_date),
+                    convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_specialisation_area),
+                    convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_appointment_type),
+                    convertView.findViewById(R.id.x_label_approved_institutes_faculty_details_name)};
+
+            fid=(TextView)layoutViews[0];
+            gender=(TextView)layoutViews[1];
+            designation=(TextView)layoutViews[2];
+            joiningDate=(TextView)layoutViews[3];
+            specialisationArea=(TextView)layoutViews[4];
+            appointmentType=(TextView)layoutViews[5];
+            name=(TextView)layoutViews[6];
+
+            fid.setText(values[0]);
+            gender.setText(values[2]);
+            designation.setText(values[3]);
+            joiningDate.setText(values[4]);
+            specialisationArea.setText(values[5]);
+            appointmentType.setText(values[6]);
+            name.setText(values[1]);
+
+            return convertView;
+
         }
         return null;
     }

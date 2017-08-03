@@ -12,5 +12,7 @@ public class DashboardDataItems {
     public String J_studentsPassed;
     public String J_totalIntake;
     public String J_placements;
+    public String J_newInstitutes;
+    public String J_closedInstitutes;
 
 }
