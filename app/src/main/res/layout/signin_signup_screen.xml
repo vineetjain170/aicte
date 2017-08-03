@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/x_signin_signup_screen_email"
+        android:hint="Enter email id" />
+
+    <Button
+        android:text="Sign In"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_signin_signup_screen_email"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/x_signin_signup_screen_login" />
+
+    <Button
+        android:text="Google Plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_signin_signup_screen_login"
+        android:layout_alignLeft="@+id/x_signin_signup_screen_login"
+        android:layout_alignStart="@+id/x_signin_signup_screen_login"
+        android:id="@+id/x_signin_signup_screen_google_plus" />
+
+    <Button
+        android:text="Sign Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_signin_signup_screen_google_plus"
+        android:layout_alignLeft="@+id/x_signin_signup_screen_google_plus"
+        android:layout_alignStart="@+id/x_signin_signup_screen_google_plus"
+        android:id="@+id/x_signin_signup_screen_signup" />
+</RelativeLayout>
