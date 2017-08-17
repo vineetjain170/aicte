@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
 
     String[] parameterValues,selectedValues;
     TextView J_totalInstitutions,J_faculties,J_enrollment,J_studentPassed,J_totalIntake,J_placements,J_newInstitutes,J_closedInstitutes;
+    ImageView J_totalInstitutesImg,J_facultiesImg,J_enrolmentImg,J_studentPassedImg,J_placementsImg,J_totalIntakeImg,J_newInstitutionsImg,J_closedInstitutionsImg;
     int slept=0;
 
     //This is the main activity of AICTE Dashboard to display statistics
@@ -143,6 +145,14 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
         J_placements=(TextView)findViewById(R.id.x_activity_main_placement);
         J_newInstitutes=(TextView)findViewById(R.id.x_activity_main_new_institutes);
         J_closedInstitutes=(TextView)findViewById(R.id.x_activity_main_closed_institutes);
+        J_totalInstitutesImg=(ImageView)findViewById(R.id.x_activity_main_total_institutions_img);
+        J_facultiesImg=(ImageView)findViewById(R.id.x_activity_main_faculties_img);
+        J_enrolmentImg=(ImageView)findViewById(R.id.x_activity_main_enrolment_img);
+        J_studentPassedImg=(ImageView)findViewById(R.id.x_activity_main_student_passed_img);
+        J_placementsImg=(ImageView)findViewById(R.id.x_activity_main_placements_img);
+        J_totalIntakeImg=(ImageView)findViewById(R.id.x_activity_main_total_intake_img);
+        J_newInstitutionsImg=(ImageView)findViewById(R.id.x_activity_main_new_institutes_img);
+        J_closedInstitutionsImg=(ImageView)findViewById(R.id.x_activity_main_closed_institutes_img);
 
         Window window = MainActivity.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -153,6 +163,95 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
 
         //This message is passed between activities to indicate which element of dashboard is under consideration
         super.onCreateDrawer(MainActivity.this,"dashboard",J_yearList);
+
+        J_totalInstitutesImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","totalInstitutions");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_facultiesImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","faculties");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_enrolmentImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","enrolment");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_studentPassedImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","studentsPassed");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_placementsImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","placements");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_totalIntakeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","totalIntake");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_newInstitutionsImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","newInstitutions");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
+        J_closedInstitutionsImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
+                intent.putExtra("imageRes","closedInstitutions");
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+            }
+        });
 
     }
 }

@@ -20,15 +20,17 @@
             android:configChanges="orientation|screenSize"></activity>
         <activity android:name=".SplashScreen"
             android:configChanges="orientation|screenSize">
+        </activity>
+        <activity android:name=".CourseAndFacultyDetails"></activity>
+        <activity android:name=".SignInSignUp"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CourseAndFacultyDetails"></activity>
-        <activity android:name=".SignInSignUp"
-            android:configChanges="orientation|screenSize">
-        </activity>
+        <activity android:name=".MainActivityPopUp"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
     </application>
 
 </manifest>
