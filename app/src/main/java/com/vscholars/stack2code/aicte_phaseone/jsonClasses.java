@@ -44,6 +44,11 @@ public class jsonClasses{
     public json_courseDetails J_json_courseDetails;
     public json_facultyDetails J_json_facultyDetails;
     public json_hintListLoader J_json_hintList;
+    public json_signUp J_signUp;
+    public json_otpverify J_otpVerify;
+    public json_smslogin J_smsLogin;
+    public json_otpresend J_otpResend;
+    public json_logout J_jsonLogOut;
 
     public String[] defaultValuesDashboard;
     public String[][][] data;
@@ -51,7 +56,8 @@ public class jsonClasses{
     public LinkedHashMap<Integer,String>categoriesNames;
     public String totalEntries;
     public ArrayList<String>hintsList;
-    public String response="letsSee";
+    public String response="letsSee",registrationStatus=null;
+    public int success=-1;
 
     private String str;
 
@@ -94,6 +100,26 @@ public class jsonClasses{
 
             J_json_facultyDetails=new json_facultyDetails();
             J_facultyDetails=new ApprovedInstitutesFacultyDetailsDataItems();
+
+        }else if (message.equals("signUp")){
+
+            J_signUp=new json_signUp();
+
+        }else if (message.equals("otpVerify")){
+
+            J_otpVerify=new json_otpverify();
+
+        }else if (message.equals("smsLogin")){
+
+            J_smsLogin=new json_smslogin();
+
+        }else if (message.equals("otpResend")){
+
+            J_otpResend=new json_otpresend();
+
+        }else if (message.equals("logOut")){
+
+            J_jsonLogOut=new json_logout();
 
         }
     }
@@ -311,7 +337,8 @@ public class jsonClasses{
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("\"year\"", s[0]));
-                params.add(new BasicNameValuePair("\"offset\"",s[1]));
+                params.add(new BasicNameValuePair("\"str\"",s[1]));
+                params.add(new BasicNameValuePair("\"offset\"",s[3]));
                 List<NameValuePair> actual=new ArrayList<>();
                 String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
                 paramsnew=paramsnew.replaceAll("=",":");
@@ -430,7 +457,8 @@ public class jsonClasses{
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("\"year\"", s[0]));
-                params.add(new BasicNameValuePair("\"offset\"",s[1]));
+                params.add(new BasicNameValuePair("\"str\"",s[1]));
+                params.add(new BasicNameValuePair("\"offset\"",s[3]));
                 List<NameValuePair> actual=new ArrayList<>();
                 String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
                 paramsnew=paramsnew.replaceAll("=",":");
@@ -544,7 +572,8 @@ public class jsonClasses{
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("\"year\"", s[0]));
                 params.add(new BasicNameValuePair("\"q1\"",s[1]));
-                params.add(new BasicNameValuePair("\"offset\"",s[2]));
+                params.add(new BasicNameValuePair("\"str\"",s[2]));
+                params.add(new BasicNameValuePair("\"offset\"",s[4]));
                 List<NameValuePair> actual=new ArrayList<>();
                 String paramsnew="{"+params.toString().substring(1,params.toString().length()-1)+"}";
                 paramsnew=paramsnew.replaceAll("=",":");
@@ -888,6 +917,219 @@ public class jsonClasses{
             } catch (Exception e) {
                 e.printStackTrace();
                 response="nothingReceived";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+            return;
+        }
+
+    }
+
+    protected class json_signUp extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... s) {
+
+            try {
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("\"name\"", "\""+s[0]+"\""));
+                params.add(new BasicNameValuePair("\"email\"", "\""+s[1]+"\""));
+                params.add(new BasicNameValuePair("\"mobile\"", "\""+s[2]+"\""));
+                params.add(new BasicNameValuePair("\"action\"", "\""+s[3]+"\""));
+                String sudo="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                sudo=sudo.replace('=',':');
+                List<NameValuePair>actual=new ArrayList<>();
+                actual.add(new BasicNameValuePair("paramsSent",sudo));
+
+//                 getting JSON Object
+//                 Note that create product url accepts POST method
+
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/sms_register.php", "POST", actual);
+                Log.d("key",actual.toString());
+                Log.d("response",jsonO.toString());
+
+                success=jsonO.getInt("success");
+                registrationStatus=jsonO.getString("message");
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                str= "fatal error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+            return;
+        }
+
+    }
+
+    protected class json_otpverify extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... s) {
+
+            try {
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("\"email\"", "\""+s[0]+"\""));
+                params.add(new BasicNameValuePair("\"otp\"", "\""+s[1]+"\""));
+                params.add(new BasicNameValuePair("\"action\"", "\""+s[2]+"\""));
+                String sudo="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                sudo=sudo.replace('=',':');
+                List<NameValuePair>actual=new ArrayList<>();
+                actual.add(new BasicNameValuePair("paramsSent",sudo));
+
+//                 getting JSON Object
+//                 Note that create product url accepts POST method
+
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/sms_register.php", "POST", actual);
+                Log.d("key",actual.toString());
+                Log.d("response",jsonO.toString());
+
+                success=jsonO.getInt("success");
+                registrationStatus=jsonO.getString("message");
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                str= "fatal error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+            return;
+        }
+
+    }
+
+    protected class json_smslogin extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... s) {
+
+            try {
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("\"email\"", "\""+s[0]+"\""));
+                params.add(new BasicNameValuePair("\"token\"", "\""+s[1]+"\""));
+                String sudo="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                sudo=sudo.replace('=',':');
+                List<NameValuePair>actual=new ArrayList<>();
+                actual.add(new BasicNameValuePair("paramsSent",sudo));
+
+//                 getting JSON Object
+//                 Note that create product url accepts POST method
+
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/sms_login.php", "POST", actual);
+                Log.d("key",actual.toString());
+                Log.d("response",jsonO.toString());
+
+                success=jsonO.getInt("success");
+                registrationStatus=jsonO.getString("message");
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                str= "fatal error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+            return;
+        }
+
+    }
+
+    protected class json_otpresend extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... s) {
+
+            try {
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("\"email\"", "\""+s[0]+"\""));
+                params.add(new BasicNameValuePair("\"action\"", "\""+s[1]+"\""));
+                String sudo="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                sudo=sudo.replace('=',':');
+                List<NameValuePair>actual=new ArrayList<>();
+                actual.add(new BasicNameValuePair("paramsSent",sudo));
+
+//                 getting JSON Object
+//                 Note that create product url accepts POST method
+
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/sms_login.php", "POST", actual);
+                Log.d("key",actual.toString());
+                Log.d("response",jsonO.toString());
+
+                success=jsonO.getInt("success");
+                registrationStatus=jsonO.getString("message");
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                str= "fatal error";
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
+            return;
+        }
+
+    }
+
+    protected class json_logout extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... s) {
+
+            try {
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("\"email\"", "\""+s[0]+"\""));
+                params.add(new BasicNameValuePair("\"token\"", "\""+s[1]+"\""));
+                String sudo="{"+params.toString().substring(1,params.toString().length()-1)+"}";
+                sudo=sudo.replace('=',':');
+                List<NameValuePair>actual=new ArrayList<>();
+                actual.add(new BasicNameValuePair("paramsSent",sudo));
+
+//                 getting JSON Object
+//                 Note that create product url accepts POST method
+
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/logout.php", "POST", actual);
+                Log.d("key",actual.toString());
+                Log.d("response",jsonO.toString());
+
+                success=jsonO.getInt("success");
+                registrationStatus=jsonO.getString("message");
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                str= "fatal error";
             }
 
             return null;

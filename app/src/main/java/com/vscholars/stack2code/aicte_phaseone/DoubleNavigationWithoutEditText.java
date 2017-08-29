@@ -1,7 +1,9 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -128,8 +130,8 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         });
 
         //provide list items for main navigation drawer and set its adapter
-        J_MainNavigationDrawerOptions= new String[]{"AICTE Home", "Dashboard", "Approved Institutes", "NRI/PIO-FN-CIWG/TP","Closed Courses","Closed Institutes"};
-        int[] icons={R.drawable.ic_home_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_institute_nav,R.drawable.ic_nri_nav,R.drawable.ic_closed_courses_nav,R.drawable.ic_closed_institutes_nav};
+        J_MainNavigationDrawerOptions= new String[]{"AICTE Home", "Dashboard", "Approved Institutes", "NRI/PIO-FN-CIWG/TP","Closed Courses","Closed Institutes","Sign Out"};
+        int[] icons={R.drawable.ic_home_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_institute_nav,R.drawable.ic_nri_nav,R.drawable.ic_closed_courses_nav,R.drawable.ic_closed_institutes_nav,R.drawable.ic_sign_out_nav};
         J_DrawerListMainNavigationDrawer.setAdapter(new AdapterForMainNavigationList(context,J_MainNavigationDrawerOptions,icons));
 
         //initialize filter options according to message or current activity and assign an adapter to it
@@ -235,7 +237,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 } else if (position==2){
-                    String[] selectedValues={"[\"2016-2017\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","\"null\"","\"null\"","0"};
+                    String[] selectedValues={"[\"2016-2017\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","\"\"","\"\"","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","approved_institutes");
                     i.putExtra("selectedValues",selectedValues);
@@ -243,7 +245,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 } else if (position==3){
-                    String[] selectedValues={"[\"2016-2017\"]","[\"NRI\"]","0"};
+                    String[] selectedValues={"[\"2016-2017\"]","[\"NRI\"]","\"\"","\"\"","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","nri/pio-fn-ciwg/tp");
                     i.putExtra("selectedValues",selectedValues);
@@ -251,7 +253,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 } else if (position==4){
-                    String[] values={"[\"2016-2017\"]","0"};
+                    String[] values={"[\"2016-2017\"]","\"\"","\"\"","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_courses");
                     i.putExtra("selectedValues",values);
@@ -259,12 +261,61 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     startActivity(i);
 
                 }else if (position==5){
-                    String[] values={"[\"2016-2017\"]","0"};
+                    String[] values={"[\"2016-2017\"]","\"\"","\"\"","0"};
                     i=new Intent(context,BaseClassAllLists.class);
                     i.putExtra("activitySelected","closed_institutes");
                     i.putExtra("selectedValues",values);
                     i.putExtra("yearList",yearList);
                     startActivity(i);
+
+                }else if (position==6){
+
+                    final ProgressDialog pd = new ProgressDialog(DoubleNavigationWithoutEditText.this);
+                    pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    pd.setMessage("Deleting your Account from Server...");
+                    pd.setIndeterminate(true);
+                    pd.setCancelable(false);
+                    pd.show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            final jsonClasses executer=new jsonClasses("logOut");
+                            SharedPreferences sharedPreferences;
+                            sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
+                            String[] params={sharedPreferences.getString("email",null),sharedPreferences.getString("token",null)};
+                            executer.J_jsonLogOut.execute(params);
+                            while (executer.success==-1){
+
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+
+                                }
+
+                            }
+                            if (executer.success==1){
+
+                                Intent intent=new Intent(DoubleNavigationWithoutEditText.this,SignInSignUp.class);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("email",null);
+                                editor.putString("token",null);
+                                editor.commit();
+                                startActivity(intent);
+
+                            }else if (executer.success==0){
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(DoubleNavigationWithoutEditText.this,executer.registrationStatus,Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+                            }
+
+                        }
+                    }).start();
 
                 }
             }
@@ -404,11 +455,11 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         }else if (J_message.equals("approved_institutes")){
             J_keywords=(AutoCompleteTextView)findViewById(R.id.x_activity_all_lists_keywords);
             if(J_keywords.getText().toString()==null) {
-                values[7] = "\"null\"";
+                values[7] = "";
             }else {
                 values[7] = "\""+J_keywords.getText().toString()+"\"";
             }
-            values[8]="\"null\"";
+            values[8]="";
             values[9]=0+"";
             Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
             intent.putExtra("selectedValues",values);
@@ -417,7 +468,8 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             startActivity(intent);
 
         }else if (J_message.equals("closed_courses")||J_message.equals("closed_institutes")){
-            values[1]=0+"";
+            values[1]="";
+            values[3]=0+"";
             Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
             intent.putExtra("selectedValues",values);
             intent.putExtra("activitySelected",J_message);
@@ -425,7 +477,8 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
             startActivity(intent);
 
         }else if (J_message.equals("nri/pio-fn-ciwg/tp")){
-            values[2]=0+"";
+            values[2]="";
+            values[4]=0+"";
             Intent intent=new Intent(DoubleNavigationWithoutEditText.this,BaseClassAllLists.class);
             intent.putExtra("selectedValues",values);
             intent.putExtra("activitySelected",J_message);

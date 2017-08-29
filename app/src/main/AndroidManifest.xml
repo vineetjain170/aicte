@@ -19,7 +19,8 @@
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize"></activity>
         <activity android:name=".SplashScreen"
-            android:configChanges="orientation|screenSize">
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".CourseAndFacultyDetails"></activity>
         <activity android:name=".SignInSignUp"
@@ -31,6 +32,10 @@
         </activity>
         <activity android:name=".MainActivityPopUp"
             android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity android:name=".mpin"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".OtpVerify"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundFloating"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="?attr/colorBackgroundFloating">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter MPIN"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/x_mpin_status" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/common_google_signin_btn_text_dark_default">
+                <ImageView
+                    android:id="@+id/imageview_circle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/circle1"
+                    />
+                <ImageView
+                    android:id="@+id/imageview_circle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/circle1" />
+                <ImageView
+                    android:id="@+id/imageview_circle3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/circle1"/>
+                <ImageView
+                    android:id="@+id/imageview_circle4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:src="@drawable/circle1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    <Button
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:id="@+id/x_mpin_button1"
+        android:layout_marginTop="113dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="1"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:layout_alignBottom="@+id/x_mpin_button1"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/x_mpin_button2"
+        android:text="2"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:layout_alignBottom="@+id/x_mpin_button5"
+        android:layout_alignLeft="@+id/x_mpin_button3"
+        android:layout_alignStart="@+id/x_mpin_button3"
+        android:id="@+id/x_mpin_button6"
+        android:background="@drawable/circle2"
+        android:text="6"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:layout_alignBottom="@+id/x_mpin_button8"
+        android:layout_alignRight="@+id/x_mpin_button6"
+        android:layout_alignEnd="@+id/x_mpin_button6"
+        android:id="@+id/x_mpin_button9"
+        android:text="9"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/x_mpin_button3"
+        android:text="3"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_alignTop="@+id/x_mpin_button2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/x_mpin_button8"
+        android:text="8"
+        android:background="@drawable/circle2"
+        android:layout_height="80dp"
+        android:layout_width="80dp"
+        android:layout_below="@+id/x_mpin_button4"
+        android:layout_alignLeft="@+id/x_mpin_button5"
+        android:layout_alignStart="@+id/x_mpin_button5"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/x_mpin_button7"
+        android:text="7"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/x_mpin_button4"
+        android:layout_alignLeft="@+id/x_mpin_button4"
+        android:layout_alignStart="@+id/x_mpin_button4"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/x_mpin_button4"
+        android:text="4"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/x_mpin_button1"
+        android:layout_alignLeft="@+id/x_mpin_button1"
+        android:layout_alignStart="@+id/x_mpin_button1"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/x_mpin_button5"
+        android:text="5"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/x_mpin_button2"
+        android:layout_alignLeft="@+id/x_mpin_button2"
+        android:layout_alignStart="@+id/x_mpin_button2"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/x_mpin_button0"
+        android:text="0"
+        android:background="@drawable/circle2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/x_mpin_button8"
+        android:layout_alignLeft="@+id/x_mpin_button8"
+        android:layout_alignStart="@+id/x_mpin_button8"
+        android:textSize="30dp"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/x_mpin_buttondel"
+        android:background="@drawable/backspace"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/x_mpin_button7"
+        android:layout_alignLeft="@+id/x_mpin_button7"
+        android:layout_alignStart="@+id/x_mpin_button7"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/x_mpin_proceed"
+        android:background="@drawable/ic_check_right"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/x_mpin_button9"
+        android:layout_alignLeft="@+id/x_mpin_button9"
+        android:layout_alignStart="@+id/x_mpin_button9"
+        android:layout_marginTop="15dp"/>
+
+</RelativeLayout>

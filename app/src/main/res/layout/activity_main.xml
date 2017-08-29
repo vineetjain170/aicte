@@ -57,7 +57,8 @@
                             android:gravity="center"
                             android:text="Total Institutions"
                             android:textColor="#fff"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            android:background="@drawable/tab_1_bg" />
 
                         <TextView
                             android:id="@+id/x_activity_main_total_institutions"
@@ -75,7 +76,7 @@
                         android:id="@+id/tab_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/tab_6_bg"
+                        android:background="@drawable/tab_2_bg"
                         android:orientation="vertical"
                         android:layout_weight="1"
                         android:padding="20dp">
@@ -124,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/tab_6_bg"
+                        android:background="@drawable/tab_3_bg"
                         android:orientation="vertical"
                         android:padding="20dp">
 
@@ -168,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:background="@drawable/tab_1_bg"
+                        android:background="@drawable/tab_4_bg"
                         android:padding="20dp"
                         >
 
@@ -222,7 +223,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@drawable/tab_1_bg"
+                        android:background="@drawable/tab_7_bg"
                         android:padding="20dp"                 >
 
                         <ImageView
@@ -313,7 +314,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@drawable/tab_6_bg"
+                        android:background="@drawable/tab_5_bg"
                         android:padding="20dp"                 >
 
                         <ImageView
@@ -349,7 +350,7 @@
                         android:padding="20dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/tab_1_bg"
+                        android:background="@drawable/tab_2_bg"
                         android:orientation="vertical">
 
 

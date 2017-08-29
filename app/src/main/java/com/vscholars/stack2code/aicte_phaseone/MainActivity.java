@@ -1,5 +1,6 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
+import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -96,14 +97,66 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
 
         if(parameterValues!=null) {
 
-            J_totalInstitutions.setText(parameterValues[5]);
-            J_faculties.setText(parameterValues[0]);
-            J_enrollment.setText(parameterValues[3]);
-            J_studentPassed.setText(parameterValues[2]);
-            J_totalIntake.setText(parameterValues[4]);
-            J_placements.setText(parameterValues[1]);
-            J_newInstitutes.setText(parameterValues[6]);
-            J_closedInstitutes.setText(parameterValues[7]);
+            int max=-1;
+            for(int i=0;i<8;++i){
+
+                if(max<=Integer.parseInt(parameterValues[i])){
+
+                    max=Integer.parseInt(parameterValues[i]);
+
+                }
+
+            }
+
+            final int finalMax = max;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                ValueAnimator animator8 = ValueAnimator.ofInt(0,finalMax);
+                                animator8.setDuration(10000);
+                                animator8.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        if (i <= Integer.parseInt(parameterValues[5])) {
+                                            J_totalInstitutions.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[0])) {
+                                            J_faculties.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[3])) {
+                                            J_enrollment.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[2])) {
+                                            J_studentPassed.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[4])) {
+                                            J_totalIntake.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[1])) {
+                                            J_placements.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[6])) {
+                                            J_newInstitutes.setText(i + "");
+                                        }
+                                        if (i <= Integer.parseInt(parameterValues[7])) {
+                                            J_closedInstitutes.setText(i + "");
+                                        }
+
+                                    }
+                                });
+                                animator8.start();
+
+                            }
+                        });
+
+                }
+            }).start();
 
         }else {
 

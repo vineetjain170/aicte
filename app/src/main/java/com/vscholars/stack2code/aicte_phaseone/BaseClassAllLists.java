@@ -20,6 +20,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -54,7 +56,7 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
     private int slept=0;
 
     //these variables are used to keep track of user touch events
-    private int mLastFirstVisibleItem=0;
+    //private int mLastFirstVisibleItem=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -189,6 +191,12 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, executer.hintsList);
                 J_keywords.setAdapter(adapter);
+
+            }else {
+
+                ImageView imageButton=(ImageView) findViewById(R.id.imageButton2);
+                imageButton.setVisibility(View.INVISIBLE);
+                J_keywords.setVisibility(View.INVISIBLE);
 
             }
 
@@ -353,9 +361,48 @@ public class BaseClassAllLists extends DoubleNavigationWithoutEditText{
                     case EditorInfo.IME_ACTION_DONE:
                         String query=J_liveSearch.getText().toString();
                         if (message.equals("approved_institutes")){
-                            Log.d("reached","livesearch!!");
                             selectedValues[8]="\""+query+"\"";
                             selectedValues[9]=0+"";
+                            Intent i=new Intent(BaseClassAllLists.this,BaseClassAllLists.class);
+                            i.putExtra("activitySelected",message);
+                            i.putExtra("selectedValues",selectedValues);
+                            i.putExtra("yearList",yearList);
+                            if(!executer.totalEntries.equals("previousOne")){
+
+                                i.putExtra("totalEntries",executer.totalEntries);
+
+                            }else {
+
+                                i.putExtra("totalEntries",totalPages);
+
+                            }
+                            startActivity(i);
+                            return true;
+
+                        }else if (message.equals("closed_courses")||message.equals("closed_institutes")){
+
+                            selectedValues[1]="\""+query+"\"";
+                            selectedValues[3]=0+"";
+                            Intent i=new Intent(BaseClassAllLists.this,BaseClassAllLists.class);
+                            i.putExtra("activitySelected",message);
+                            i.putExtra("selectedValues",selectedValues);
+                            i.putExtra("yearList",yearList);
+                            if(!executer.totalEntries.equals("previousOne")){
+
+                                i.putExtra("totalEntries",executer.totalEntries);
+
+                            }else {
+
+                                i.putExtra("totalEntries",totalPages);
+
+                            }
+                            startActivity(i);
+                            return true;
+
+                        }else if (message.equals("nri/pio-fn-ciwg/tp")){
+
+                            selectedValues[2]="\""+query+"\"";
+                            selectedValues[4]=0+"";
                             Intent i=new Intent(BaseClassAllLists.this,BaseClassAllLists.class);
                             i.putExtra("activitySelected",message);
                             i.putExtra("selectedValues",selectedValues);
