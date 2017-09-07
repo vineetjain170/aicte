@@ -365,7 +365,7 @@ public class jsonClasses{
 
                         for (int i = 0; i < count; i++) {
                             JSONObject Jo = Ja.getJSONObject(i);
-                            J_closedCoursesDataItems.J_state = Jo.getString("collegename");
+                            J_closedCoursesDataItems.J_state = Jo.getString("corname");
                             if (categories.containsKey(J_closedCoursesDataItems.J_state)) {
                                 categorySize = categories.get(J_closedCoursesDataItems.J_state);
                                 ++categorySize;
@@ -396,7 +396,7 @@ public class jsonClasses{
                             for (int k = 0; k < categories.get(categoriesNames.get(i)); ++k) {
                                 for (int j = 0; j < Ja.length(); j++) {
                                     JSONObject Jo = Ja.getJSONObject(j);
-                                    if (categoriesNames.get(i).equals(Jo.getString("collegename")) && used.contains(j) == false) {
+                                    if (categoriesNames.get(i).equals(Jo.getString("corname")) && used.contains(j) == false) {
                                         data[i][k][0] = J_closedCoursesDataItems.J_aicteid = Jo.getString("colid");
                                         data[i][k][1] = J_closedCoursesDataItems.J_insName = Jo.getString("collegename");
                                         data[i][k][2] = J_closedCoursesDataItems.J_insType = Jo.getString("type");

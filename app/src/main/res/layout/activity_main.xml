@@ -66,7 +66,6 @@
                             android:text="Total Institutions"
                             android:textColor="#fff"
                             android:textSize="12dp"
-                            android:background="@drawable/tab_1_bg"
                             android:textStyle="normal|bold" />
 
                         <TextView
@@ -85,10 +84,10 @@
                         android:id="@+id/tab_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/tab_4_bg"
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:padding="20dp">
+                        android:padding="20dp"
+                        android:background="#ccd1d1">
 
                         <ImageView
                             android:layout_width="100dp"

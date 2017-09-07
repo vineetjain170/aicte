@@ -3,6 +3,7 @@ package com.vscholars.stack2code.aicte_phaseone;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,17 +11,18 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class OtpVerify extends AppCompatActivity{
-    EditText otp;
+    static EditText otp;
     Button submit,resend;
     jsonClasses executer;
     SharedPreferences sharedPreferences;
+    IncomingSms incomingSms=new IncomingSms();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -34,6 +36,7 @@ public class OtpVerify extends AppCompatActivity{
         final String email=getIntent().getStringExtra("email");
         final String name=getIntent().getStringExtra("name");
         final String phoneno=getIntent().getStringExtra("phoneno");
+        registerReceiver(incomingSms,new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
 
         new Thread(new Runnable() {
             @Override
@@ -202,6 +205,16 @@ public class OtpVerify extends AppCompatActivity{
 
         moveTaskToBack(true);
 
+    }
+    public void recivedSms(String message)
+    {
+        try
+        {
+            otp.setText(message.substring(24,message.length()-19));
+        }
+        catch (Exception e)
+        {
+        }
     }
 
 }

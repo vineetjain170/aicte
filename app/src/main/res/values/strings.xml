@@ -140,6 +140,7 @@
     <string-array name="programOptionDashboard">
         <item>Applied Arts</item>
         <item>Architecture</item>
+        <item>Architecture And Town Planning</item>
         <item>Engineering And Tech.</item>
         <item>Hotel Management</item>
         <item>Management</item>
@@ -152,6 +153,7 @@
         <item>Unaided-Private</item>
         <item>Government</item>
         <item>Govt Aided</item>
+        <item>University Managed</item>
         <item>University Managed-Govt</item>
         <item>University Managed-Private</item>
         <item>Central University</item>
