@@ -34,8 +34,7 @@ import cz.msebera.android.httpclient.message.BasicNameValuePair;
 public class MainActivity extends DoubleNavigationWithoutEditText{
 
     String[] parameterValues,selectedValues;
-    TextView J_totalInstitutions,J_faculties,J_enrollment,J_studentPassed,J_totalIntake,J_placements,J_newInstitutes,J_closedInstitutes;
-    ImageView J_totalInstitutesImg,J_facultiesImg,J_enrolmentImg,J_studentPassedImg,J_placementsImg,J_totalIntakeImg,J_newInstitutionsImg,J_closedInstitutionsImg;
+    TextView J_totalInstitutions,J_faculties,J_enrollment,J_studentPassed,J_totalIntake,J_placements,J_newInstitutes,J_closedInstitutes,J_marquee;
     int slept=0;
 
     //This is the main activity of AICTE Dashboard to display statistics
@@ -97,18 +96,6 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
 
         if(parameterValues!=null) {
 
-            int max=-1;
-            for(int i=0;i<8;++i){
-
-                if(max<=Integer.parseInt(parameterValues[i])){
-
-                    max=Integer.parseInt(parameterValues[i]);
-
-                }
-
-            }
-
-            final int finalMax = max;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -117,39 +104,92 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
                             @Override
                             public void run() {
 
-                                ValueAnimator animator8 = ValueAnimator.ofInt(0,finalMax);
-                                animator8.setDuration(10000);
+                                ValueAnimator animator1 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[0]));
+                                animator1.setDuration(2000);
+                                animator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_faculties.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator2 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[1]));
+                                animator2.setDuration(2000);
+                                animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_placements.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator3 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[2]));
+                                animator3.setDuration(2000);
+                                animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_studentPassed.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator4 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[3]));
+                                animator4.setDuration(2000);
+                                animator4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_enrollment.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator5 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[4]));
+                                animator5.setDuration(2000);
+                                animator5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_totalIntake.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator6 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[5]));
+                                animator6.setDuration(2000);
+                                animator6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_totalInstitutions.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator7 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[6]));
+                                animator7.setDuration(2000);
+                                animator7.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+
+                                        int i=Integer.parseInt(animation.getAnimatedValue().toString());
+                                        J_newInstitutes.setText(i + "");
+                                    }
+                                });
+
+                                ValueAnimator animator8 = ValueAnimator.ofInt(0,Integer.parseInt(parameterValues[7]));
+                                animator8.setDuration(2000);
                                 animator8.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                     public void onAnimationUpdate(ValueAnimator animation) {
 
                                         int i=Integer.parseInt(animation.getAnimatedValue().toString());
-                                        if (i <= Integer.parseInt(parameterValues[5])) {
-                                            J_totalInstitutions.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[0])) {
-                                            J_faculties.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[3])) {
-                                            J_enrollment.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[2])) {
-                                            J_studentPassed.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[4])) {
-                                            J_totalIntake.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[1])) {
-                                            J_placements.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[6])) {
-                                            J_newInstitutes.setText(i + "");
-                                        }
-                                        if (i <= Integer.parseInt(parameterValues[7])) {
-                                            J_closedInstitutes.setText(i + "");
-                                        }
-
+                                        J_closedInstitutes.setText(i + "");
                                     }
                                 });
+                                animator1.start();
+                                animator2.start();
+                                animator3.start();
+                                animator4.start();
+                                animator5.start();
+                                animator6.start();
+                                animator7.start();
                                 animator8.start();
 
                             }
@@ -198,14 +238,10 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
         J_placements=(TextView)findViewById(R.id.x_activity_main_placement);
         J_newInstitutes=(TextView)findViewById(R.id.x_activity_main_new_institutes);
         J_closedInstitutes=(TextView)findViewById(R.id.x_activity_main_closed_institutes);
-        J_totalInstitutesImg=(ImageView)findViewById(R.id.x_activity_main_total_institutions_img);
-        J_facultiesImg=(ImageView)findViewById(R.id.x_activity_main_faculties_img);
-        J_enrolmentImg=(ImageView)findViewById(R.id.x_activity_main_enrolment_img);
-        J_studentPassedImg=(ImageView)findViewById(R.id.x_activity_main_student_passed_img);
-        J_placementsImg=(ImageView)findViewById(R.id.x_activity_main_placements_img);
-        J_totalIntakeImg=(ImageView)findViewById(R.id.x_activity_main_total_intake_img);
-        J_newInstitutionsImg=(ImageView)findViewById(R.id.x_activity_main_new_institutes_img);
-        J_closedInstitutionsImg=(ImageView)findViewById(R.id.x_activity_main_closed_institutes_img);
+        J_marquee=(TextView)findViewById(R.id.x_activity_main_marquee);
+
+        J_marquee.setSelected(true);
+        J_marquee.setText(buildMarqueeText(selectedValues));
 
         Window window = MainActivity.this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -217,94 +253,37 @@ public class MainActivity extends DoubleNavigationWithoutEditText{
         //This message is passed between activities to indicate which element of dashboard is under consideration
         super.onCreateDrawer(MainActivity.this,"dashboard",J_yearList);
 
-        J_totalInstitutesImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+    private String buildMarqueeText(String[] selectedValues) {
 
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","totalInstitutions");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            String year=selectedValues[0];
+            String program=selectedValues[1];
+            String level=selectedValues[2];
+            String institutionType=selectedValues[3];
+            String state=selectedValues[4];
 
-            }
-        });
-        J_facultiesImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if(program.equals("[\"1\"]")){
 
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","faculties");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                program="all";
 
             }
-        });
-        J_enrolmentImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if(level.equals("[\"1\"]")){
 
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","enrolment");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                level="all";
 
             }
-        });
-        J_studentPassedImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (institutionType.equals("[\"1\"]")){
 
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","studentsPassed");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                institutionType="all";
 
             }
-        });
-        J_placementsImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            if (state.equals("[\"1\"]")){
 
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","placements");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                state="all";
 
             }
-        });
-        J_totalIntakeImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","totalIntake");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
-        J_newInstitutionsImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","newInstitutions");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
-        J_closedInstitutionsImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(MainActivity.this,MainActivityPopUp.class);
-                intent.putExtra("imageRes","closedInstitutions");
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
+            String marqueeText="Showing AICTE Approved Institutes for "+year.substring(2,year.length()-2)+", "+program+" program(s), "+level+" level(s), "+institutionType+" institution type(s), "+state+" state(s)";
+            return marqueeText;
 
     }
 }

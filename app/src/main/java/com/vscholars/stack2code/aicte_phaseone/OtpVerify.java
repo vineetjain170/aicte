@@ -32,6 +32,8 @@ public class OtpVerify extends AppCompatActivity{
         resend=(Button)findViewById(R.id.x_otp_resend_otp);
         submit=(Button)findViewById(R.id.x_otp_verify_submit);
         final String email=getIntent().getStringExtra("email");
+        final String name=getIntent().getStringExtra("name");
+        final String phoneno=getIntent().getStringExtra("phoneno");
 
         new Thread(new Runnable() {
             @Override
@@ -97,6 +99,7 @@ public class OtpVerify extends AppCompatActivity{
                                         if (executer.success==1){
 
                                             Intent intent=new Intent(OtpVerify.this,OtpVerify.class);
+                                            intent.putExtra("email",email);
                                             startActivity(intent);
 
                                         }else if (executer.success==0){
@@ -162,9 +165,10 @@ public class OtpVerify extends AppCompatActivity{
                                     sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
                                     final SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString("email",email);
+                                    editor.putString("name",name);
+                                    editor.putString("phoneno",phoneno);
                                     editor.putString("token",executer.registrationStatus);
                                     editor.commit();
-                                    Toast.makeText(OtpVerify.this,"success",Toast.LENGTH_LONG).show();
                                     Intent intent=new Intent(OtpVerify.this,mpin.class);
                                     startActivity(intent);
                                 }
@@ -192,6 +196,11 @@ public class OtpVerify extends AppCompatActivity{
 
             }
         });
+
+    }
+    public void onBackPressed(){
+
+        moveTaskToBack(true);
 
     }
 

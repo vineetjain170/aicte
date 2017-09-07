@@ -163,6 +163,8 @@ public class SignInSignUp extends AppCompatActivity implements GoogleApiClient.O
 
                                     Intent intent=new Intent(SignInSignUp.this,OtpVerify.class);
                                     intent.putExtra("email",email.getText().toString());
+                                    intent.putExtra("name",name.getText().toString());
+                                    intent.putExtra("phoneno",phoneNo.getText().toString());
                                     startActivity(intent);
                                 }
                             };
@@ -255,6 +257,8 @@ public class SignInSignUp extends AppCompatActivity implements GoogleApiClient.O
 
                                         Intent intent=new Intent(SignInSignUp.this,OtpVerify.class);
                                         intent.putExtra("email",g_email);
+                                        intent.putExtra("name",g_name);
+                                        intent.putExtra("phoneno",phoneNo.getText().toString());
                                         startActivity(intent);
                                     }
                                 };
@@ -298,4 +302,10 @@ public class SignInSignUp extends AppCompatActivity implements GoogleApiClient.O
         Toast.makeText(SignInSignUp.this,"Please check your network",Toast.LENGTH_LONG).show();
 
     }
+    public void onBackPressed(){
+
+        moveTaskToBack(true);
+
+    }
+
 }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/button"
-        android:background="?android:attr/colorActivatedHighlight"
+        android:background="#f75700"
         android:layout_margin="10dp"
         android:onClick="filterList"
         android:layout_gravity="center"

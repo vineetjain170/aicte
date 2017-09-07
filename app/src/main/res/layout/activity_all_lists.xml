@@ -21,16 +21,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/x_activity_all_lists_list_main"
-            android:paddingBottom="55dp"
+            android:paddingBottom="45dp"
             android:paddingTop="45dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/x_activity_all_lists_marquee"
-            android:layout_above="@+id/x_activity_all_lists_list_controller"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+
         <include layout="@layout/no_data_entries"></include>
 
         <RelativeLayout
@@ -113,7 +106,8 @@
                 android:background="#ffffff"
                 android:layout_toRightOf="@+id/x_activity_all_lists_action_search"
                 android:layout_toEndOf="@+id/x_activity_all_lists_action_search"
-                android:hint="Search"/>
+                android:hint="Search"
+                android:layout_marginTop="15dp"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -122,7 +116,22 @@
                 android:background="@drawable/search_icon"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/x_activity_all_lists_marquee"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:textAppearance="@android:style/TextAppearance.Material"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textStyle="normal|bold"
+                android:textColor="#f75700"
+                android:textSize="15dp"/>
         </RelativeLayout>
 
 
@@ -135,7 +144,7 @@
             android:layout_marginBottom="45dp"
             android:layout_marginRight="15dp"
             android:id="@+id/x_custom_action_bar_layout_filter_drawer"
-            app:backgroundTint="@android:color/holo_orange_dark"
+            app:backgroundTint="#f75700"
             android:src="@drawable/funnel" />
     </android.support.design.widget.CoordinatorLayout>
 
@@ -147,7 +156,7 @@
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="#F7A208"
+            android:background="#f75700"
             android:orientation="vertical"
             android:id="@+id/nav_main_header"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">

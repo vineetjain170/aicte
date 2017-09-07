@@ -753,7 +753,7 @@ public class jsonClasses{
                                         data[i][k][2] = J_courseDetails.J_university = Jo.getString("University");
                                         data[i][k][3] = J_courseDetails.J_courseLevel = Jo.getString("Level");
                                         data[i][k][4] = J_courseDetails.J_shift = Jo.getString("Shift");
-                                        //data[i][k][5] = J_courseDetails.J_fullPartTime = Jo.getString("");
+                                        data[i][k][5] = J_courseDetails.J_fullPartTime = Jo.getString("ft_pt");
                                         data[i][k][6] = J_courseDetails.J_intake = Jo.getString("Intake");
                                         data[i][k][7] = J_courseDetails.J_enrolment = Jo.getString("Enroll");
                                         used.add(j);
@@ -791,13 +791,11 @@ public class jsonClasses{
         @Override
         protected Void doInBackground(String... s) {
             try {
-                 /*
-                   s[0] year
-                 */
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("\"aicteid\"", s[0]));
                 params.add(new BasicNameValuePair("\"pid\"",s[1]));
+                params.add(new BasicNameValuePair("\"year\"",s[2]));
                 String sudo="{"+params.toString().substring(1,params.toString().length()-1)+"}";
                 sudo=sudo.replace('=',':');
                 List<NameValuePair>actual=new ArrayList<>();
@@ -1077,7 +1075,7 @@ public class jsonClasses{
 //                 getting JSON Object
 //                 Note that create product url accepts POST method
 
-                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/sms_login.php", "POST", actual);
+                JSONObject jsonO =JSONParser.makeHttpRequest("http://anurag.webutu.com/college/sms_register.php", "POST", actual);
                 Log.d("key",actual.toString());
                 Log.d("response",jsonO.toString());
 

@@ -16,7 +16,8 @@
         android:text="Institute Name"
         android:layout_margin="10dp"
         android:id="@+id/x_label_closed_courses_institution_name"
-        android:textAppearance="@android:style/TextAppearance.Material" />
+        android:textAppearance="@android:style/TextAppearance.Material"
+        android:textStyle="normal|bold" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:text="AICTE ID"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_courses_aicteid"
@@ -58,7 +60,8 @@
             android:layout_height="wrap_content"
             android:text="Institute"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="State"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_courses_state"
@@ -103,7 +107,8 @@
             android:layout_height="wrap_content"
             android:text="District"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -127,7 +132,8 @@
             android:layout_height="wrap_content"
             android:text="Course ID"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -150,7 +156,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="University"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_courses_university"
@@ -172,7 +179,8 @@
             android:layout_height="wrap_content"
             android:text="Level"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -195,7 +203,8 @@
             android:layout_height="wrap_content"
             android:text="Course"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -218,7 +227,8 @@
             android:layout_height="wrap_content"
             android:text="Shift"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -241,7 +251,8 @@
             android:layout_height="wrap_content"
             android:text="Full/Part Time"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_courses_full_part_time"

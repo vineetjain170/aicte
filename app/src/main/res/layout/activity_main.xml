@@ -22,8 +22,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="com.vscholars.stack2code.aicte_phaseone.MainActivity">
-
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/x_activity_main_marquee"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textAppearance="@android:style/TextAppearance.Material"
+                    android:textStyle="normal|bold"
+                    android:textColor="#f75700"
+                    android:textSize="15dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
 
@@ -58,7 +66,8 @@
                             android:text="Total Institutions"
                             android:textColor="#fff"
                             android:textSize="12dp"
-                            android:background="@drawable/tab_1_bg" />
+                            android:background="@drawable/tab_1_bg"
+                            android:textStyle="normal|bold" />
 
                         <TextView
                             android:id="@+id/x_activity_main_total_institutions"
@@ -76,7 +85,7 @@
                         android:id="@+id/tab_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/tab_2_bg"
+                        android:background="@drawable/tab_4_bg"
                         android:orientation="vertical"
                         android:layout_weight="1"
                         android:padding="20dp">
@@ -97,7 +106,8 @@
                             android:paddingTop="10dp"
                             android:text="Faculties"
                             android:textColor="#ffffff"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            android:textStyle="normal|bold" />
 
                         <TextView
                             android:id="@+id/x_activity_main_faculties"
@@ -125,9 +135,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/tab_3_bg"
                         android:orientation="vertical"
-                        android:padding="20dp">
+                        android:padding="20dp"
+                        android:background="@color/colorAccent">
 
                         <ImageView
                             android:layout_width="100dp"
@@ -147,7 +157,8 @@
                             android:paddingTop="10dp"
                             android:text="Enrollment"
                             android:textColor="#ffffff"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            android:textStyle="normal|bold" />
 
 
                         <TextView
@@ -169,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:background="@drawable/tab_4_bg"
+                        android:background="@drawable/tab_5_bg"
                         android:padding="20dp"
                         >
 
@@ -191,7 +202,8 @@
                             android:gravity="center"
                             android:textSize="12dp"
                             android:paddingTop="10dp"
-                            android:textColor="#fff"/>
+                            android:textColor="#fff"
+                            android:textStyle="normal|bold" />
 
                         <TextView
                             android:text="TextView"
@@ -223,7 +235,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@drawable/tab_7_bg"
+                        android:background="@drawable/tab_3_bg"
                         android:padding="20dp"                 >
 
                         <ImageView
@@ -245,7 +257,8 @@
                             android:gravity="center"
                             android:textColor="#ffffff"
                             android:paddingTop="10dp"
-                            android:textSize="12dp"/>
+                            android:textSize="12dp"
+                            android:textStyle="normal|bold"/>
 
                         <TextView
                             android:text="TextView"
@@ -266,7 +279,7 @@
                         android:padding="20dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/tab_6_bg"
+                        android:background="@drawable/tab_2_bg"
                         android:orientation="vertical">
 
 
@@ -286,7 +299,8 @@
                             android:layout_centerHorizontal="true"
                             android:gravity="center"
                             android:paddingTop="10dp"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            android:textStyle="normal|bold"/>
 
                         <TextView
                             android:text="TextView"
@@ -314,7 +328,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@drawable/tab_5_bg"
+                        android:background="@drawable/tab_4_bg"
                         android:padding="20dp"                 >
 
                         <ImageView
@@ -332,7 +346,8 @@
                             android:gravity="center"
                             android:textColor="#ffffff"
                             android:paddingTop="10dp"
-                            android:textSize="12dp"/>
+                            android:textSize="12dp"
+                            android:textStyle="normal|bold"/>
 
                         <TextView
                             android:text="TextView"
@@ -350,7 +365,7 @@
                         android:padding="20dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/tab_2_bg"
+                        android:background="@drawable/tab_7_bg"
                         android:orientation="vertical">
 
 
@@ -367,7 +382,8 @@
                             android:textColor="#fff"
                             android:gravity="center"
                             android:paddingTop="10dp"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            android:textStyle="normal|bold"/>
 
                         <TextView
                             android:text="TextView"
@@ -390,7 +406,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginRight="15dp"
             android:id="@+id/x_custom_action_bar_layout_filter_drawer"
-            app:backgroundTint="?android:attr/colorPressedHighlight"
+            app:backgroundTint="#f75700"
             android:src="@drawable/funnel" />
     </android.support.design.widget.CoordinatorLayout>
 
@@ -402,7 +418,7 @@
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="#F7A208"
+            android:background="#F75700"
             android:orientation="vertical"
             android:id="@+id/nav_main_header"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -446,7 +462,7 @@
             android:background="#ffffff">
 
             <TextView
-                android:text="Filter Options"
+                android:text="Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView53"

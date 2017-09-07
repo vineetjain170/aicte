@@ -186,7 +186,7 @@ public class AdapterForAllLists extends BaseExpandableListAdapter{
                         public void run() {
 
                             jsonClasses executer=new jsonClasses("faculty_details");
-                            String[] params={"\""+values[0]+"\"","\""+values[7]+"\""};
+                            String[] params={"\""+values[0]+"\"","\""+values[7]+"\"",selectedYear.substring(1,selectedYear.length()-1)};
                             executer.J_json_facultyDetails.execute(params);
                             HashMap<Integer,String>categoryNames=new HashMap<Integer, String>();
                             ArrayList<String>categoriesList=new ArrayList<String>();

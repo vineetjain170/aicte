@@ -16,7 +16,8 @@
         android:text="Institute Name"
         android:layout_margin="10dp"
         android:id="@+id/x_label_closed_institutes_institution_name"
-        android:textAppearance="@android:style/TextAppearance.Material" />
+        android:textAppearance="@android:style/TextAppearance.Material"
+        android:textStyle="normal|bold" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:text="AICTE ID"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_institutes_aicteid"
@@ -58,7 +60,8 @@
             android:layout_height="wrap_content"
             android:text="Institute"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +84,8 @@
             android:layout_height="wrap_content"
             android:text="Address"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_institutes_address"
@@ -105,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="State"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_closed_institutes_state"
@@ -128,7 +133,8 @@
             android:layout_height="wrap_content"
             android:text="District"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -151,7 +157,8 @@
             android:layout_height="wrap_content"
             android:text="City"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"

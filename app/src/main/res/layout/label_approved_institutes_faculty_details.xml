@@ -16,7 +16,8 @@
         android:text="Faculty Name"
         android:layout_margin="10dp"
         android:id="@+id/x_label_approved_institutes_faculty_details_name"
-        android:textAppearance="@android:style/TextAppearance.Material" />
+        android:textAppearance="@android:style/TextAppearance.Material"
+        android:textStyle="normal|bold" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:text="Faculty ID"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_faculty_details_fid"
@@ -58,7 +60,8 @@
             android:layout_height="wrap_content"
             android:text="Gender"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +84,8 @@
             android:layout_height="wrap_content"
             android:text="Designation"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_faculty_details_designation"
@@ -105,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Date of Joining"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_faculty_details_joining_date"
@@ -128,7 +133,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Area of Specialisation"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_faculty_details_specialisation_area"
@@ -150,7 +156,8 @@
             android:layout_height="wrap_content"
             android:text="Appointment Type"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -16,7 +16,8 @@
         android:text="Course"
         android:layout_margin="10dp"
         android:id="@+id/x_label_approved_institutes_course_details_course"
-        android:textAppearance="@android:style/TextAppearance.Material" />
+        android:textAppearance="@android:style/TextAppearance.Material"
+        android:textStyle="normal|bold" />
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:text="Programme"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_course_details_programme"
@@ -58,7 +60,8 @@
             android:layout_height="wrap_content"
             android:text="University"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +84,8 @@
             android:layout_height="wrap_content"
             android:text="Level of Course"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_course_details_course_level"
@@ -105,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Shift"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_course_details_shift"
@@ -128,7 +133,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="full/Part Time"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/x_label_approved_institutes_course_details_full_part_time"
@@ -150,7 +156,8 @@
             android:layout_height="wrap_content"
             android:text="Intake"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -172,7 +179,8 @@
             android:layout_height="wrap_content"
             android:text="Enrolment"
             android:layout_marginLeft="10dp"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"

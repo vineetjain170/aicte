@@ -19,6 +19,7 @@ public class mpin extends AppCompatActivity{
     SharedPreferences sharedPreferences;
     String password="",prev="";
     int length=0;
+    TextView forgotMpin;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -30,6 +31,8 @@ public class mpin extends AppCompatActivity{
         sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         if(sharedPreferences.getString("mpin",null)==null){
+
+            Toast.makeText(mpin.this,"Please set a MPIN for your phone",Toast.LENGTH_LONG).show();
 
             buttonproceed.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -106,6 +109,7 @@ public class mpin extends AppCompatActivity{
     private void initializer() {
 
         status=(TextView)findViewById(R.id.x_mpin_status);
+        forgotMpin=(TextView)findViewById(R.id.x_mpin_page_forgot_mpin);
         imageView1=(ImageView)findViewById(R.id.imageview_circle1);
         imageView2=(ImageView)findViewById(R.id.imageview_circle2);
         imageView3=(ImageView)findViewById(R.id.imageview_circle3);
@@ -456,6 +460,27 @@ public class mpin extends AppCompatActivity{
 
             }
         });
-    }
+        forgotMpin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if(sharedPreferences.getString("mpin",null)==null){
+
+                    Toast.makeText(mpin.this,"You don't have any MPIN yet",Toast.LENGTH_LONG).show();
+
+                }else {
+
+                    Intent intent=new Intent(mpin.this,PhoneVerification.class);
+                    startActivity(intent);
+
+                }
+
+            }
+        });
+    }
+    public void onBackPressed(){
+
+        moveTaskToBack(true);
+
+    }
 }

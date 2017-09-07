@@ -121,7 +121,7 @@ public class AdapterForCourseFacultyDetails extends BaseExpandableListAdapter {
             level.setText(values[3]);
             course.setText(values[0]);
             shift.setText(values[4]);
-            //fullorparttime.setText(values[5]);
+            fullorparttime.setText(values[5]);
             intake.setText(values[6]);
             enrolment.setText(values[7]);
 

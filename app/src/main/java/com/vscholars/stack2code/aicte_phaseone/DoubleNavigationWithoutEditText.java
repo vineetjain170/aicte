@@ -14,6 +14,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -130,8 +132,8 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         });
 
         //provide list items for main navigation drawer and set its adapter
-        J_MainNavigationDrawerOptions= new String[]{"AICTE Home", "Dashboard", "Approved Institutes", "NRI/PIO-FN-CIWG/TP","Closed Courses","Closed Institutes","Sign Out"};
-        int[] icons={R.drawable.ic_home_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_institute_nav,R.drawable.ic_nri_nav,R.drawable.ic_closed_courses_nav,R.drawable.ic_closed_institutes_nav,R.drawable.ic_sign_out_nav};
+        J_MainNavigationDrawerOptions= new String[]{"AICTE Home", "Dashboard", "Approved Institutes", "NRI/PIO-FN-CIWG/TP","Closed Courses","Closed Institutes"};
+        int[] icons={R.drawable.ic_home_nav,R.drawable.ic_dashboard_nav,R.drawable.ic_institute_nav,R.drawable.ic_nri_nav,R.drawable.ic_closed_courses_nav,R.drawable.ic_closed_institutes_nav};
         J_DrawerListMainNavigationDrawer.setAdapter(new AdapterForMainNavigationList(context,J_MainNavigationDrawerOptions,icons));
 
         //initialize filter options according to message or current activity and assign an adapter to it
@@ -268,55 +270,6 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                     i.putExtra("yearList",yearList);
                     startActivity(i);
 
-                }else if (position==6){
-
-                    final ProgressDialog pd = new ProgressDialog(DoubleNavigationWithoutEditText.this);
-                    pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    pd.setMessage("Deleting your Account from Server...");
-                    pd.setIndeterminate(true);
-                    pd.setCancelable(false);
-                    pd.show();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            final jsonClasses executer=new jsonClasses("logOut");
-                            SharedPreferences sharedPreferences;
-                            sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
-                            String[] params={sharedPreferences.getString("email",null),sharedPreferences.getString("token",null)};
-                            executer.J_jsonLogOut.execute(params);
-                            while (executer.success==-1){
-
-                                try {
-                                    Thread.sleep(100);
-                                } catch (InterruptedException e) {
-
-                                }
-
-                            }
-                            if (executer.success==1){
-
-                                Intent intent=new Intent(DoubleNavigationWithoutEditText.this,SignInSignUp.class);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("email",null);
-                                editor.putString("token",null);
-                                editor.commit();
-                                startActivity(intent);
-
-                            }else if (executer.success==0){
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(DoubleNavigationWithoutEditText.this,executer.registrationStatus,Toast.LENGTH_LONG).show();
-                                    }
-                                });
-
-                            }
-
-                        }
-                    }).start();
-
                 }
             }
         });
@@ -434,7 +387,7 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
                 }
             }
             if(J_ParentFilterOptions.get(i).equals("Year")&&sudoArray.equals("")){
-                sudoArray="[\""+J_yearList[J_yearList.length-1]+"\"]";
+                sudoArray="[\""+"2016-2017"+"\"]";
             }else if(J_ParentFilterOptions.get(i).equals("Course Type")&&sudoArray.equals("")){
                 sudoArray="[\"NRI\"]";
             }else if(sudoArray.equals("")||sudoArray.equals("\"--All--\",")){
@@ -537,4 +490,73 @@ public class DoubleNavigationWithoutEditText extends ActionBarActivity{
         }
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_sign_out) {
+
+            final ProgressDialog pd = new ProgressDialog(DoubleNavigationWithoutEditText.this);
+            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pd.setMessage("Deleting your Account from Server...");
+            pd.setIndeterminate(true);
+            pd.setCancelable(false);
+            pd.show();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    final jsonClasses executer=new jsonClasses("logOut");
+                    SharedPreferences sharedPreferences;
+                    sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
+                    String[] params={sharedPreferences.getString("email",null),sharedPreferences.getString("token",null)};
+                    executer.J_jsonLogOut.execute(params);
+                    while (executer.success==-1){
+
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+
+                        }
+
+                    }
+                    if (executer.success==1){
+
+                        Intent intent=new Intent(DoubleNavigationWithoutEditText.this,SignInSignUp.class);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email",null);
+                        editor.putString("token",null);
+                        editor.commit();
+                        startActivity(intent);
+
+                    }else if (executer.success==0){
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(DoubleNavigationWithoutEditText.this,executer.registrationStatus,Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                    }
+
+                }
+            }).start();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
