@@ -1,16 +1,22 @@
 package com.vscholars.stack2code.aicte_phaseone;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -48,6 +54,7 @@ public class SignInSignUp extends AppCompatActivity implements GoogleApiClient.O
     public void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
+        checkPermission();
         sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         if(sharedPreferences.getString("token",null)!=null){
@@ -306,6 +313,37 @@ public class SignInSignUp extends AppCompatActivity implements GoogleApiClient.O
 
         moveTaskToBack(true);
 
+    }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public boolean checkPermission()
+    {
+        int currentAPIVersion = Build.VERSION.SDK_INT;
+        if(currentAPIVersion>=android.os.Build.VERSION_CODES.M)
+        {
+            if (ContextCompat.checkSelfPermission(SignInSignUp.this,"android.permission.RECEIVE_SMS") != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) SignInSignUp.this, "android.permission.RECEIVE_SMS")) {
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(SignInSignUp.this);
+                    alertBuilder.setCancelable(true);
+                    alertBuilder.setTitle("Permission necessary");
+                    alertBuilder.setMessage("Write calendar permission is necessary to write event!!!");
+                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions((Activity)SignInSignUp.this, new String[]{"android.permission.RECEIVE_SMS"}, 123);
+                        }
+                    });
+                    AlertDialog alert = alertBuilder.create();
+                    alert.show();
+                } else {
+                    ActivityCompat.requestPermissions((Activity)SignInSignUp.this, new String[]{"android.permission.RECEIVE_SMS"}, 123);
+                }
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 
 }
